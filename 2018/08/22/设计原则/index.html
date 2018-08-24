@@ -56,7 +56,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/feather/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/feather/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/feather/images/pk.png?v=5.1.4">
 
 
   <link rel="icon" type="image/png" sizes="16x16" href="/feather/images/favicon-16x16-next.png?v=5.1.4">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="git," />
+  <meta name="keywords" content="设计模式," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="设计原则 单一职责原则  类只有一个被改变的理由，即它只负责单一的功能  里氏替换原则父类出现的地方子类也可以出现，子类对于用户是透明的，即子类完全实现父类（接口）定义的功能，保证子类是在父类功能基础上的延伸  依赖倒置原则面向接口编程，用接口定义对象抽象出来的功能集合，实现模块化  高层模块不应该依赖低层模块 抽象不应依赖细节 细节应该依赖抽象   接口隔离原则一个类不应依赖它不需要的接口，即保">
-<meta name="keywords" content="git">
+<meta name="description" content="learning ,  perception design关于设计模式的学习， 大部分为书上抄录      Introduction：由构建高可拓展性以及工程化系统开发的研究产生的设计原则，引导产生了23种开发低耦合、高内聚系统的设计模式 设计原则 单一职责原则  类只有一个被改变的理由，即它只负责单一的功能  里氏替换原则父类出现的地方子类也可以出现，子类对于用户是透明的，即子类完全实现父类（接">
+<meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计原则">
 <meta property="og:url" content="https://gfeather.github.io/feather/2018/08/22/设计原则/index.html">
 <meta property="og:site_name" content="feather">
-<meta property="og:description" content="设计原则 单一职责原则  类只有一个被改变的理由，即它只负责单一的功能  里氏替换原则父类出现的地方子类也可以出现，子类对于用户是透明的，即子类完全实现父类（接口）定义的功能，保证子类是在父类功能基础上的延伸  依赖倒置原则面向接口编程，用接口定义对象抽象出来的功能集合，实现模块化  高层模块不应该依赖低层模块 抽象不应依赖细节 细节应该依赖抽象   接口隔离原则一个类不应依赖它不需要的接口，即保">
+<meta property="og:description" content="learning ,  perception design关于设计模式的学习， 大部分为书上抄录      Introduction：由构建高可拓展性以及工程化系统开发的研究产生的设计原则，引导产生了23种开发低耦合、高内聚系统的设计模式 设计原则 单一职责原则  类只有一个被改变的理由，即它只负责单一的功能  里氏替换原则父类出现的地方子类也可以出现，子类对于用户是透明的，即子类完全实现父类（接">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-22T14:40:03.564Z">
+<meta property="og:updated_time" content="2018-08-24T13:20:03.260Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计原则">
-<meta name="twitter:description" content="设计原则 单一职责原则  类只有一个被改变的理由，即它只负责单一的功能  里氏替换原则父类出现的地方子类也可以出现，子类对于用户是透明的，即子类完全实现父类（接口）定义的功能，保证子类是在父类功能基础上的延伸  依赖倒置原则面向接口编程，用接口定义对象抽象出来的功能集合，实现模块化  高层模块不应该依赖低层模块 抽象不应依赖细节 细节应该依赖抽象   接口隔离原则一个类不应依赖它不需要的接口，即保">
+<meta name="twitter:description" content="learning ,  perception design关于设计模式的学习， 大部分为书上抄录      Introduction：由构建高可拓展性以及工程化系统开发的研究产生的设计原则，引导产生了23种开发低耦合、高内聚系统的设计模式 设计原则 单一职责原则  类只有一个被改变的理由，即它只负责单一的功能  里氏替换原则父类出现的地方子类也可以出现，子类对于用户是透明的，即子类完全实现父类（接">
 
 
 
@@ -201,6 +201,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/feather/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/feather/archives/" rel="section">
             
@@ -278,7 +288,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-08-24T21:20:03+08:00">
+                2018-08-24
+              </time>
             
           </span>
 
@@ -314,6 +336,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>Views
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
           
 
@@ -332,7 +359,9 @@
       
 
       
-        <h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><ul>
+        <p><em>learning ,  perception design</em><br><em>关于设计模式的学习， 大部分为书上抄录</em>     </p>
+<p><em>Introduction：由构建高可拓展性以及工程化系统开发的研究产生的设计原则，引导产生了23种开发低耦合、高内聚系统的设计模式</em></p>
+<h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><ul>
 <li><h4 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h4></li>
 </ul>
 <p><em>类只有一个被改变的理由</em>，即它只负责单一的功能</p>
@@ -354,7 +383,7 @@
 </li>
 </ul>
 <p><strong><em>tip：设计的目的是为了实现工程化，使各个组件模块化、可插拔。</em></strong></p>
-<p><em>ps:这是我第一篇博文，刚开始用Hexo，一直生成不成功，报YAML错误，原因居然是md文档的tag:标签后面需要空格。。。<code>:)</code>笑着活下去</em></p>
+<p><em>摘自《设计模式之禅》</em><br><em>ps:这是我第一篇博文，刚开始用Hexo，一直生成不成功，报YAML错误，原因居然是md文档的tag:标签后面需要空格。。。<code>:)</code>笑着活下去</em></p>
 
       
     </div>
@@ -372,7 +401,7 @@
       
         <div class="post-tags">
           
-            <a href="/feather/tags/git/" rel="tag"># git</a>
+            <a href="/feather/tags/设计模式/" rel="tag"># 设计模式</a>
           
         </div>
       
@@ -381,6 +410,22 @@
       
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/feather/2018/08/23/SQL-log/" rel="prev" title="SQL.log">
+                SQL.log <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
@@ -454,7 +499,7 @@
               
                 <a href="/feather/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -465,7 +510,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">categories</span>
                 
               </div>
@@ -476,7 +521,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
@@ -486,6 +531,22 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/GFeather" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:feather292@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -553,6 +614,26 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>Visitors
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>Views
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
 
 

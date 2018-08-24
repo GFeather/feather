@@ -56,7 +56,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/feather/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/feather/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/feather/images/pk.png?v=5.1.4">
 
 
   <link rel="icon" type="image/png" sizes="16x16" href="/feather/images/favicon-16x16-next.png?v=5.1.4">
@@ -197,6 +197,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/feather/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/feather/archives/" rel="section">
             
@@ -225,6 +235,166 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gfeather.github.io/feather/feather/2018/08/23/SQL-log/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="feather">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/feather/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="feather">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/feather/2018/08/23/SQL-log/" itemprop="url">SQL.log</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-23T14:36:53+08:00">
+                2018-08-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-08-24T21:19:54+08:00">
+                2018-08-24
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/feather/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          learning ,  perception design
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/feather/2018/08/23/SQL-log/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -276,7 +446,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-08-24T21:20:03+08:00">
+                2018-08-24
+              </time>
             
           </span>
 
@@ -332,31 +514,15 @@
       
         
           
-            <h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><ul>
-<li><h4 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h4></li>
-</ul>
-<p><em>类只有一个被改变的理由</em>，即它只负责单一的功能</p>
-<ul>
-<li><h4 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h4><p><em>父类出现的地方子类也可以出现</em>，子类对于用户是透明的，即子类完全实现父类（接口）定义的功能，保证子类是在父类功能基础上的延伸</p>
-</li>
-<li><h4 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h4><p><em>面向接口编程</em>，用接口定义对象抽象出来的功能集合，实现模块化</p>
-<ul>
-<li>高层模块不应该依赖低层模块</li>
-<li>抽象不应依赖细节</li>
-<li>细节应该依赖抽象</li>
-</ul>
-</li>
-<li><h4 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h4><p><em>一个类不应依赖它不需要的接口</em>，即保持接口干净，使接口功能模块化</p>
-</li>
-<li><h4 id="迪米特法则"><a href="#迪米特法则" class="headerlink" title="迪米特法则"></a>迪米特法则</h4><p><em>一个类应该对它依赖的类有最小的认识</em>，即类间关系不应超过两层，降低耦合</p>
-</li>
-<li><h4 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h4><p><em>对修改关闭，对扩展开放</em>，即实现功能模块化，类间低耦合，具体为前五条准则</p>
-</li>
-</ul>
-<p><strong><em>tip：设计的目的是为了实现工程化，使各个组件模块化、可插拔。</em></strong></p>
-<p><em>ps:这是我第一篇博文，刚开始用Hexo，一直生成不成功，报YAML错误，原因居然是md文档的tag:标签后面需要空格。。。<code>:)</code>笑着活下去</em></p>
-
-          
+          learning ,  perception design
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/feather/2018/08/22/设计原则/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -436,7 +602,7 @@
               
                 <a href="/feather/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -447,7 +613,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">categories</span>
                 
               </div>
@@ -458,7 +624,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
@@ -468,6 +634,22 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/GFeather" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:feather292@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -519,6 +701,26 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>Visitors
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>Views
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
 
 

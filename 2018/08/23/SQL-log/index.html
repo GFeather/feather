@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/feather/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/feather/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/feather/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/feather/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/feather/images/pk.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/feather/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/feather/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="SQL，MYSQL," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="learning ,  perception design对SQL基础知识的简单汇总 SQL_LOGSQL语句种类查询数据更新复杂查询  视图子查询关联子查询  函数、谓词和CASE表达式  函数谓词CASE表达式  集合运算  表的加减法联结  SQL高级处理  窗口函数GROUPING运算符  SQL语句种类 DDL(Data Definition Language) 数据定义语言 CREAT">
+<meta name="keywords" content="SQL，MYSQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL.log">
+<meta property="og:url" content="https://gfeather.github.io/feather/2018/08/23/SQL-log/index.html">
+<meta property="og:site_name" content="feather">
+<meta property="og:description" content="learning ,  perception design对SQL基础知识的简单汇总 SQL_LOGSQL语句种类查询数据更新复杂查询  视图子查询关联子查询  函数、谓词和CASE表达式  函数谓词CASE表达式  集合运算  表的加减法联结  SQL高级处理  窗口函数GROUPING运算符  SQL语句种类 DDL(Data Definition Language) 数据定义语言 CREAT">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-24T13:19:54.484Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQL.log">
+<meta name="twitter:description" content="learning ,  perception design对SQL基础知识的简单汇总 SQL_LOGSQL语句种类查询数据更新复杂查询  视图子查询关联子查询  函数、谓词和CASE表达式  函数谓词CASE表达式  集合运算  表的加减法联结  SQL高级处理  窗口函数GROUPING运算符  SQL语句种类 DDL(Data Definition Language) 数据定义语言 CREAT">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/feather/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gfeather.github.io/feather/2018/08/23/SQL-log/"/>
+
+
+
+
+
+  <title>SQL.log | feather</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/feather/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">feather</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/feather/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/feather/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/feather/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/feather/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gfeather.github.io/feather/feather/2018/08/23/SQL-log/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="feather">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/feather/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="feather">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SQL.log</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-23T14:36:53+08:00">
+                2018-08-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2018-08-24T21:19:54+08:00">
+                2018-08-24
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/feather/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>Views
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><em>learning ,  perception design</em><br><em>对SQL基础知识的简单汇总</em></p>
+<h1 id="SQL-LOG"><a href="#SQL-LOG" class="headerlink" title="SQL_LOG"></a>SQL_LOG</h1><p><a href="#SQL语句种类">SQL语句种类</a><br><a href="#查询">查询</a><br><a href="#数据更新">数据更新</a><br><a href="#复杂查询">复杂查询</a></p>
+<blockquote>
+<p>视图<br>子查询<br>关联子查询</p>
+</blockquote>
+<p><a href="#函数、谓词和CASE表达式">函数、谓词和CASE表达式</a></p>
+<blockquote>
+<p>函数<br>谓词<br>CASE表达式</p>
+</blockquote>
+<p><a href="#集合运算">集合运算</a></p>
+<blockquote>
+<p>表的加减法<br>联结</p>
+</blockquote>
+<p><a href="#SQL高级处理">SQL高级处理</a></p>
+<blockquote>
+<p>窗口函数<br>GROUPING运算符</p>
+</blockquote>
+<h2 id="SQL语句种类"><a href="#SQL语句种类" class="headerlink" title="SQL语句种类"></a>SQL语句种类</h2><ul>
+<li><a href="#DDL">DDL(Data Definition Language)</a> 数据定义语言<blockquote>
+<p>CREATE<br>DROP<br>ALTER </p>
+</blockquote>
+</li>
+<li><a href="#DML">DML(Data Manipulation Language)</a> 数据操纵语言<blockquote>
+<p>SELECT<br>INSERT<br>DELETE<br>UPDATE</p>
+</blockquote>
+</li>
+<li><a href="#DCL">DCL(Data control Language)</a> 数据控制语言<blockquote>
+<p>COMMIT<br>ROLLBACK<br>GRANT    赋予用户操作权限<br>REVOKE 取消用户操作权限</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="SQL书写规则"><a href="#SQL书写规则" class="headerlink" title="SQL书写规则"></a>SQL书写规则</h4><ul>
+<li>以<code>;</code>结尾</li>
+<li><p>不区分大小写</p>
+<pre><code>SHOW DATABASES;//展示所有数据库
+SHOW TABLES;//展示当前数据库中所有表
+DESCRIBE &lt;table&gt;;//展示表结构
+DESC &lt;table&gt;;
+truncate table;清空表、包括约束；
+</code></pre></li>
+</ul>
+<h4 id="DDL语句"><a href="#DDL语句" class="headerlink" title="DDL语句"></a>DDL语句<p id="DDL"></p></h4><ul>
+<li><p>CREATE</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATAVASE &lt;database&gt;;//创建数据库</span><br><span class="line">//创建表</span><br><span class="line">CREATE TABLE &lt;table&gt;(</span><br><span class="line">	&lt;column1&gt; &lt;type&gt; &lt;constraint&gt;,</span><br><span class="line">	&lt;column2&gt; &lt;type&gt; &lt;constraint&gt;,</span><br><span class="line">			   ...</span><br><span class="line">	&lt;TABLE constraint&gt;;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>DROP</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//be careful</span><br><span class="line">DROP &lt;database&gt;;</span><br><span class="line">DROP &lt;table&gt;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ALTER</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE &lt;table&gt; ADD COLUMN &lt;column&gt; [first|before|after][&lt;column&gt;];</span><br><span class="line">ALTER TABLE &lt;table&gt; DROP COLUMN &lt;column&gt;;</span><br><span class="line">ALTER TABLE &lt;table&gt; ALTER COLUMN &lt;column&gt;; </span><br><span class="line">ALTER TABLE &lt;table&gt; CHANGE &lt;oldcolumn&gt; &lt;newcolumn&gt;;</span><br><span class="line">ALTER TABLE &lt;table&gt; MOTIFY &lt;column&gt;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="DML语句"><a href="#DML语句" class="headerlink" title="DML语句"></a>DML语句<p id="DML"></p></h4><ul>
+<li><p>INSERT</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO &lt;table&gt; VALUES (value1, value2...);</span><br><span class="line">INSERT INTO &lt;table&gt; (column1, column2...) VALUES (value1, value2...);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>DELETE</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM &lt;table&gt; WHERE ...;</span><br><span class="line">DELETE FROM &lt;table&gt;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>UPDATE</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE &lt;table&gt; SET COLUMN = new WHERE ...;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>SELECT</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//base</span><br><span class="line">SELECT &lt;column&gt; FROM &lt;table&gt;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="DCL语句"><a href="#DCL语句" class="headerlink" title="DCL语句"></a>DCL语句<p id="DCL"></p></h4><h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询<p id="查询"></p></h2><p>查询语句结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT &lt;column&gt; </span><br><span class="line">FROM &lt;table&gt;</span><br><span class="line">[WHERE &lt;condition&gt;]</span><br><span class="line">[GROUP BY &lt;condition&gt;]</span><br><span class="line">[HAVING &lt;condition&gt;]</span><br><span class="line">[ORDER BY &lt;column&gt; &lt;order&gt;];</span><br></pre></td></tr></table></figure></p>
+<p>各子句功能：</p>
+<ul>
+<li>SELECT， 在使用GROUP BY时，应只包含聚合键、聚合函数，来展示聚合结果</li>
+<li>WHERE 子句，支持比较运算符、逻辑运算符，<strong>对每一行进行数据操作</strong>，所以不能使用聚合函数</li>
+<li>GROUP BY 子句，根据聚合键对行进行分组</li>
+<li>HAVING 子句，只能使用聚合键、聚合函数，使用组特征对组进行选择</li>
+<li>ORDER BY 子句，根据排序键进行排序，不使用ORDER BY前排列为随机顺序，<code>ASC↑ DESC↓</code></li>
+<li>执行顺序：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FROM -&gt; WHERE -&gt; GROUP BY -&gt; HAVING -&gt; ORDER BY -&gt; SELECT</span><br></pre></td></tr></table></figure>
+<p><strong><em>null</em></strong>： </p>
+<ul>
+<li>在算数运算中，对null的算术运算结果都为null，eg：1 + null = null</li>
+<li>在比较运算中，null不能使用比较运算符，eg： <code>where &lt;column&gt; &lt;&gt; null;</code> 结果为空</li>
+<li>在逻辑运算中，可以使用谓词判断是否为空，eg： <code>IS null</code> / <code>IS NOT null</code></li>
+<li>三值逻辑，因为null，SQL中的逻辑运算被称为三值逻辑，即存在真、不确定、假，三种状态，真假程度为此顺序。</li>
+<li>在聚合中，使用聚合函数会排除含null值的行(*会选中全部行)。</li>
+<li>在分组中，聚合键中含null时，会将值null的行作为一组；</li>
+<li>在排序中，排序键中含null的行则会被放到开头或结尾，排序为随机</li>
+</ul>
+<h2 id="数据更新"><a href="#数据更新" class="headerlink" title="数据更新"></a>数据更新<p id="数据更新"></p></h2><ul>
+<li>INSERT</li>
+</ul>
+<blockquote>
+<p>多行插入，<code>INSERT INTO &lt;table&gt; VALUES (value1...),VALUES (value1...)...;</code><br>插入默认值，显式： <code>DEFAULT</code> 显式代替默认值，隐式：INSERT时在字段列表和values列表省略该值。<br>从表中插入，使用<code>INSERT...SELECT</code>语句，将SELECT查询出的数据插入，支持完整SELECT中的选择、聚合、排序等操作用于表复制；</p>
+<ul>
+<li>DELETE</li>
+<li>UPDATE<br>多列更新，SET 指令后允许对多个列进行更新</li>
+</ul>
+</blockquote>
+<h2 id="复杂查询"><a href="#复杂查询" class="headerlink" title="复杂查询"></a>复杂查询<p id="复杂查询"></p></h2><ul>
+<li>视图<br>用于保存复杂查询，在SQL中视图作为一个表，但是不存储数据，本体为一个SELECT查询。<ul>
+<li>创建视图不能使用ORDER BY，因为视图作为一个表是无序的</li>
+<li>视图更新的条件：没有使用DISTINCT、FROM子句中只有一张表、没有使用GROUP BY、没有使用HAVING，即保证视图中查询的数据都来自一张表、数据都存在且没有做聚合。<br>语法：</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CREATE VIEW (&lt;column&gt;...)</span><br><span class="line">AS</span><br><span class="line">SELECT....;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>子查询<br>简单的讲是一个一次性的视图，即在一个SELECT查询中查询数据。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT &lt;column&gt;</span><br><span class="line">FROM </span><br><span class="line">  (SELECT &lt;column&gt;</span><br><span class="line">  FROM &lt;table&gt;);</span><br></pre></td></tr></table></figure>
+<p>常量子查询：<br>查询结果是一个值，可以当做一个数值来为列赋值</p>
+<ul>
+<li>关联子查询<br>WHERE 子句是对行的操作，下面的查询用一个键将子查询和主查询关联，来取出关联键的分组的聚合值</li>
+</ul>
+<pre><code>SELECT &lt;column&gt; 
+FROM &lt;table&gt; AS p1
+where &lt;column3&gt; &gt; ( SELECT AVG(&lt;column3&gt;)
+                FROM &lt;table&gt; AS p2
+                WHERE p1.&lt;column2&gt; = p2.&lt;column2&gt;
+                GROUP BY &lt;column2&gt; );
+</code></pre><p>//查询表中某列指标大于所属类别平均值的行</p>
+<h2 id="函数、谓词和CASE表达式"><a href="#函数、谓词和CASE表达式" class="headerlink" title="函数、谓词和CASE表达式"></a>函数、谓词和CASE表达式<p id="函数、谓词和CASE表达式"></p></h2><ul>
+<li>函数<ul>
+<li>聚合函数</li>
+<li>算术函数</li>
+<li>字符串函数</li>
+<li>日期函数</li>
+<li>转换函数</li>
+</ul>
+</li>
+<li>谓词<blockquote>
+<ul>
+<li>LIKE 用于对字符串的模糊匹配，支持通配符<br>LIKE 匹配分为前方一致、中间一致、后方一致，通配符<code>%</code>表示一个或多个字符、<code>_</code>表示单个字符</li>
+<li>BETWEEN 范围查询 eg：<code>BETWEEN a AND b</code> 相当于  a &lt;= x &lt;= b</li>
+<li>IS NULL/IS NOT NULL 判断是否为NULL</li>
+<li>IN 判断是否在一组值、查询中</li>
+<li>EXIST 判断集合是否存在元素，对象一般为一个子查询</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="集合运算"><a href="#集合运算" class="headerlink" title="集合运算"></a>集合运算<p id="集合运算"></p></h2><ul>
+<li>表的加减法<br>作为运算对象的列数、数据类型都要相同</li>
+</ul>
+<blockquote>
+<ul>
+<li>并集(<code>UNION</code>)</li>
+</ul>
+</blockquote>
+<blockquote>
+<pre><code>SELECT * FROM &lt;table&gt;
+UNION [ALL]//包括重复项目，一行的所有数据都相等才为相同记录
+SELECT * FROM &lt;table&gt;;
+</code></pre></blockquote>
+<blockquote>
+<ul>
+<li>交集(<code>INTERSECT</code>)<br>用法与<code>UNION</code>相同，mysql不支持，需要取所有记录通过筛选出现次数获得</li>
+</ul>
+</blockquote>
+<blockquote>
+<pre><code>SELECT * 
+FROM (
+   SELECT * FROM &lt;table&gt;
+   UNION ALL
+   SELECT * FROM &lt;table&gt;) t
+GROUP BY id
+HAVING COUNT(id) = 2;
+</code></pre></blockquote>
+<blockquote>
+<ul>
+<li>差集(<code>EXCEPT</code>)<br>用法与<code>UNION</code>相同，mysql不支持，需要取所有记录通过筛选出现次数获得</li>
+</ul>
+<pre><code>SELECT * 
+FROM (
+   SELECT * FROM &lt;table&gt;
+   UNION ALL
+   SELECT * FROM &lt;table&gt;) t
+GROUP BY id
+HAVING COUNT(id) = 1;
+</code></pre></blockquote>
+<ul>
+<li>联结<blockquote>
+<ul>
+<li>内联结(<code>INNER JION</code>)<br>通过联结键将两个表中都存在的记录联结在一起</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<pre><code>SELECT *
+FROM p1 INNER JOIN p2
+ ON p1.id = p2.id;
+</code></pre></blockquote>
+<blockquote>
+<ul>
+<li>外联结(<code>OUTER JOIN</code>)<br>分为LEFT、RIGHT，用来指定主表以主表联结键为主来从从表获取对应记录</li>
+</ul>
+</blockquote>
+<h2 id="SQL高级处理"><a href="#SQL高级处理" class="headerlink" title="SQL高级处理"></a>SQL高级处理<p id="SQL高级处理"></p></h2><ul>
+<li>窗口函数(OLAP OneLine Analytical Processing)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//窗口函数分为1、聚合函数(COUNT、MAX、MIN、SUM、AVG)2、RANK、DENSE_RANK、ROW_NUMBER等专门的窗口函数</span><br><span class="line">//窗口函数就是将记录切割为窗口，再计算排序</span><br><span class="line">//窗口函数只能用于SELECT子句中，因为它是对查询出的记录进行分组、排序，所以结果是无序的</span><br><span class="line">//PATITION BY用来分组，ORDER BY计算排序</span><br><span class="line">&lt;OLAP&gt; OVER ([PATITION BY &lt;column&gt;]</span><br><span class="line">			 ORDER BY &lt;colum&gt;</span><br><span class="line">			[ROWS n PRECEDING/FOLLING])</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>RANK函数， 计算排序时，具有相同位次的记录会占有序号，eg:1，1，1，4<br>DESE_RANK函数，计算排序时，具有相同位次的记录不占有序号，eg:1，1，1，2<br>ROW_NUMBER函数，分配连续序号，eg:1，2，3，4</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//在使用聚合函数时，会以当前记录为基准，只统计&apos;在自己之上的记录&apos;，参考窗口方向</span><br><span class="line">//下面的SQL会计算累计的平均值，即当前记录之前所有记录的平均值</span><br><span class="line">SELECT id, </span><br><span class="line">	AVG(price) OVER (ORDER BY price) AS price_AVG</span><br><span class="line">FROM &lt;table&gt;</span><br><span class="line">//移动平均，在计算聚合函数时，可以指定窗口大小，和窗口方向</span><br><span class="line">SELECT id, </span><br><span class="line">	AVG(price) OVER (ORDER BY price ROWS n PRECEDING/FOLLOING) AS price_AVG</span><br><span class="line">FROM &lt;table&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>GROUPING运算符<br>用来同时计算合计和小计</li>
+</ul>
+<blockquote>
+<ul>
+<li>ROLLUP，一次计算出不同聚合键组合的结果</li>
+</ul>
+</blockquote>
+<blockquote>
+<pre><code>SELECT product_type, SUM(sale_price)
+FROM product
+GROUP BY ROLLUP(product_type);
+//mysql中
+SELECT product_type, SUM(sale_price)
+FROM product
+GROUP BY product_type WITH ROLLUP;
+//相当于
+GROUP BY()
+GROUP BY(product_type)
+</code></pre></blockquote>
+<blockquote>
+<p>以下运算符mysql均不支持</p>
+<ul>
+<li>GROUPING函数，用来判断是否为超级分组记录的null，是返回1，不是返回0。</li>
+<li>CUBE，在ROLLUP基础上添加对每个聚合键的计算</li>
+<li>GROUPING SETS从ROLLUP或CUBE中选取部分列</li>
+</ul>
+</blockquote>
+<p><em>摘自《SQL基础教程》</em></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/feather/tags/SQL，MYSQL/" rel="tag"># SQL，MYSQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/feather/2018/08/22/设计原则/" rel="next" title="设计原则">
+                <i class="fa fa-chevron-left"></i> 设计原则
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">feather</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/feather/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/GFeather" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:feather292@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-LOG"><span class="nav-number">1.</span> <span class="nav-text">SQL_LOG</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL语句种类"><span class="nav-number">1.1.</span> <span class="nav-text">SQL语句种类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL书写规则"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">SQL书写规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DDL语句"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">DDL语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DML语句"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">DML语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DCL语句"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">DCL语句</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询"><span class="nav-number">1.2.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据更新"><span class="nav-number">1.3.</span> <span class="nav-text">数据更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂查询"><span class="nav-number">1.4.</span> <span class="nav-text">复杂查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数、谓词和CASE表达式"><span class="nav-number">1.5.</span> <span class="nav-text">函数、谓词和CASE表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合运算"><span class="nav-number">1.6.</span> <span class="nav-text">集合运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL高级处理"><span class="nav-number">1.7.</span> <span class="nav-text">SQL高级处理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">feather</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>Visitors
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>Views
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/feather/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/feather/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/feather/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/feather/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/feather/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/feather/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/feather/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/feather/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/feather/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/feather/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/feather/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
