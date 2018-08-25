@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,6 +13,13 @@
 <meta name="theme-color" content="#222">
 
 
+
+  
+  
+    
+    
+  <script src="/feather/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/feather/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
 
 
 
@@ -56,10 +63,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/feather/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/feather/images/pk.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/feather/images/feather.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/feather/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/feather/images/feather.png?v=5.1.4">
 
 
   <link rel="mask-icon" href="/feather/images/logo.svg?v=5.1.4" color="#222">
@@ -68,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="SQL，MYSQL," />
+  <meta name="keywords" content="SQL,MYSQL," />
 
 
 
@@ -80,14 +87,14 @@
 
 
 <meta name="description" content="learning ,  perception design对SQL基础知识的简单汇总 SQL_LOGSQL语句种类查询数据更新复杂查询  视图子查询关联子查询  函数、谓词和CASE表达式  函数谓词CASE表达式  集合运算  表的加减法联结  SQL高级处理  窗口函数GROUPING运算符  SQL语句种类 DDL(Data Definition Language) 数据定义语言 CREAT">
-<meta name="keywords" content="SQL，MYSQL">
+<meta name="keywords" content="SQL,MYSQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL.log">
 <meta property="og:url" content="https://gfeather.github.io/feather/2018/08/23/SQL-log/index.html">
 <meta property="og:site_name" content="feather">
 <meta property="og:description" content="learning ,  perception design对SQL基础知识的简单汇总 SQL_LOGSQL语句种类查询数据更新复杂查询  视图子查询关联子查询  函数、谓词和CASE表达式  函数谓词CASE表达式  集合运算  表的加减法联结  SQL高级处理  窗口函数GROUPING运算符  SQL语句种类 DDL(Data Definition Language) 数据定义语言 CREAT">
-<meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-24T13:19:54.484Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-25T05:02:10.353Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL.log">
 <meta name="twitter:description" content="learning ,  perception design对SQL基础知识的简单汇总 SQL_LOGSQL语句种类查询数据更新复杂查询  视图子查询关联子查询  函数、谓词和CASE表达式  函数谓词CASE表达式  集合运算  表的加减法联结  SQL高级处理  窗口函数GROUPING运算符  SQL语句种类 DDL(Data Definition Language) 数据定义语言 CREAT">
@@ -106,7 +113,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     },
     algolia: {
       applicationID: '',
@@ -138,7 +145,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -186,7 +193,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
           </a>
         </li>
       
@@ -196,7 +203,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            Tags
+            标签
           </a>
         </li>
       
@@ -206,7 +213,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            Categories
+            分类
           </a>
         </li>
       
@@ -216,7 +223,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -280,9 +287,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-23T14:36:53+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-23T14:36:53+08:00">
                 2018-08-23
               </time>
             
@@ -296,10 +303,10 @@
                 <i class="fa fa-calendar-check-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Post modified&#58;</span>
+                <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2018-08-24T21:19:54+08:00">
-                2018-08-24
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-25T13:02:10+08:00">
+                2018-08-25
               </time>
             
           </span>
@@ -313,7 +320,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -330,9 +337,31 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/feather/2018/08/23/SQL-log/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/feather/2018/08/23/SQL-log/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+             <span id="/feather/2018/08/23/SQL-log/" class="leancloud_visitors" data-flag-title="SQL.log">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
           
 
           
@@ -610,7 +639,9 @@ GROUP BY(product_type)
       
         <div class="post-tags">
           
-            <a href="/feather/tags/SQL，MYSQL/" rel="tag"># SQL，MYSQL</a>
+            <a href="/feather/tags/SQL/" rel="tag"># SQL</a>
+          
+            <a href="/feather/tags/MYSQL/" rel="tag"># MYSQL</a>
           
         </div>
       
@@ -667,6 +698,14 @@ GROUP BY(product_type)
           
 
   
+    <div class="comments" id="comments">
+      
+        <div onclick="showGitment()" id="gitment-display-button">显示 Gitment 评论</div>
+        <div id="gitment-container" style="display:none"></div>
+      
+    </div>
+
+  
 
 
 
@@ -691,10 +730,10 @@ GROUP BY(product_type)
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+            文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+            站点概览
           </li>
         </ul>
       
@@ -719,7 +758,7 @@ GROUP BY(product_type)
                 <a href="/feather/archives/">
               
                   <span class="site-state-item-count">2</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
@@ -728,10 +767,10 @@ GROUP BY(product_type)
               
               
               <div class="site-state-item site-state-categories">
-                
+                <a href="/feather/categories/index.html">
                   <span class="site-state-item-count">2</span>
-                  <span class="site-state-item-name">categories</span>
-                
+                  <span class="site-state-item-name">分类</span>
+                </a>
               </div>
             
 
@@ -739,10 +778,10 @@ GROUP BY(product_type)
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">2</span>
-                  <span class="site-state-item-name">tags</span>
-                
+                <a href="/feather/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
               </div>
             
 
@@ -763,6 +802,12 @@ GROUP BY(product_type)
                     <a href="mailto:feather292@gmail.com" target="_blank" title="E-Mail">
                       
                         <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/19719655a6c9" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
                   </span>
                 
             </div>
@@ -811,15 +856,15 @@ GROUP BY(product_type)
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">feather</span>
 
   
 </div>
 
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -827,10 +872,10 @@ GROUP BY(product_type)
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
 
 
-
+-->
 
         
 <div class="busuanzi-count">
@@ -988,6 +1033,52 @@ GROUP BY(product_type)
 
 
 
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+      <style>
+        a.gitment-editor-footer-tip { display: none; }
+        .gitment-container.gitment-footer-container { display: none; }
+      </style>
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'GFeather',
+            repo: 'https://github.com/GFeather/feather',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '7ae73d03f84a49f3ef08445d243e0e1f7abeca7d',
+            
+                client_id: '606b4524ae7ce87100fe'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      function showGitment(){
+        document.getElementById("gitment-display-button").style.display = "none";
+        document.getElementById("gitment-container").style.display = "block";
+        renderGitment();
+      }
+      
+      </script>
+    
+
+
 
 
 
@@ -1000,6 +1091,113 @@ GROUP BY(product_type)
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("MyWiH96O1JFJEcLtPUr5FtJh-gzGzoHsz", "QLmb5OErD2AJQpENGU3zq63b");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 
