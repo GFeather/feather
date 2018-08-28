@@ -24,7 +24,7 @@
       <script type="text/javascript">
       function renderGitment(){
         var gitment = new {{CommentsClass}}({
-            id: md5(location.pathname),
+            id: md5(window.location.pathname), 
             owner: '{{ theme.gitment.github_user }}',
             repo: '{{ theme.gitment.github_repo }}',
             {% if theme.gitment.mint %}
