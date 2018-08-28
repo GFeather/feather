@@ -22,9 +22,23 @@
     {% if page.comments %}
       <script src="/js/src/md5.min.js"></script>
       <script type="text/javascript">
+
+      // 把当前页面的创建时间page.date转换成 Y-m-d H:i:s
+     function getGitmentId(date)
+      {
+          var pageDate  = new Date(date);
+                  Y = pageDate.getFullYear() + '-';
+                  M = (pageDate.getMonth()+1 < 10 ? '0'+(pageDate.getMonth()+1) : pageDate.getMonth()+1) + '-';
+                  D = pageDate.getDate() + ' ';
+                  h = pageDate.getHours() + ':';
+                  m = pageDate.getMinutes() + ':';
+                  s = pageDate.getSeconds(); 
+          return Y+M+D+h+m+s; 
+      }
+
       function renderGitment(){
         var gitment = new {{CommentsClass}}({
-            id: md5(window.location.pathname), 
+            id:  getGitmentId({{ page.date }}), 
             owner: '{{ theme.gitment.github_user }}',
             repo: '{{ theme.gitment.github_repo }}',
             {% if theme.gitment.mint %}
