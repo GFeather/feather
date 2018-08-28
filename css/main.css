@@ -950,6 +950,8 @@ pre .javascript .function {
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
   line-height: 2;
+  position: relative;
+  left: 386px;
 }
 .btn:hover {
   border-color: #222;
@@ -1822,7 +1824,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #8125fa;
+  background: #0ad116;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2910,4 +2912,14 @@ hr {
   padding: 25px;
   -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
+}
+div.post-block header.post-header div {
+  text-align: center;
+}
+div.post-block header.post-header h1.post-title {
+  text-align: center;
+}
+div.post-block div.post.body div.post-button a.btn {
+  position: relative;
+  left: 100px;
 }
