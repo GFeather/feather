@@ -837,7 +837,7 @@
       }
 
       function renderGitment(){
-        var pat = new RegExp("/\\W+");
+        var pat = new RegExp("/\\S+/");
         var gitment = new Gitmint({
             id: pat.exec(decodeURI(window.location.pathname))[0],
             owner: 'GFeather',
