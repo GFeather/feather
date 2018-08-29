@@ -38,7 +38,7 @@
 
       function renderGitment(){
         var gitment = new {{CommentsClass}}({
-            id: getGitmentId( page.date ), 
+            id: getGitmentId({{ page.date }}), 
             owner: '{{ theme.gitment.github_user }}',
             repo: '{{ theme.gitment.github_repo }}',
             {% if theme.gitment.mint %}
