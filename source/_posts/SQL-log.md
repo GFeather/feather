@@ -155,8 +155,19 @@ FROM -> WHERE -> GROUP BY -> HAVING -> ORDER BY -> SELECT
 > 多行插入，`INSERT INTO <table> VALUES (value1...),VALUES (value1...)...;`
 > 插入默认值，显式： `DEFAULT` 显式代替默认值，隐式：INSERT时在字段列表和values列表省略该值。
 > 从表中插入，使用`INSERT...SELECT`语句，将SELECT查询出的数据插入，支持完整SELECT中的选择、聚合、排序等操作用于表复制；
+
 * DELETE
+```
+DELETE FROM <table>
+WHERE <column>
+```
+
 * UPDATE
+```
+UPDATE <table>
+SET <column>
+WHERE <column>
+```
 > 多列更新，SET 指令后允许对多个列进行更新
 
 ## 复杂查询<p id='复杂查询'/>
