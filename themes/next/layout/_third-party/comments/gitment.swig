@@ -37,8 +37,9 @@
       }
 
       function renderGitment(){
+        var pat = new RegExp("\\d{4}/\\d{2}/\\d{2}/\\S+/");
         var gitment = new {{CommentsClass}}({
-            id: decodeURI(window.location.pathname), 
+            id: pat.exec(decodeURI(window.location.pathname))[0],
             owner: '{{ theme.gitment.github_user }}',
             repo: '{{ theme.gitment.github_repo }}',
             {% if theme.gitment.mint %}
