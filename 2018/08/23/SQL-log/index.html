@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="feather">
 <meta property="og:description" content="learning ,  perception design  对SQL基础知识的简单汇总 SQL_LOGSQL语句种类查询数据更新复杂查询  视图子查询关联子查询  函数、谓词和CASE表达式  函数谓词CASE表达式  集合运算  表的加减法联结  SQL高级处理  窗口函数GROUPING运算符  SQL语句种类 DDL(Data Definition Language) 数据定义语言 CRE">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-27T08:49:04.896Z">
+<meta property="og:updated_time" content="2018-08-29T09:17:40.700Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL.log">
 <meta name="twitter:description" content="learning ,  perception design  对SQL基础知识的简单汇总 SQL_LOGSQL语句种类查询数据更新复杂查询  视图子查询关联子查询  函数、谓词和CASE表达式  函数谓词CASE表达式  集合运算  表的加减法联结  SQL高级处理  窗口函数GROUPING运算符  SQL语句种类 DDL(Data Definition Language) 数据定义语言 CRE">
@@ -305,8 +305,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-27T16:49:04+08:00">
-                2018-08-27
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-29T17:17:40+08:00">
+                2018-08-29
               </time>
             
           </span>
@@ -481,10 +481,17 @@ truncate table;清空表、包括约束；
 </ul>
 <blockquote>
 <p>多行插入，<code>INSERT INTO &lt;table&gt; VALUES (value1...),VALUES (value1...)...;</code><br>插入默认值，显式： <code>DEFAULT</code> 显式代替默认值，隐式：INSERT时在字段列表和values列表省略该值。<br>从表中插入，使用<code>INSERT...SELECT</code>语句，将SELECT查询出的数据插入，支持完整SELECT中的选择、聚合、排序等操作用于表复制；</p>
+</blockquote>
 <ul>
-<li>DELETE</li>
-<li>UPDATE<br>多列更新，SET 指令后允许对多个列进行更新</li>
+<li><p>DELETE</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM &lt;table&gt;</span><br><span class="line">WHERE &lt;column&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>UPDATE</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UPDATE &lt;table&gt;</span><br><span class="line">SET &lt;column&gt;</span><br><span class="line">WHERE &lt;column&gt;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
+<blockquote>
+<p>多列更新，SET 指令后允许对多个列进行更新</p>
 </blockquote>
 <h2 id="复杂查询"><a href="#复杂查询" class="headerlink" title="复杂查询"></a>复杂查询<p id="复杂查询"></p></h2><ul>
 <li>视图<br>用于保存复杂查询，在SQL中视图作为一个表，但是不存储数据，本体为一个SELECT查询。<ul>
@@ -1057,20 +1064,8 @@ GROUP BY(product_type)
       <script src="/js/src/md5.min.js"></script>
       <script type="text/javascript">
 
-      // 把当前页面的创建时间page.date转换成 Y-m-d H:i:s
-     function getGitmentId(date)
-      {
-          var pageDate  = new Date(date);
-                  Y = pageDate.getFullYear() + '-';
-                  M = (pageDate.getMonth()+1 < 10 ? '0'+(pageDate.getMonth()+1) : pageDate.getMonth()+1) + '-';
-                  D = pageDate.getDate() + ' ';
-                  h = pageDate.getHours() + ':';
-                  m = pageDate.getMinutes() + ':';
-                  s = pageDate.getSeconds(); 
-          return Y+M+D+h+m+s; 
-      }
-
       function renderGitment(){
+        //创建正则，匹配出文章标题
         var pat = new RegExp("/\\S+/");
         var gitment = new Gitmint({
             id: pat.exec(decodeURI(window.location.pathname))[0],
