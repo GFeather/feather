@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="feather">
 <meta property="og:description" content="learning ,  perception design  命令模式定义将请求封装成一个对象，从而让你使用不同的请求将客户端参数化，对请求排队或者记录请求日志，可以提供命令的撤销和恢复 实现12345678910111213141516171819202122232425262728//命令接收对象public abstract class Receiver&amp;#123;	void do();&amp;#">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-30T09:20:15.615Z">
+<meta property="og:updated_time" content="2018-08-30T09:22:15.627Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="命令模式">
 <meta name="twitter:description" content="learning ,  perception design  命令模式定义将请求封装成一个对象，从而让你使用不同的请求将客户端参数化，对请求排队或者记录请求日志，可以提供命令的撤销和恢复 实现12345678910111213141516171819202122232425262728//命令接收对象public abstract class Receiver&amp;#123;	void do();&amp;#">
@@ -305,7 +305,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-30T17:20:15+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-30T17:22:15+08:00">
                 2018-08-30
               </time>
             
@@ -395,7 +395,7 @@
 <p>优点：不需要知道请求是如何被实现的，可以在命令中直接扩展新命令方法<br>缺点：跟中介者模式相同，可能产生方法爆炸问题</p>
 </blockquote>
 <p>命令模式实际上是将一个请求所需的多个操作封装。这就可以用一个请求来调用内含的多个操作。简化了客户端请求<br>这个思想跟事务的要求很相似，即可以实现一系列操作的整体运行，和相应的撤销。</p>
-<h4 id="End"><a href="#End" class="headerlink" title="End"></a>End</h4><p>命令模式简化了对一系列复杂指令的调用，对命令模式的讲解偏重于它在事务上的应用，对于事务相关的功能具有天然的适配，整体提交、回滚等。</p>
+<h4 id="End"><a href="#End" class="headerlink" title="End"></a>End</h4><p>命令模式简化了对一系列复杂指令的调用，外网git上对命令模式的理解偏重于它在事务上的应用，对于事务相关的功能具有天然的适配，整体提交、回滚等。</p>
 <p><em>参考《设计模式之禅》</em><br><a href="https://github.com/iluwatar/java-design-patterns/tree/master/command" target="_blank" rel="noopener">参考链接</a></p>
 
       
@@ -436,6 +436,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/feather/2018/08/30/责任链模式/" rel="prev" title="责任链模式">
+                责任链模式 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -530,7 +534,7 @@
               
                 <a href="/feather/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
