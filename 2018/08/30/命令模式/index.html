@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="feather">
 <meta property="og:description" content="learning ,  perception design  命令模式定义将请求封装成一个对象，从而让你使用不同的请求将客户端参数化，对请求排队或者记录请求日志，可以提供命令的撤销和恢复 实现12345678910111213141516171819202122232425262728//命令接收对象public abstract class Receiver&amp;#123;	void do();&amp;#">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-30T09:10:44.062Z">
+<meta property="og:updated_time" content="2018-08-30T09:20:15.615Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="命令模式">
 <meta name="twitter:description" content="learning ,  perception design  命令模式定义将请求封装成一个对象，从而让你使用不同的请求将客户端参数化，对请求排队或者记录请求日志，可以提供命令的撤销和恢复 实现12345678910111213141516171819202122232425262728//命令接收对象public abstract class Receiver&amp;#123;	void do();&amp;#">
@@ -305,7 +305,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-30T17:10:44+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-30T17:20:15+08:00">
                 2018-08-30
               </time>
             
@@ -391,8 +391,11 @@
         <p><em>learning ,  perception design</em> </p>
 <h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h2><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>将请求封装成一个对象，从而让你使用不同的请求将客户端参数化，对请求排队或者记录请求日志，可以提供命令的撤销和恢复</p>
 <h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//命令接收对象</span><br><span class="line">public abstract class Receiver&#123;</span><br><span class="line">	void do();</span><br><span class="line">&#125;</span><br><span class="line">public class Receiver1 extends Receiver&#123;</span><br><span class="line">	public void do()&#123;// do something&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//命令对象</span><br><span class="line">public abstract class Command&#123;</span><br><span class="line">	void execute();</span><br><span class="line">&#125;</span><br><span class="line">public class Command1 extends Command&#123;</span><br><span class="line">	private Receiver1 receiver1;</span><br><span class="line">	Command1(Receiver1 re)&#123;this.reveiver = re;&#125;</span><br><span class="line">	public execute()&#123;</span><br><span class="line">		this.receiver1.do();</span><br><span class="line">		//...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">//test</span><br><span class="line">public class Test&#123;</span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		Command co = new Command1(new Receiver1());</span><br><span class="line">		co.execute();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">//这里简单写了通用类图</span><br></pre></td></tr></table></figure>
-<h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><p>命令模式实际上是将一个请求所需的多个操作封装。这就可以用一个请求来调用内含的多个操作。简化了客户端请求<br>这个思想跟事务的要求很相似，即可以实现一系列操作的整体运行，和相应的撤销。</p>
-<h4 id="End"><a href="#End" class="headerlink" title="End"></a>End</h4><p>命令模式简化了对一系列复杂指令的调用，外网git上对命令模式的理解偏重于它在事务上的应用，对于事务相关的功能具有天然的适配，整体提交、回滚等。</p>
+<h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><blockquote>
+<p>优点：不需要知道请求是如何被实现的，可以在命令中直接扩展新命令方法<br>缺点：跟中介者模式相同，可能产生方法爆炸问题</p>
+</blockquote>
+<p>命令模式实际上是将一个请求所需的多个操作封装。这就可以用一个请求来调用内含的多个操作。简化了客户端请求<br>这个思想跟事务的要求很相似，即可以实现一系列操作的整体运行，和相应的撤销。</p>
+<h4 id="End"><a href="#End" class="headerlink" title="End"></a>End</h4><p>命令模式简化了对一系列复杂指令的调用，对命令模式的讲解偏重于它在事务上的应用，对于事务相关的功能具有天然的适配，整体提交、回滚等。</p>
 <p><em>参考《设计模式之禅》</em><br><a href="https://github.com/iluwatar/java-design-patterns/tree/master/command" target="_blank" rel="noopener">参考链接</a></p>
 
       
