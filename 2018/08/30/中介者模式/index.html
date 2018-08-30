@@ -95,7 +95,7 @@
 <meta property="og:description" content="learning ,  perception design  中介者模式定义创建一个中介者管理一系列对象的交互，使对象不需要显示与其他对象产生交互 实现 上面类图的链接 上面的类图描述的是多对一的交互，一系列对象与交互对象间具有相同的交互方式，由Party类来管理各个对象的动作。 1234567891011121314151617181920212223242526272829303132//书里">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://gfeather.github.io/feather/2018/08/30/中介者模式/mediator.png">
-<meta property="og:updated_time" content="2018-08-30T08:03:48.776Z">
+<meta property="og:updated_time" content="2018-08-30T08:09:21.776Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="中介者模式">
 <meta name="twitter:description" content="learning ,  perception design  中介者模式定义创建一个中介者管理一系列对象的交互，使对象不需要显示与其他对象产生交互 实现 上面类图的链接 上面的类图描述的是多对一的交互，一系列对象与交互对象间具有相同的交互方式，由Party类来管理各个对象的动作。 1234567891011121314151617181920212223242526272829303132//书里">
@@ -307,7 +307,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-30T16:03:48+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-30T16:09:21+08:00">
                 2018-08-30
               </time>
             
@@ -399,7 +399,7 @@
 <h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><blockquote>
 <p>优点：中介者可以将多对多，多对一的复杂的依赖关系整理成星型网络，在功能拓展中可以在中介中集中修改<br>缺点：当对象间调用逻辑过于复杂，中介者就会变得很复杂</p>
 </blockquote>
-<h4 id="End"><a href="#End" class="headerlink" title="End"></a>End</h4><p>上面的两个例子分别说明的是，一对多（图）和多个对象相互依赖的场景。<br>通过对比，很明显图中的场景和设计更加精巧，将类间一系列对象的交互都交由中介者。<br>在多个对象的相互依赖场景下，中介者很容易发生内容爆炸的风险，需要注意</p>
+<h4 id="End"><a href="#End" class="headerlink" title="End"></a>End</h4><p>上面的两个例子分别说明的是，一对多（图）和多个对象相互依赖的场景。<br>通过对比，很明显图中的场景和设计更加精巧，将类间一系列对象的交互都交由中介者。<br>在多个对象的相互依赖场景下，中介者很容易发生内容爆炸的风险，需要注意。<br>非常流行的MVC模式就使用了中介者模式，M和V之间的交互都有控制器来处理</p>
 <p><em>参考《设计模式之禅》</em><br><a href="https://github.com/iluwatar/java-design-patterns/tree/master/mediator" target="_blank" rel="noopener">参考链接</a></p>
 
       
