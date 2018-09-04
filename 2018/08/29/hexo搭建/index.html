@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://gfeather.github.io/feather/2018/08/29/hexo搭建/head.png">
 <meta property="og:image" content="https://gfeather.github.io/feather/2018/08/29/hexo搭建/gitment.png">
 <meta property="og:image" content="https://gfeather.github.io/feather/2018/08/29/hexo搭建/id.png">
-<meta property="og:updated_time" content="2018-08-29T10:10:09.630Z">
+<meta property="og:updated_time" content="2018-09-04T02:07:28.015Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo搭建">
 <meta name="twitter:image" content="https://gfeather.github.io/feather/2018/08/29/hexo搭建/head.png">
@@ -306,8 +306,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-29T18:10:09+08:00">
-                2018-08-29
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-04T10:07:28+08:00">
+                2018-09-04
               </time>
             
           </span>
@@ -372,7 +372,7 @@
 <p><em>learning ,  perception design</em> </p>
 <p>具体搭建非常简单，安装环境、配置git、就可以部署<br>这里主要写使用next主题遇到的问题，部分问题还未解决，如果有解决方法可以评论告诉我。<br>*ps：评论就是我刚解决的问题(￣▽￣)~**</p>
 <h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>1.集成gitment报凭证无效错误、variable failed<br>2.gitment显示在了标签和分类页<br>3.集成的leancloud无法显示阅读数，但是leancloud端可以看到访问数据</p>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>目前只解决第一个问题，额。。。。<br>step1：<br>1.首先凭证无效问题，其实问题不大，步骤为网上大部分教程那样，我搞错的一点是配置文件中的<code>repo:</code>，我填了仓库地址，实际应该填仓库名就好<br><img src="/feather/2018/08/29/hexo搭建/gitment.png"><br>2.Variable failed 问题的原因也是网上很多博客说的那样，github的issue的标题长度限制在50字符，所以需要将<code>next\layout\_third-party\comments</code>下的<code>gitment.swig</code>文件中存储的<code>id: window.location.pathname</code>字段修改，使它的长度没那么长，解决方法有很多，目前发现的最优秀的方法是使用md5函数，因为我以为直接部署不用重新生成这个文件就会生效的原因，这个方案并不是最终解决方案，and。。。因为那个很zz的想法我错过了网上搜到的所有方案。<br>所以最终方案是将<code>window.location.pathname</code>使用<code>decodeUIL()</code>方法将其解码，在使用正则表达式将日期到标题筛选出来<br><img src="/feather/2018/08/29/hexo搭建/id.png"></p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>目前只解决第一个问题，额。。。。<br>step1：<br>1.首先凭证无效问题，其实问题不大，步骤为网上大部分教程那样，我搞错的一点是配置文件中的<code>repo:</code>，我填了仓库地址，实际应该填仓库名就好<br><img src="/feather/2018/08/29/hexo搭建/gitment.png"><br>2.Variable failed 问题的原因也是网上很多博客说的那样，github的issue的标题长度限制在50字符，因为hexo在存储的时候使用的是<code>window.location.pathname</code>，但是这个字符串是经过编码的，如果你从console中打印出来会看到一串乱码(太久没玩CTF，忘记是什么编码了)，所以需要将<code>next\layout\_third-party\comments</code>下的<code>gitment.swig</code>文件中存储的<code>id: window.location.pathname</code>字段修改，使它的长度没那么长，解决方法有很多，目前发现的最优秀的方法是使用md5函数，因为我以为直接部署不用重新生成这个文件就会生效的原因，这个方案并不是最终解决方案，and。。。因为那个很zz的想法我错过了网上搜到的所有方案。<br>所以最终方案是将<code>window.location.pathname</code>使用<code>decodeURI()</code>方法将其解码，在使用正则表达式将日期到标题筛选出来<br><img src="/feather/2018/08/29/hexo搭建/id.png"></p>
 <h3 id="额"><a href="#额" class="headerlink" title="额"></a>额</h3><p>其他问题偶尔心情好会探索一下，如果你有好的解决方法，可以把解决方法分享一下。。。(〃’▽’〃)</p>
 
       
