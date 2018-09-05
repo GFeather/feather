@@ -52,6 +52,50 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Josefin Sans:300,300italic,400,400italic,700,700italic|Caveat:300,300italic,400,400italic,700,700italic|Oxygen:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
@@ -390,7 +434,7 @@
       
         <p><em>learning ,  perception design</em> </p>
 <h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>定义一组算法，使这些算法可以互换</p>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//定义策略接口</span><br><span class="line">public interface Strategy&#123;</span><br><span class="line">	void do();</span><br><span class="line">&#125;</span><br><span class="line">//多个策略实现</span><br><span class="line">public class StrategyA implements Strategy&#123;</span><br><span class="line">	public void do()&#123;//do A&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class StrategyB implements Strategy&#123;</span><br><span class="line">	public void do()&#123;//do B&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Context&#123;</span><br><span class="line">	private Strategy strategy;</span><br><span class="line">	Context(Strategy strategy)&#123;</span><br><span class="line">		this.strategy = strategy;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void do()&#123;strategy.do();&#125;</span><br><span class="line">&#125;</span><br><span class="line">//封装了算法具体实现，client只需要装配不同的策略使用，策略可以动态更换</span><br></pre></td></tr></table></figure>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义策略接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Strategy</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">do</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//多个策略实现</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StrategyA</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">do</span><span class="params">()</span></span>&#123;<span class="comment">//do A&#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StrategyB</span> <span class="keyword">implements</span> <span class="title">Strategy</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">do</span><span class="params">()</span></span>&#123;<span class="comment">//do B&#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Context</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Strategy strategy;</span><br><span class="line">	Context(Strategy strategy)&#123;</span><br><span class="line">		<span class="keyword">this</span>.strategy = strategy;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">do</span><span class="params">()</span></span>&#123;strategy.<span class="keyword">do</span>();&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//封装了算法具体实现，client只需要装配不同的策略使用，策略可以动态更换</span></span><br></pre></td></tr></table></figure>
 <h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><blockquote>
 <p>优点：封装算法实现，动态装配算法，能获得很好的拓展性、灵活性<br>缺点：策略可能会多到爆炸</p>
 </blockquote>

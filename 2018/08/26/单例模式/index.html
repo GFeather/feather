@@ -52,6 +52,50 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Josefin Sans:300,300italic,400,400italic,700,700italic|Caveat:300,300italic,400,400italic,700,700italic|Oxygen:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
@@ -397,8 +441,8 @@
 <blockquote>
 <p>即在使用之前就已经将对象准备好，代码实现则通常为使用静态成员</p>
 </blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//静态变量</span><br><span class="line">class Sea&#123;</span><br><span class="line">    private static final Sea sea = new Sea();</span><br><span class="line">    public static getInstence()&#123;</span><br><span class="line">		return sea;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//静态代码块</span><br><span class="line">class Sea&#123;</span><br><span class="line">	private static final Sea sea;</span><br><span class="line">	static&#123;</span><br><span class="line">		sea = new Sea();</span><br><span class="line">	&#125;</span><br><span class="line">	public static Sea getInstence()&#123;</span><br><span class="line">		return sea;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//静态变量</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sea</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Sea sea = <span class="keyword">new</span> Sea();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="title">getInstence</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> sea;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//静态代码块</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sea</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Sea sea;</span><br><span class="line">	<span class="keyword">static</span>&#123;</span><br><span class="line">		sea = <span class="keyword">new</span> Sea();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Sea <span class="title">getInstence</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> sea;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>这两种方法效果相同，都是在类加载时创建对象<br>优：不存在线程同步问题<br>缺：如果这个类还有别的功能使用时可能不会使用这个实例，就需要懒加载</p>
 </blockquote>
@@ -407,16 +451,16 @@
 <blockquote>
 <p>即在需要使用这个对象的时候产生实例，一般形式为调用<code>get()</code>方法时产生对象</p>
 </blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//在使用懒加载时需要考虑一定的同步问题</span><br><span class="line">//不可用样例,多线程环境下可能出现多个线程同时通过`if null`判断，从而产生多个对象</span><br><span class="line">class Sea&#123;</span><br><span class="line">	private static Sea sea;</span><br><span class="line">	public static Sea getInstence()&#123;</span><br><span class="line">		if (sea == null)</span><br><span class="line">			sea = new Sea();</span><br><span class="line">		return sea;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//可以直接将该方法定义为同步方法，但效率较低，故不列出</span><br><span class="line">//在方法内部使用同步，必须用双层判断，一层依然存在绕过的情况</span><br><span class="line">class Sea&#123;</span><br><span class="line">	private static Sea sea;</span><br><span class="line">	public static Sea getInstence()&#123;</span><br><span class="line">		if (sea == null)&#123;</span><br><span class="line">			synchronized (Sea.class)&#123;</span><br><span class="line">				if (sea == null)</span><br><span class="line">					sea = new Sea();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return sea;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在使用懒加载时需要考虑一定的同步问题</span></span><br><span class="line"><span class="comment">//不可用样例,多线程环境下可能出现多个线程同时通过`if null`判断，从而产生多个对象</span></span><br><span class="line"><span class="keyword">class</span> <span class="title">Sea</span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Sea sea;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Sea <span class="title">getInstence</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (sea == <span class="literal">null</span>)</span><br><span class="line">			sea = <span class="keyword">new</span> Sea();</span><br><span class="line">		<span class="keyword">return</span> sea;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//可以直接将该方法定义为同步方法，但效率较低，故不列出</span></span><br><span class="line"><span class="comment">//在方法内部使用同步，必须用双层判断，一层依然存在绕过的情况</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sea</span>&#123;</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Sea sea;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> Sea getInstence()&#123;</span><br><span class="line">		<span class="keyword">if</span> (sea == <span class="literal">null</span>)&#123;</span><br><span class="line">			<span class="keyword">synchronized</span> (Sea.<span class="keyword">class</span>)&#123;</span><br><span class="line">				<span class="keyword">if</span> (sea == <span class="literal">null</span>)</span><br><span class="line">					sea = <span class="keyword">new</span> Sea();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> sea;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>解决了懒加载问题，效率据说较高</p>
 </blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//使用静态内部类实现</span><br><span class="line">class Sea&#123;</span><br><span class="line">	private static class Ssea&#123;</span><br><span class="line">		private static final Sea sea = new Sea();</span><br><span class="line">	&#125;</span><br><span class="line">	public static Sea getInstence()&#123;</span><br><span class="line">		return Ssea.sea;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用静态内部类实现</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sea</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Ssea</span></span>&#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Sea sea = <span class="keyword">new</span> Sea();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Sea <span class="title">getInstence</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> Ssea.sea;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>同样实现懒加载，因为类只有在主动使用时才会被加载，因为是静态并且用<code>final</code>保证单例，效率应该较高</p>
 </blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//枚举实现</span><br><span class="line">enum Sea&#123;</span><br><span class="line">	sea;</span><br><span class="line">	public void doSomething()&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//枚举实现</span></span><br><span class="line"><span class="keyword">enum</span> Sea&#123;</span><br><span class="line">	sea;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>由虚拟机创建保证单例，以为枚举中的对象为<code>final</code>对象，在使用时才会生成对象，所以同时也实现了懒加载</p>
 </blockquote>

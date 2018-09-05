@@ -52,6 +52,50 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Josefin Sans:300,300italic,400,400italic,700,700italic|Caveat:300,300italic,400,400italic,700,700italic|Oxygen:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
@@ -390,9 +434,9 @@
       
         <p><em>learning ,  perception design</em> </p>
 <h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>定义一个用于创建对象的抽象接口，让其子类决定实例化哪个类。</p>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//产品类，定义了一个产品线以及子类</span><br><span class="line">public abstract class Product&#123;</span><br><span class="line">	public void use();</span><br><span class="line">&#125; </span><br><span class="line">public class Product1 extends Product&#123;</span><br><span class="line">	//product的功能</span><br><span class="line">	public void use()&#123;System.out.println(&quot;use product1&quot;);&#125;</span><br><span class="line">&#125; </span><br><span class="line">public class Product2 extends Product&#123;</span><br><span class="line">	public void use()&#123;System.out.println(&quot;use product2&quot;);&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//工厂类</span><br><span class="line">public abstract class Factory&#123;</span><br><span class="line">	//创建对象的方法，参数可以自由选择</span><br><span class="line">	public abstract &lt;T extends Product&gt; T createProduct(Class&lt;T&gt; c);</span><br><span class="line">&#125;</span><br><span class="line">public class productFactory extends Factory&#123;</span><br><span class="line">	public  &lt;T extends Product&gt; T createProduct(Class&lt;T&gt; c)&#123;</span><br><span class="line">		Product product = null;</span><br><span class="line">		try&#123;</span><br><span class="line">			//对象的创建和初始化</span><br><span class="line">			product = (Product)Class.forName(c.getName()).newInstence();</span><br><span class="line">		&#125; catch (Exception e)&#123;</span><br><span class="line">			//异常处理</span><br><span class="line">		&#125;</span><br><span class="line">		return (T)product;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//场景类</span><br><span class="line">public class sea&#123;</span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		Factory factory = new productFactory();</span><br><span class="line">		Product product = factory.createProduct(Product1.class);</span><br><span class="line">		/*</span><br><span class="line">		use</span><br><span class="line">		*/</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//产品类，定义了一个产品线以及子类</span></span><br><span class="line">public <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Product</span></span>&#123;</span><br><span class="line">	public void use();</span><br><span class="line">&#125; </span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">Product1</span> <span class="keyword">extends</span> <span class="title">Product</span></span>&#123;</span><br><span class="line">	<span class="comment">//product的功能</span></span><br><span class="line">	public void use()&#123;<span class="type">System</span>.out.println(<span class="string">"use product1"</span>);&#125;</span><br><span class="line">&#125; </span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">Product2</span> <span class="keyword">extends</span> <span class="title">Product</span></span>&#123;</span><br><span class="line">	public void use()&#123;<span class="type">System</span>.out.println(<span class="string">"use product2"</span>);&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//工厂类</span></span><br><span class="line">public <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Factory</span></span>&#123;</span><br><span class="line">	<span class="comment">//创建对象的方法，参数可以自由选择</span></span><br><span class="line">	public <span class="keyword">abstract</span> &lt;<span class="type">T</span> <span class="keyword">extends</span> <span class="type">Product</span>&gt; <span class="type">T</span> createProduct(<span class="type">Class</span>&lt;<span class="type">T</span>&gt; c);</span><br><span class="line">&#125;</span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">productFactory</span> <span class="keyword">extends</span> <span class="title">Factory</span></span>&#123;</span><br><span class="line">	public  &lt;<span class="type">T</span> <span class="keyword">extends</span> <span class="type">Product</span>&gt; <span class="type">T</span> createProduct(<span class="type">Class</span>&lt;<span class="type">T</span>&gt; c)&#123;</span><br><span class="line">		<span class="type">Product</span> product = <span class="literal">null</span>;</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			<span class="comment">//对象的创建和初始化</span></span><br><span class="line">			product = (<span class="type">Product</span>)<span class="type">Class</span>.forName(c.getName()).newInstence();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (<span class="type">Exception</span> e)&#123;</span><br><span class="line">			<span class="comment">//异常处理</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> (<span class="type">T</span>)product;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//场景类</span></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">sea</span></span>&#123;</span><br><span class="line">	public <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="built_in">String</span>[] args)&#123;</span><br><span class="line">		Factory <span class="keyword">factory</span> = <span class="keyword">new</span> productFactory();</span><br><span class="line">		Product product = <span class="keyword">factory</span>.createProduct(Product1.<span class="keyword">class</span>);</span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		use</span></span><br><span class="line"><span class="comment">		*/</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>使用了工厂方法之后对象的创建细节就被屏蔽了，就意味着被屏蔽的部分可以在底层修改。而不影响高层使用。<br>如果将工厂方法模式的工厂抽象类去除，将创建对象的方法变为静态，那就变成了简单工厂模式，简单工厂模式不易拓展，但是使用更简单。</p>
 </blockquote>

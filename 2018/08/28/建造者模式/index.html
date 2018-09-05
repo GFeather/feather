@@ -52,6 +52,50 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Josefin Sans:300,300italic,400,400italic,700,700italic|Caveat:300,300italic,400,400italic,700,700italic|Oxygen:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
@@ -390,7 +434,7 @@
       
         <p><em>learning ,  perception design</em> </p>
 <h2 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h2><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>将一个复杂对象的创建和它的表示分离，使同样的创建过程可以构建不同的表示。即能够自定义对象的装配顺序。</p>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//这里列出的是java.lang.StringBuilder中我觉得能够代表其思想的几个方法</span><br><span class="line">public StringBuilder(String str) &#123;</span><br><span class="line">        super(str.length() + 16);</span><br><span class="line">        append(str);</span><br><span class="line">	&#125;</span><br><span class="line">@Override</span><br><span class="line">    public StringBuilder append(String str) &#123;</span><br><span class="line">        super.append(str);</span><br><span class="line">        return this;</span><br><span class="line">    &#125;</span><br><span class="line">@Override</span><br><span class="line">    public StringBuilder delete(int start, int end) &#123;</span><br><span class="line">        super.delete(start, end);</span><br><span class="line">        return this;</span><br><span class="line">    &#125;</span><br><span class="line">//这里列举了，StringBuilder的构造方法、添加、删除</span><br><span class="line">//每个方法都会return StringBuilder更改后的对象，这个对象内部封装的是一个可变字符序列，也就是我们需求的对象。</span><br><span class="line">//可以使用StringBuilder的方法来构建这个对象，不同的方法调用顺序可以构建不同的对象。</span><br></pre></td></tr></table></figure>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这里列出的是java.lang.StringBuilder中我觉得能够代表其思想的几个方法</span></span><br><span class="line"><span class="keyword">public</span> StringBuilder(<span class="keyword">String</span> <span class="built_in">str</span>) &#123;</span><br><span class="line">        <span class="keyword">super</span>(<span class="built_in">str</span>.length() + <span class="number">16</span>);</span><br><span class="line">        <span class="built_in">append</span>(<span class="built_in">str</span>);</span><br><span class="line">	&#125;</span><br><span class="line">@Override</span><br><span class="line">    <span class="keyword">public</span> StringBuilder <span class="built_in">append</span>(<span class="keyword">String</span> <span class="built_in">str</span>) &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="built_in">append</span>(<span class="built_in">str</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">@Override</span><br><span class="line">    <span class="keyword">public</span> StringBuilder delete(<span class="built_in">int</span> start, <span class="built_in">int</span> end) &#123;</span><br><span class="line">        <span class="keyword">super</span>.delete(start, end);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//这里列举了，StringBuilder的构造方法、添加、删除</span></span><br><span class="line"><span class="comment">//每个方法都会return StringBuilder更改后的对象，这个对象内部封装的是一个可变字符序列，也就是我们需求的对象。</span></span><br><span class="line"><span class="comment">//可以使用StringBuilder的方法来构建这个对象，不同的方法调用顺序可以构建不同的对象。</span></span><br></pre></td></tr></table></figure>
 <p>ps：《设计模式之禅》中讲解建造者的示例将不同顺序的创建进一步封装，相当于定义了创建对象的固定模板，相比StringBuilder灵活性低，但是封装程度高，能够产生一个特定对象。</p>
 <h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><blockquote>
 <p>优点：封装性好，不需要了解构建细节。拓展性好，因为建造者是独立的，即便进一步封装只提供预定义的固定顺序的模板，拓展也只需要增加一个方法。并且能够在内部定制各种细节。</p>

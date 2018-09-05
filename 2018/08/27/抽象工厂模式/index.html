@@ -52,6 +52,50 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Josefin Sans:300,300italic,400,400italic,700,700italic|Caveat:300,300italic,400,400italic,700,700italic|Oxygen:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
@@ -393,9 +437,9 @@
         <p><em>learning ,  perception design</em> </p>
 <h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>提供一个创建一组相关或者依赖的对象的接口，无需指定具体类，把创建对象完全封装</p>
 <h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><img src="/feather/2018/08/27/抽象工厂模式/抽象工厂模式.png">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//产品族A</span><br><span class="line">public abstract class AbstractProductA&#123;</span><br><span class="line">	public void use();</span><br><span class="line">&#125; </span><br><span class="line">public class ProductA1 extends AbstractProductA&#123;</span><br><span class="line">	public void use()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">public class ProductA2 extends AbstractProductA&#123;</span><br><span class="line">	public void use()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">//产品族B</span><br><span class="line">public abstract class AbstractProductB&#123;</span><br><span class="line">	public void use();</span><br><span class="line">&#125; </span><br><span class="line">public class ProductB1 extends AbstractProductB&#123;</span><br><span class="line">	public void use()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">public class ProductB2 extends AbstractProductB&#123;</span><br><span class="line">	public void use()&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//抽象工厂，每个产品等级都有一个对应类，每个产品族都有一个对应的方法</span><br><span class="line">public abstract class AbstractCreator&#123;</span><br><span class="line">	public AbstractProductA createA();</span><br><span class="line">	public AbstractProductB createB();</span><br><span class="line">&#125;</span><br><span class="line">public class Creator1 extends AbstractCreator&#123;</span><br><span class="line">	public AbstractProductA createA()&#123;return new ProductA1();&#125;</span><br><span class="line">	public AbstractProductB createB()&#123;return new ProductB1();&#125;</span><br><span class="line">&#125;</span><br><span class="line">public class Creator2 extends AbstractCreator&#123;</span><br><span class="line">	public AbstractProductA createA()&#123;return new ProductA2();&#125;</span><br><span class="line">	public AbstractProductB createB()&#123;return new ProductB2();&#125;</span><br><span class="line">&#125;</span><br><span class="line">//eg：产品族分别为文本处理软件、视频处理软件等软件种类，那么产品等级就为Unix平台和Windows平台等操作系统平台，</span><br><span class="line">每个产品族具有所需支持平台的所有版本，每个抽象工厂类都可以创建出对应平台的一套软件</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//场景</span><br><span class="line">public Sea&#123;</span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		AbstractCreator creator1 = new Creator1();</span><br><span class="line">		ProductA productA = creator1.createA();</span><br><span class="line">		ProductB productB = creator1.createB();</span><br><span class="line">		//创建了等级1的一组对象，不需要了解内部细节</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//产品族A</span></span><br><span class="line">public <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractProductA</span></span>&#123;</span><br><span class="line">	public void use();</span><br><span class="line">&#125; </span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">ProductA1</span> <span class="keyword">extends</span> <span class="title">AbstractProductA</span></span>&#123;</span><br><span class="line">	public void use()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">ProductA2</span> <span class="keyword">extends</span> <span class="title">AbstractProductA</span></span>&#123;</span><br><span class="line">	public void use()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//产品族B</span></span><br><span class="line">public <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractProductB</span></span>&#123;</span><br><span class="line">	public void use();</span><br><span class="line">&#125; </span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">ProductB1</span> <span class="keyword">extends</span> <span class="title">AbstractProductB</span></span>&#123;</span><br><span class="line">	public void use()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">ProductB2</span> <span class="keyword">extends</span> <span class="title">AbstractProductB</span></span>&#123;</span><br><span class="line">	public void use()&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//抽象工厂，每个产品等级都有一个对应类，每个产品族都有一个对应的方法</span></span><br><span class="line">public <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractCreator</span></span>&#123;</span><br><span class="line">	public <span class="type">AbstractProductA</span> createA();</span><br><span class="line">	public <span class="type">AbstractProductB</span> createB();</span><br><span class="line">&#125;</span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">Creator1</span> <span class="keyword">extends</span> <span class="title">AbstractCreator</span></span>&#123;</span><br><span class="line">	public <span class="type">AbstractProductA</span> createA()&#123;<span class="keyword">return</span> <span class="keyword">new</span> <span class="type">ProductA1</span>();&#125;</span><br><span class="line">	public <span class="type">AbstractProductB</span> createB()&#123;<span class="keyword">return</span> <span class="keyword">new</span> <span class="type">ProductB1</span>();&#125;</span><br><span class="line">&#125;</span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">Creator2</span> <span class="keyword">extends</span> <span class="title">AbstractCreator</span></span>&#123;</span><br><span class="line">	public <span class="type">AbstractProductA</span> createA()&#123;<span class="keyword">return</span> <span class="keyword">new</span> <span class="type">ProductA2</span>();&#125;</span><br><span class="line">	public <span class="type">AbstractProductB</span> createB()&#123;<span class="keyword">return</span> <span class="keyword">new</span> <span class="type">ProductB2</span>();&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//eg：产品族分别为文本处理软件、视频处理软件等软件种类，那么产品等级就为Unix平台和Windows平台等操作系统平台，</span></span><br><span class="line">每个产品族具有所需支持平台的所有版本，每个抽象工厂类都可以创建出对应平台的一套软件</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//场景</span></span><br><span class="line"><span class="keyword">public</span> Sea&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		AbstractCreator creator1 = <span class="keyword">new</span> Creator1();</span><br><span class="line">		ProductA productA = creator1.createA();</span><br><span class="line">		ProductB productB = creator1.createB();</span><br><span class="line">		<span class="comment">//创建了等级1的一组对象，不需要了解内部细节</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><blockquote>
 <p> 优点：抽象工厂模式具有完全的封装，可以将创建对象的细节、以及其他约束全部封装在工厂中，用户只需要知道工厂就可以创建约定好的对象<br> 缺点：拓展性差，抽象工厂模式的工厂都依赖抽象工厂类，即接口，当需要拓展时，就需要修改抽象工厂类。增加产品等级时，只需要增加一个相应等级的生产类。当增加产品族时，所有的工厂类都要修改增加相应的生产方法。</p>
 </blockquote>

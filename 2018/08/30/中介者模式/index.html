@@ -52,6 +52,50 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Josefin Sans:300,300italic,400,400italic,700,700italic|Caveat:300,300italic,400,400italic,700,700italic|Oxygen:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
@@ -395,7 +439,7 @@
 <h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><img src="/feather/2018/08/30/中介者模式/mediator.png" title="一种实现类图">
 <p><a href="https://github.com/iluwatar/java-design-patterns/tree/master/mediator" target="_blank" rel="noopener">上面类图的链接</a></p>
 <p>上面的类图描述的是多对一的交互，一系列对象与交互对象间具有相同的交互方式，由Party类来管理各个对象的动作。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">//书里的代码描述的是多个不同对象之间的交互，即存在多个对象的相互调用</span><br><span class="line">//成员类的抽象类</span><br><span class="line">public abstract class Colleague&#123;</span><br><span class="line">	protected Mediator mediator;</span><br><span class="line">	public Colleague(Mediator mediator)&#123;</span><br><span class="line">		this.mediator = mediator</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">public class Tank extends Colleague&#123;</span><br><span class="line">	public Tank(Mediator mediator)&#123;</span><br><span class="line">		super(mediator);</span><br><span class="line">	&#125;</span><br><span class="line">	public void buy()&#123;</span><br><span class="line">		super.mediator.action(this);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">public class Businessman extends Colleague&#123;</span><br><span class="line">	public Businessman(Mediator mediator)&#123;</span><br><span class="line">		super(mediator);</span><br><span class="line">	&#125;</span><br><span class="line">	public void sell()&#123;</span><br><span class="line">		System.out.println(&quot;sell defenced&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//中介者</span><br><span class="line">public class Mediator&#123;</span><br><span class="line">	public void action(Tank tank)&#123;</span><br><span class="line">		new Businessman(this).sell();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">//这里将书中的代码简化，并做了更改，但同样都是使用中介者处理对象间的交互调用。</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//书里的代码描述的是多个不同对象之间的交互，即存在多个对象的相互调用</span></span><br><span class="line"><span class="comment">//成员类的抽象类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Colleague</span></span>&#123;</span><br><span class="line">	<span class="keyword">protected</span> Mediator mediator;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Colleague</span><span class="params">(Mediator mediator)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.mediator = mediator</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tank</span> <span class="keyword">extends</span> <span class="title">Colleague</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Tank</span><span class="params">(Mediator mediator)</span></span>&#123;</span><br><span class="line">		<span class="keyword">super</span>(mediator);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buy</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">super</span>.mediator.action(<span class="keyword">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Businessman</span> <span class="keyword">extends</span> <span class="title">Colleague</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Businessman</span><span class="params">(Mediator mediator)</span></span>&#123;</span><br><span class="line">		<span class="keyword">super</span>(mediator);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sell</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"sell defenced"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//中介者</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mediator</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">action</span><span class="params">(Tank tank)</span></span>&#123;</span><br><span class="line">		<span class="keyword">new</span> Businessman(<span class="keyword">this</span>).sell();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这里将书中的代码简化，并做了更改，但同样都是使用中介者处理对象间的交互调用。</span></span><br></pre></td></tr></table></figure>
 <h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><blockquote>
 <p>优点：中介者可以将多对多，多对一的复杂的依赖关系整理成星型网络，在功能拓展中可以在中介中集中修改<br>缺点：当对象间调用逻辑过于复杂，中介者就会变得很复杂</p>
 </blockquote>

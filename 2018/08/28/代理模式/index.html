@@ -52,6 +52,50 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Josefin Sans:300,300italic,400,400italic,700,700italic|Caveat:300,300italic,400,400italic,700,700italic|Oxygen:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
@@ -390,8 +434,8 @@
       
         <p><em>learning ,  perception design</em> </p>
 <h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>为其他对象提供一种代理以控制对这个对象的访问</p>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//定义实际对象和代理的接口</span><br><span class="line">public interface WizardTower&#123;</span><br><span class="line">	void enter(Wizard wizard);</span><br><span class="line">&#125;</span><br><span class="line">//实际对象</span><br><span class="line">public class TheTower implements WizardTower&#123;</span><br><span class="line">	public void enter(Wizard wizard)&#123;</span><br><span class="line">		System.out.println(wizard);</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//pojo</span><br><span class="line">public class Warzid&#123;</span><br><span class="line">	String name;</span><br><span class="line">	Warzid(String s)&#123;this.name = s;&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public String toString()&#123;return this.name;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//代理对象</span><br><span class="line">public class PoxyTower implements WizardTower&#123;</span><br><span class="line">	WizardTower tower;</span><br><span class="line">	PoxyTower(WizardTower tower)&#123;</span><br><span class="line">		this.tower = tower;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void enter(Wizard wizard)&#123;</span><br><span class="line">		if (!&quot;BadWizard&quot;.equals(wizard.toString()))</span><br><span class="line">			tower.enter(wizard);</span><br><span class="line">		System.out.println(&quot;welcome &quot;+ wizard);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义实际对象和代理的接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">WizardTower</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">enter</span><span class="params">(Wizard wizard)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//实际对象</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TheTower</span> <span class="keyword">implements</span> <span class="title">WizardTower</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enter</span><span class="params">(Wizard wizard)</span></span>&#123;</span><br><span class="line">		System.out.println(wizard);</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//pojo</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Warzid</span></span>&#123;</span><br><span class="line">	String name;</span><br><span class="line">	Warzid(String s)&#123;<span class="keyword">this</span>.name = s;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> <span class="keyword">this</span>.name;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//代理对象</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PoxyTower</span> <span class="title">implements</span> <span class="title">WizardTower</span>&#123;</span><br><span class="line">	WizardTower tower;</span><br><span class="line">	PoxyTower(WizardTower tower)&#123;</span><br><span class="line">		<span class="keyword">this</span>.tower = tower;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enter</span>(<span class="params">Wizard wizard</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (!<span class="string">"BadWizard"</span>.<span class="keyword">equals</span>(wizard.toString()))</span><br><span class="line">			tower.enter(wizard);</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"welcome "</span>+ wizard);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><p>代理类将真实类的具体实现封装，并且可以添加before()、after()操作。<br>在修改真实类功能、或者扩展某个操作，则只用在真实类中做修改，高层模块都不变。</p>
 <h4 id="End"><a href="#End" class="headerlink" title="End"></a>End</h4><p>代理模式在调用和真实对象之间增加了一个代理，将调用所需配置、访问控制等复杂操作交给代理，并且代理可以在与真实对象交互前后增加额外操作。在简化了调用的同时还可以获得一定的增强。</p>
 <p><em>参考《设计模式之禅》</em><br><em><a href="https://github.com/iluwatar/java-design-patterns/tree/master/proxy" target="_blank" rel="noopener">参考链接</a></em></p>

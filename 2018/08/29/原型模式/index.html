@@ -52,6 +52,50 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Josefin Sans:300,300italic,400,400italic,700,700italic|Caveat:300,300italic,400,400italic,700,700italic|Oxygen:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
@@ -390,7 +434,7 @@
       
         <p><em>learning ,  perception design</em> </p>
 <h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>用原型对象指定创建对象的种类，通过拷贝原型对象创建新的对象</p>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Saber&#123;</span><br><span class="line">	private String color = light;</span><br><span class="line">	public void setColor(String color)&#123; this.color = color &#125;</span><br><span class="line">	@Override</span><br><span class="line">	public Saber clone()&#123;</span><br><span class="line">		return (Saber)super().clone();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">public class Main&#123;</span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		Saber original = new Saber();</span><br><span class="line">		Saber cloned = orginal.clone();</span><br><span class="line">		cloned.setColor(&quot;black&quot;);</span><br><span class="line">		//black saber do something</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Saber</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String color = light;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setColor</span><span class="params">(String color)</span></span>&#123; <span class="keyword">this</span>.color = color &#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Saber <span class="title">clone</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (Saber)<span class="keyword">super</span>().clone();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		Saber original = <span class="keyword">new</span> Saber();</span><br><span class="line">		Saber cloned = orginal.clone();</span><br><span class="line">		cloned.setColor(<span class="string">"black"</span>);</span><br><span class="line">		<span class="comment">//black saber do something</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><p>原型模式很简单，就是将通过克隆的方式来产生新对象，然后对原型对象做修改来获得所需对象。</p>
 <blockquote>
 <p>优点：通过克隆可以提高对象产生效率，尤其在大量生成对象时。<br>通过克隆产生的对象不会调用构造方法。<br>但是需要注意原型对象内的引用对象的拷贝，如果不进行特别处理则只进行浅拷贝，影响使用。</p>

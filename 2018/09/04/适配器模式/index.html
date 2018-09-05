@@ -52,6 +52,50 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Josefin Sans:300,300italic,400,400italic,700,700italic|Caveat:300,300italic,400,400italic,700,700italic|Oxygen:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
@@ -390,7 +434,7 @@
       
         <p><em>learning ,  perception design</em> </p>
 <h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>将一个类的接口转换成客户端期待的另一种接口，从而使接口不匹配的类可以在一起工作</p>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//将一个对象模型不同的系统接入</span><br><span class="line">public interface Dao&#123;</span><br><span class="line">	String getName();</span><br><span class="line">	int getId();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class otherDao&#123;</span><br><span class="line">	People getPeople()&#123;return people;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class UserDao extends otherDao implements Dao&#123;</span><br><span class="line">	String getName()&#123;</span><br><span class="line">		return super.getPeople().getName();</span><br><span class="line">	&#125;	</span><br><span class="line">	int getInt()&#123;</span><br><span class="line">		return super.getPeople().getInt();</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br><span class="line">//通过适配器来使用外部接口将外部模型转换成所需的模型</span><br></pre></td></tr></table></figure>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将一个对象模型不同的系统接入</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Dao</span></span>&#123;</span><br><span class="line">	<span class="function">String <span class="title">getName</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">otherDao</span></span>&#123;</span><br><span class="line">	<span class="function">People <span class="title">getPeople</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> people;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDao</span> <span class="keyword">extends</span> <span class="title">otherDao</span> <span class="keyword">implements</span> <span class="title">Dao</span></span>&#123;</span><br><span class="line">	<span class="function">String <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">super</span>.getPeople().getName();</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">getInt</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">super</span>.getPeople().getInt();</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//通过适配器来使用外部接口将外部模型转换成所需的模型</span></span><br></pre></td></tr></table></figure>
 <h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><p>获得了可以在接口不通用的场景下继续拓展的能力，可以补救系统设计没有考虑到现在的扩展的情况下</p>
 <h4 id="End"><a href="#End" class="headerlink" title="End"></a>End</h4><p>适配器模式相当于各种不同接头之间的转接头，就像JDBC来连接两个完全不同的系统</p>
 <p><em>参考《设计模式之禅》</em></p>

@@ -52,6 +52,50 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Josefin Sans:300,300italic,400,400italic,700,700italic|Caveat:300,300italic,400,400italic,700,700italic|Oxygen:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
@@ -432,30 +476,30 @@ truncate table;清空表、包括约束；
 </ul>
 <h4 id="DDL语句"><a href="#DDL语句" class="headerlink" title="DDL语句"></a>DDL语句<p id="DDL"></p></h4><ul>
 <li><p>CREATE</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATAVASE &lt;database&gt;;//创建数据库</span><br><span class="line">//创建表</span><br><span class="line">CREATE TABLE &lt;table&gt;(</span><br><span class="line">	&lt;column1&gt; &lt;type&gt; &lt;constraint&gt;,</span><br><span class="line">	&lt;column2&gt; &lt;type&gt; &lt;constraint&gt;,</span><br><span class="line">			   ...</span><br><span class="line">	&lt;TABLE constraint&gt;;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DATAVASE &lt;<span class="keyword">database</span>&gt;;//创建数据库</span><br><span class="line">//创建表</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> &lt;<span class="keyword">table</span>&gt;(</span><br><span class="line">	&lt;column1&gt; &lt;<span class="keyword">type</span>&gt; &lt;<span class="keyword">constraint</span>&gt;,</span><br><span class="line">	&lt;column2&gt; &lt;<span class="keyword">type</span>&gt; &lt;<span class="keyword">constraint</span>&gt;,</span><br><span class="line">			   ...</span><br><span class="line">	&lt;<span class="keyword">TABLE</span> <span class="keyword">constraint</span>&gt;;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>DROP</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//be careful</span><br><span class="line">DROP &lt;database&gt;;</span><br><span class="line">DROP &lt;table&gt;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//be careful</span><br><span class="line"><span class="keyword">DROP</span> &lt;<span class="keyword">database</span>&gt;;</span><br><span class="line"><span class="keyword">DROP</span> &lt;<span class="keyword">table</span>&gt;;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>ALTER</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE &lt;table&gt; ADD COLUMN &lt;column&gt; [first|before|after][&lt;column&gt;];</span><br><span class="line">ALTER TABLE &lt;table&gt; DROP COLUMN &lt;column&gt;;</span><br><span class="line">ALTER TABLE &lt;table&gt; ALTER COLUMN &lt;column&gt;; </span><br><span class="line">ALTER TABLE &lt;table&gt; CHANGE &lt;oldcolumn&gt; &lt;newcolumn&gt;;</span><br><span class="line">ALTER TABLE &lt;table&gt; MOTIFY &lt;column&gt;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;<span class="keyword">table</span>&gt; <span class="keyword">ADD</span> <span class="keyword">COLUMN</span> &lt;<span class="keyword">column</span>&gt; [<span class="keyword">first</span>|<span class="keyword">before</span>|<span class="keyword">after</span>][&lt;<span class="keyword">column</span>&gt;];</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;<span class="keyword">table</span>&gt; <span class="keyword">DROP</span> <span class="keyword">COLUMN</span> &lt;<span class="keyword">column</span>&gt;;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;<span class="keyword">table</span>&gt; <span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> &lt;<span class="keyword">column</span>&gt;; </span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;<span class="keyword">table</span>&gt; <span class="keyword">CHANGE</span> &lt;oldcolumn&gt; &lt;newcolumn&gt;;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> &lt;<span class="keyword">table</span>&gt; MOTIFY &lt;<span class="keyword">column</span>&gt;;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h4 id="DML语句"><a href="#DML语句" class="headerlink" title="DML语句"></a>DML语句<p id="DML"></p></h4><ul>
 <li><p>INSERT</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO &lt;table&gt; VALUES (value1, value2...);</span><br><span class="line">INSERT INTO &lt;table&gt; (column1, column2...) VALUES (value1, value2...);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> &lt;<span class="keyword">table</span>&gt; <span class="keyword">VALUES</span> (value1, value2...);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> &lt;<span class="keyword">table</span>&gt; (column1, column2...) <span class="keyword">VALUES</span> (value1, value2...);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>DELETE</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM &lt;table&gt; WHERE ...;</span><br><span class="line">DELETE FROM &lt;table&gt;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> &lt;<span class="keyword">table</span>&gt; <span class="keyword">WHERE</span> ...;</span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> &lt;<span class="keyword">table</span>&gt;;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>UPDATE</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE &lt;table&gt; SET COLUMN = new WHERE ...;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> &lt;<span class="keyword">table</span>&gt; <span class="keyword">SET</span> <span class="keyword">COLUMN</span> = <span class="keyword">new</span> <span class="keyword">WHERE</span> ...;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>SELECT</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//base</span><br><span class="line">SELECT &lt;column&gt; FROM &lt;table&gt;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//base</span><br><span class="line"><span class="keyword">SELECT</span> &lt;<span class="keyword">column</span>&gt; <span class="keyword">FROM</span> &lt;<span class="keyword">table</span>&gt;;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h4 id="DCL语句"><a href="#DCL语句" class="headerlink" title="DCL语句"></a>DCL语句<p id="DCL"></p></h4><h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询<p id="查询"></p></h2><p>查询语句结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT &lt;column&gt; </span><br><span class="line">FROM &lt;table&gt;</span><br><span class="line">[WHERE &lt;condition&gt;]</span><br><span class="line">[GROUP BY &lt;condition&gt;]</span><br><span class="line">[HAVING &lt;condition&gt;]</span><br><span class="line">[ORDER BY &lt;column&gt; &lt;order&gt;];</span><br></pre></td></tr></table></figure></p>
+<h4 id="DCL语句"><a href="#DCL语句" class="headerlink" title="DCL语句"></a>DCL语句<p id="DCL"></p></h4><h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询<p id="查询"></p></h2><p>查询语句结构：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> &lt;<span class="keyword">column</span>&gt; </span><br><span class="line"><span class="keyword">FROM</span> &lt;<span class="keyword">table</span>&gt;</span><br><span class="line">[<span class="keyword">WHERE</span> &lt;condition&gt;]</span><br><span class="line">[<span class="keyword">GROUP</span> <span class="keyword">BY</span> &lt;condition&gt;]</span><br><span class="line">[<span class="keyword">HAVING</span> &lt;condition&gt;]</span><br><span class="line">[<span class="keyword">ORDER</span> <span class="keyword">BY</span> &lt;<span class="keyword">column</span>&gt; &lt;<span class="keyword">order</span>&gt;];</span><br></pre></td></tr></table></figure></p>
 <p>各子句功能：</p>
 <ul>
 <li>SELECT， 在使用GROUP BY时，应只包含聚合键、聚合函数，来展示聚合结果</li>
@@ -465,7 +509,7 @@ truncate table;清空表、包括约束；
 <li>ORDER BY 子句，根据排序键进行排序，不使用ORDER BY前排列为随机顺序，<code>ASC↑ DESC↓</code></li>
 <li>执行顺序：</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FROM -&gt; WHERE -&gt; GROUP BY -&gt; HAVING -&gt; ORDER BY -&gt; SELECT</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> -&gt; WHERE -&gt;<span class="built_in"> GROUP </span>BY -&gt; HAVING -&gt; ORDER BY -&gt; SELECT</span><br></pre></td></tr></table></figure>
 <p><strong><em>null</em></strong>： </p>
 <ul>
 <li>在算数运算中，对null的算术运算结果都为null，eg：1 + null = null</li>
@@ -484,10 +528,10 @@ truncate table;清空表、包括约束；
 </blockquote>
 <ul>
 <li><p>DELETE</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM &lt;table&gt;</span><br><span class="line">WHERE &lt;column&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> &lt;<span class="keyword">table</span>&gt;</span><br><span class="line"><span class="keyword">WHERE</span> &lt;<span class="keyword">column</span>&gt;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>UPDATE</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UPDATE &lt;table&gt;</span><br><span class="line">SET &lt;column&gt;</span><br><span class="line">WHERE &lt;column&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> &lt;<span class="keyword">table</span>&gt;</span><br><span class="line"><span class="keyword">SET</span> &lt;<span class="keyword">column</span>&gt;</span><br><span class="line"><span class="keyword">WHERE</span> &lt;<span class="keyword">column</span>&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <blockquote>
@@ -500,11 +544,11 @@ truncate table;清空表、包括约束；
 </ul>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CREATE VIEW (&lt;column&gt;...)</span><br><span class="line">AS</span><br><span class="line">SELECT....;</span><br></pre></td></tr></table></figure>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> (&lt;column&gt;...)</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span>....;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>子查询<br>简单的讲是一个一次性的视图，即在一个SELECT查询中查询数据。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT &lt;column&gt;</span><br><span class="line">FROM </span><br><span class="line">  (SELECT &lt;column&gt;</span><br><span class="line">  FROM &lt;table&gt;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> &lt;<span class="keyword">column</span>&gt;</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">  (<span class="keyword">SELECT</span> &lt;<span class="keyword">column</span>&gt;</span><br><span class="line">  <span class="keyword">FROM</span> &lt;<span class="keyword">table</span>&gt;);</span><br></pre></td></tr></table></figure>
 <p>常量子查询：<br>查询结果是一个值，可以当做一个数值来为列赋值</p>
 <ul>
 <li>关联子查询<br>WHERE 子句是对行的操作，下面的查询用一个键将子查询和主查询关联，来取出关联键的分组的聚合值</li>
@@ -596,11 +640,11 @@ FROM p1 INNER JOIN p2
 <h2 id="SQL高级处理"><a href="#SQL高级处理" class="headerlink" title="SQL高级处理"></a>SQL高级处理<p id="SQL高级处理"></p></h2><ul>
 <li>窗口函数(OLAP OneLine Analytical Processing)</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//窗口函数分为1、聚合函数(COUNT、MAX、MIN、SUM、AVG)2、RANK、DENSE_RANK、ROW_NUMBER等专门的窗口函数</span><br><span class="line">//窗口函数就是将记录切割为窗口，再计算排序</span><br><span class="line">//窗口函数只能用于SELECT子句中，因为它是对查询出的记录进行分组、排序，所以结果是无序的</span><br><span class="line">//PATITION BY用来分组，ORDER BY计算排序</span><br><span class="line">&lt;OLAP&gt; OVER ([PATITION BY &lt;column&gt;]</span><br><span class="line">			 ORDER BY &lt;colum&gt;</span><br><span class="line">			[ROWS n PRECEDING/FOLLING])</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//窗口函数分为1、聚合函数(COUNT、MAX、MIN、SUM、AVG)2、RANK、DENSE_RANK、ROW_NUMBER等专门的窗口函数</span><br><span class="line">//窗口函数就是将记录切割为窗口，再计算排序</span><br><span class="line">//窗口函数只能用于<span class="keyword">SELECT</span>子句中，因为它是对查询出的记录进行分组、排序，所以结果是无序的</span><br><span class="line">//PATITION <span class="keyword">BY</span>用来分组，<span class="keyword">ORDER</span> <span class="keyword">BY</span>计算排序</span><br><span class="line">&lt;OLAP&gt; <span class="keyword">OVER</span> ([PATITION <span class="keyword">BY</span> &lt;<span class="keyword">column</span>&gt;]</span><br><span class="line">			 <span class="keyword">ORDER</span> <span class="keyword">BY</span> &lt;<span class="keyword">colum</span>&gt;</span><br><span class="line">			[<span class="keyword">ROWS</span> n <span class="keyword">PRECEDING</span>/FOLLING])</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>RANK函数， 计算排序时，具有相同位次的记录会占有序号，eg:1，1，1，4<br>DESE_RANK函数，计算排序时，具有相同位次的记录不占有序号，eg:1，1，1，2<br>ROW_NUMBER函数，分配连续序号，eg:1，2，3，4</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//在使用聚合函数时，会以当前记录为基准，只统计&apos;在自己之上的记录&apos;，参考窗口方向</span><br><span class="line">//下面的SQL会计算累计的平均值，即当前记录之前所有记录的平均值</span><br><span class="line">SELECT id, </span><br><span class="line">	AVG(price) OVER (ORDER BY price) AS price_AVG</span><br><span class="line">FROM &lt;table&gt;</span><br><span class="line">//移动平均，在计算聚合函数时，可以指定窗口大小，和窗口方向</span><br><span class="line">SELECT id, </span><br><span class="line">	AVG(price) OVER (ORDER BY price ROWS n PRECEDING/FOLLOING) AS price_AVG</span><br><span class="line">FROM &lt;table&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//在使用聚合函数时，会以当前记录为基准，只统计'在自己之上的记录'，参考窗口方向</span><br><span class="line">//下面的SQL会计算累计的平均值，即当前记录之前所有记录的平均值</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span>, </span><br><span class="line">	<span class="keyword">AVG</span>(price) <span class="keyword">OVER</span> (<span class="keyword">ORDER</span> <span class="keyword">BY</span> price) <span class="keyword">AS</span> price_AVG</span><br><span class="line"><span class="keyword">FROM</span> &lt;<span class="keyword">table</span>&gt;</span><br><span class="line">//移动平均，在计算聚合函数时，可以指定窗口大小，和窗口方向</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span>, </span><br><span class="line">	<span class="keyword">AVG</span>(price) <span class="keyword">OVER</span> (<span class="keyword">ORDER</span> <span class="keyword">BY</span> price <span class="keyword">ROWS</span> n <span class="keyword">PRECEDING</span>/FOLLOING) <span class="keyword">AS</span> price_AVG</span><br><span class="line"><span class="keyword">FROM</span> &lt;<span class="keyword">table</span>&gt;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>GROUPING运算符<br>用来同时计算合计和小计</li>
 </ul>
