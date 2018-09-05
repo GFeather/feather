@@ -294,7 +294,7 @@ highlight_theme: normal
 # Arial | Tahoma | Helvetica | Times New Roman | Courier New | Verdana | Georgia | Palatino | Garamond | Comic Sans MS | Trebuchet MS
 # ---------------------------------------------------------------
 font:
-  enable: false
+  enable: true
 
   # Uri of fonts host. E.g. //fonts.googleapis.com (Default).
   host:
@@ -314,7 +314,7 @@ font:
   # Fallback to `global` font settings.
   headings:
     external: true
-    family:
+    family: Josefin Sans
     size:
 
   # Font settings for posts.
@@ -327,13 +327,13 @@ font:
   # Fallback to `global` font settings.
   logo:
     external: true
-    family:
+    family: Caveat
     size:
 
   # Font settings for <code> and code blocks.
   codes:
     external: true
-    family:
+    family: Oxygen
     size:
 
 
