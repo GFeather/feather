@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="idea,spring," />
 
 
 
@@ -130,13 +130,23 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="feather">
-<meta property="og:url" content="https://gfeather.github.io/feather/archives/2018/08/page/2/index.html">
+<meta name="description" content="learning ,  perception design  问题在IDEA中配置好spring mvc之后Junit测试通过，但是部署在tomcat中404错误，而项目在Eclipse中可以正常运行。 分析页面路径为/WEB-INF/pages/*因为Message显示路径为经过Controller处理、视图解析器解析好的路径，所以初步判断为资源访问不到，页面放到WEB-INF之外可以访问，但是">
+<meta name="keywords" content="idea,spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="idea下搭建spring的web资源问题">
+<meta property="og:url" content="https://gfeather.github.io/feather/2018/09/06/idea下搭建spring的web资源问题/index.html">
 <meta property="og:site_name" content="feather">
+<meta property="og:description" content="learning ,  perception design  问题在IDEA中配置好spring mvc之后Junit测试通过，但是部署在tomcat中404错误，而项目在Eclipse中可以正常运行。 分析页面路径为/WEB-INF/pages/*因为Message显示路径为经过Controller处理、视图解析器解析好的路径，所以初步判断为资源访问不到，页面放到WEB-INF之外可以访问，但是">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://gfeather.github.io/feather/2018/09/06/idea下搭建spring的web资源问题/404.png">
+<meta property="og:image" content="https://gfeather.github.io/feather/2018/09/06/idea下搭建spring的web资源问题/webfact.png">
+<meta property="og:image" content="https://gfeather.github.io/feather/2018/09/06/idea下搭建spring的web资源问题/springfact.png">
+<meta property="og:image" content="https://gfeather.github.io/feather/2018/09/06/idea下搭建spring的web资源问题/artifacts.png">
+<meta property="og:updated_time" content="2018-09-06T15:07:50.851Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="feather">
+<meta name="twitter:title" content="idea下搭建spring的web资源问题">
+<meta name="twitter:description" content="learning ,  perception design  问题在IDEA中配置好spring mvc之后Junit测试通过，但是部署在tomcat中404错误，而项目在Eclipse中可以正常运行。 分析页面路径为/WEB-INF/pages/*因为Message显示路径为经过Controller处理、视图解析器解析好的路径，所以初步判断为资源访问不到，页面放到WEB-INF之外可以访问，但是">
+<meta name="twitter:image" content="https://gfeather.github.io/feather/2018/09/06/idea下搭建spring的web资源问题/404.png">
 
 
 
@@ -166,13 +176,13 @@
 
 
 
-  <link rel="canonical" href="https://gfeather.github.io/feather/archives/2018/08/page/2/"/>
+  <link rel="canonical" href="https://gfeather.github.io/feather/2018/09/06/idea下搭建spring的web资源问题/"/>
 
 
 
 
 
-  <title>归档 | feather</title>
+  <title>idea下搭建spring的web资源问题 | feather</title>
   
 
 
@@ -191,7 +201,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -285,152 +295,221 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gfeather.github.io/feather/feather/2018/09/06/idea下搭建spring的web资源问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="feather">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/feather/images/pk.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="feather">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">idea下搭建spring的web资源问题</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-06T22:36:37+08:00">
+                2018-09-06
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-06T23:07:50+08:00">
+                2018-09-06
+              </time>
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 17 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/feather/categories/java-web/" itemprop="url" rel="index">
+                    <span itemprop="name">java web</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
 
-        
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/feather/2018/09/06/idea下搭建spring的web资源问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/feather/2018/09/06/idea下搭建spring的web资源问题/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
+             <span id="/feather/2018/09/06/idea下搭建spring的web资源问题/" class="leancloud_visitors" data-flag-title="idea下搭建spring的web资源问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/feather/2018/08/26/单例模式/" itemprop="url">
-              
-                <span itemprop="name">单例模式</span>
-              
-            </a>
-        
-      </h2>
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>Views
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-26T19:26:24+08:00"
-              content="2018-08-26" >
-          08-26
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/feather/2018/08/23/SQL-log/" itemprop="url">
-              
-                <span itemprop="name">SQL.log</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-23T14:36:53+08:00"
-              content="2018-08-23" >
-          08-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/feather/2018/08/22/设计原则/" itemprop="url">
-              
-                <span itemprop="name">设计原则</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-22T21:45:46+08:00"
-              content="2018-08-22" >
-          08-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <p><em>learning ,  perception design</em> </p>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>在IDEA中配置好spring mvc之后Junit测试通过，但是部署在tomcat中404错误，而项目在Eclipse中可以正常运行。<br><img src="/feather/2018/09/06/idea下搭建spring的web资源问题/404.png"></p>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>页面路径为<code>/WEB-INF/pages/*</code>因为Message显示路径为经过<code>Controller</code>处理、视图解析器解析好的路径，所以初步判断为资源访问不到，页面放到WEB-INF之外可以访问，但是是通过web容器直接访问，不经过spring mvc处理，所以没有考虑tomcat问题。<br>因为是Maven项目，不存在依赖问题，Maven打包的target中直接包含web源文件夹以及之下的WEB-INF，所以开始没有考虑到maven打包问题。</p>
+<h4 id="进一步"><a href="#进一步" class="headerlink" title="进一步"></a>进一步</h4><p>中间部署查看配置发现项目的WEB资源目录发生了自动变更，以为是资源目录错误导致页面无法访问，但是更改之后重新部署依然无效。<br><img src="/feather/2018/09/06/idea下搭建spring的web资源问题/webfact.png"><br>IDEA中项目的Facets里可以配置各个模块的资源依赖，比如spring中会配置配置文件以及读取注解配置类<br><img src="/feather/2018/09/06/idea下搭建spring的web资源问题/springfact.png"><br>这个时候检查了一遍target目录，也就是Maven生成的War包，发现包下的WEB-INF目录下没有pages文件夹，所以问题根源确实是页面不存在。只是被资源文件夹误导，没有发现生产环境没有包含页面文件夹。</p>
+<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>然后就开始找Web资源文件夹的配置，再次检查Facets中的Web资源文件夹配置，没有问题，检查IDEA项目配置中的War包同样没有。<br>开始怀疑Maven打包方式问题，BaiDu Maven打包时资源文件配置，添加标签后pom文件报错，放弃。<br>继续查看IDEA项目配置，检查artfacts部署文件内容怎么添加Web资源文件，然后发现可以添加JAVAEE Facet Resources,添加到创建的pages下，部署，生效。。。<br><img src="/feather/2018/09/06/idea下搭建spring的web资源问题/artifacts.png"><br>然后发现上一层目录，也就是WEB-INF的同级目录下自动添加了Web的资源文件，之前因为名字太长不知道用途，结果忽视。</p>
+<h4 id="根源"><a href="#根源" class="headerlink" title="根源"></a>根源</h4><p>Web应用开发中，目录、路径是很容易出错的细节，不同的IDE有不同的目录结构、路径读取规则。</p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/feather/tags/idea/" rel="tag"># idea</a>
+          
+            <a href="/feather/tags/spring/" rel="tag"># spring</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/feather/2018/09/04/适配器模式/" rel="next" title="适配器模式">
+                <i class="fa fa-chevron-left"></i> 适配器模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/feather/archives/2018/08/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/feather/archives/2018/08/">1</a><span class="page-number current">2</span>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b80189203ca72db" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -438,6 +517,18 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div onclick="showGitment()" id="gitment-display-button">显示 Gitment 评论</div>
+        <div id="gitment-container" style="display:none"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -458,8 +549,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -545,6 +645,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进一步"><span class="nav-number">3.</span> <span class="nav-text">进一步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决"><span class="nav-number">4.</span> <span class="nav-text">解决</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#根源"><span class="nav-number">5.</span> <span class="nav-text">根源</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -698,6 +814,10 @@
   
 
   
+  <script type="text/javascript" src="/feather/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/feather/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -749,6 +869,38 @@
       </style>
     
 
+    
+      <script src="/js/src/md5.min.js"></script>
+      <script type="text/javascript">
+
+      function renderGitment(){
+        //创建正则，匹配出文章标题
+        var pat = new RegExp("/\\S+/");
+        var gitment = new Gitmint({
+            id: pat.exec(decodeURI(window.location.pathname))[0],
+            owner: 'GFeather',
+            repo: 'blog_comments',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'da96ba5ef297e18c67a1b1406b2b1db6fd9335c6',
+            
+                client_id: '606b4524ae7ce87100fe'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      function showGitment(){
+        document.getElementById("gitment-display-button").style.display = "none";
+        document.getElementById("gitment-container").style.display = "block";
+        renderGitment();
+      }
+      
+      </script>
     
 
 
