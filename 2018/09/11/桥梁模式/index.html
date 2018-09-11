@@ -130,18 +130,18 @@
 
 
 
-<meta name="description" content="learning ,  perception design  责任链模式定义给予多个对象处理请求的机会，避免了请求发送者与接受者耦合。将这些对象传承一条链，沿着这条链请求，知道有对象处理它 实现1234567891011121314151617181920212223//责任链对象的抽象类public avstract class Handle&amp;#123;	private Handle next;">
+<meta name="description" content="learning ,  perception design  桥梁模式定义将抽象和实现解耦，使得两者可以独立地变化 实现123456789101112131415161718192021222324252627282930//实现化角色interface Implementor&amp;#123;	public void do();&amp;#125;//实现实现化角色public class Imp1 impl">
 <meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="责任链模式">
-<meta property="og:url" content="https://gfeather.github.io/feather/2018/08/30/责任链模式/index.html">
+<meta property="og:title" content="桥梁模式">
+<meta property="og:url" content="https://gfeather.github.io/feather/2018/09/11/桥梁模式/index.html">
 <meta property="og:site_name" content="feather">
-<meta property="og:description" content="learning ,  perception design  责任链模式定义给予多个对象处理请求的机会，避免了请求发送者与接受者耦合。将这些对象传承一条链，沿着这条链请求，知道有对象处理它 实现1234567891011121314151617181920212223//责任链对象的抽象类public avstract class Handle&amp;#123;	private Handle next;">
+<meta property="og:description" content="learning ,  perception design  桥梁模式定义将抽象和实现解耦，使得两者可以独立地变化 实现123456789101112131415161718192021222324252627282930//实现化角色interface Implementor&amp;#123;	public void do();&amp;#125;//实现实现化角色public class Imp1 impl">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-30T12:06:52.670Z">
+<meta property="og:updated_time" content="2018-09-11T14:30:24.485Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="责任链模式">
-<meta name="twitter:description" content="learning ,  perception design  责任链模式定义给予多个对象处理请求的机会，避免了请求发送者与接受者耦合。将这些对象传承一条链，沿着这条链请求，知道有对象处理它 实现1234567891011121314151617181920212223//责任链对象的抽象类public avstract class Handle&amp;#123;	private Handle next;">
+<meta name="twitter:title" content="桥梁模式">
+<meta name="twitter:description" content="learning ,  perception design  桥梁模式定义将抽象和实现解耦，使得两者可以独立地变化 实现123456789101112131415161718192021222324252627282930//实现化角色interface Implementor&amp;#123;	public void do();&amp;#125;//实现实现化角色public class Imp1 impl">
 
 
 
@@ -171,13 +171,13 @@
 
 
 
-  <link rel="canonical" href="https://gfeather.github.io/feather/2018/08/30/责任链模式/"/>
+  <link rel="canonical" href="https://gfeather.github.io/feather/2018/09/11/桥梁模式/"/>
 
 
 
 
 
-  <title>责任链模式 | feather</title>
+  <title>桥梁模式 | feather</title>
   
 
 
@@ -304,7 +304,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gfeather.github.io/feather/feather/2018/08/30/责任链模式/">
+    <link itemprop="mainEntityOfPage" href="https://gfeather.github.io/feather/feather/2018/09/11/桥梁模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="feather">
@@ -321,7 +321,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">责任链模式</h1>
+          <h1 class="post-title" itemprop="name headline">桥梁模式</h1>
         
 
         <div class="post-meta">
@@ -333,8 +333,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-30T19:38:19+08:00">
-                2018-08-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-11T21:00:25+08:00">
+                2018-09-11
               </time>
             
 
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-30T20:06:52+08:00">
-                2018-08-30
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-11T22:30:24+08:00">
+                2018-09-11
               </time>
             
           </span>
@@ -386,8 +386,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/feather/2018/08/30/责任链模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/feather/2018/08/30/责任链模式/" itemprop="commentsCount"></span>
+                <a href="/feather/2018/09/11/桥梁模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/feather/2018/09/11/桥梁模式/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -395,7 +395,7 @@
 
           
           
-             <span id="/feather/2018/08/30/责任链模式/" class="leancloud_visitors" data-flag-title="责任链模式">
+             <span id="/feather/2018/09/11/桥梁模式/" class="leancloud_visitors" data-flag-title="桥梁模式">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -433,12 +433,10 @@
 
       
         <p><em>learning ,  perception design</em> </p>
-<h2 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h2><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>给予多个对象处理请求的机会，避免了请求发送者与接受者耦合。将这些对象传承一条链，沿着这条链请求，知道有对象处理它</p>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//责任链对象的抽象类</span></span><br><span class="line"><span class="keyword">public</span> avstract <span class="keyword">class</span> <span class="title">Handle</span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Handle next;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Response <span class="title">handle</span>(<span class="params">Request request</span>)</span>&#123;</span><br><span class="line">		Response response = <span class="literal">null</span>;</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.getLevel() &gt; request.level)&#123;</span><br><span class="line">			response = <span class="keyword">this</span>.action(request);</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">this</span>.hasNext() != <span class="literal">null</span>)&#123;</span><br><span class="line">			response = <span class="keyword">this</span>.next().handle(request);</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="comment">//责任链终端，对请求无人接收做处理</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> response;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//设置责任链下一个对象</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> Handle <span class="title">setNext</span>(<span class="params"></span>)</span>;</span><br><span class="line">	<span class="comment">//获得所能处理的等级</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">getLevel</span>(<span class="params"></span>)</span>;</span><br><span class="line">	<span class="comment">//响应请求的方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> Response <span class="title">action</span>(<span class="params">Resquest request</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这里使用了模板方法，在抽象类中写出了处理请求方式，如何处理和是否处理由实现类决定</span></span><br></pre></td></tr></table></figure>
-<h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><blockquote>
-<p>优点：将请求和处理分开，可以单独构建处理处理请求的体系，灵活性很好<br>缺点：性能，不能直接处理请求，而要遍历链条不管是运行还是调试，所以责任链不能过长。<br>我有印象的责任链应用主要是sevelet的拦截器。</p>
-</blockquote>
-<h4 id="End"><a href="#End" class="headerlink" title="End"></a>End</h4><p>责任链可以提供一个灵活的方式去处理各种类型的请求，即发出的请求可以动态被指定到相应的处理对象</p>
+<h2 id="桥梁模式"><a href="#桥梁模式" class="headerlink" title="桥梁模式"></a>桥梁模式</h2><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>将抽象和实现解耦，使得两者可以独立地变化</p>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//实现化角色</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Implementor</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">do</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//实现实现化角色</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Imp1</span> <span class="keyword">implements</span> <span class="title">Implementor</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">do</span><span class="params">()</span></span>&#123;<span class="comment">//do&#125;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Imp2</span> <span class="keyword">implements</span> <span class="title">Implementor</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">do</span><span class="params">()</span></span>&#123;<span class="comment">//do&#125;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//抽象化角色</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Abstractor</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Implementor imp;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Abstractor</span><span class="params">(Implementor imp)</span></span>&#123; <span class="keyword">this</span>.imp = imp;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">do</span><span class="params">()</span></span>&#123; <span class="keyword">this</span>.imp.<span class="keyword">do</span>();&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//修正抽象化角色</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReAbstractor</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ReAbstractor</span><span class="params">(Implementor imp)</span></span>&#123; <span class="keyword">super</span>(imp);&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">do</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 *业务</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		<span class="keyword">super</span>.<span class="keyword">do</span>();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//实现化角色可以自由拓展，改变自己的行为</span></span><br><span class="line"><span class="comment">//抽象化角色不用因为实现化角色的改变而改变，同时可以改变自己的逻辑</span></span><br></pre></td></tr></table></figure>
+<h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><p>解决了继承的约束，可以在接口约束内随意扩充实现类，并且抽象类感知不到变化</p>
+<h4 id="End"><a href="#End" class="headerlink" title="End"></a>End</h4><p>将变化的方法交给实现类，通过桥梁来调用，使类间联系弱化，减少对实现类的约束。</p>
 <p><em>参考《设计模式之禅》</em></p>
 
       
@@ -470,8 +468,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/feather/2018/08/30/命令模式/" rel="next" title="命令模式">
-                <i class="fa fa-chevron-left"></i> 命令模式
+              <a href="/feather/2018/09/11/享元模式/" rel="next" title="享元模式">
+                <i class="fa fa-chevron-left"></i> 享元模式
               </a>
             
           </div>
@@ -479,10 +477,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/feather/2018/09/04/装饰模式/" rel="prev" title="装饰模式">
-                装饰模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -654,7 +648,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#责任链模式"><span class="nav-number">1.</span> <span class="nav-text">责任链模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">1.0.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">1.0.2.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用"><span class="nav-number">1.0.3.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#End"><span class="nav-number">1.0.4.</span> <span class="nav-text">End</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#桥梁模式"><span class="nav-number">1.</span> <span class="nav-text">桥梁模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">1.0.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">1.0.2.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用"><span class="nav-number">1.0.3.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#End"><span class="nav-number">1.0.4.</span> <span class="nav-text">End</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
