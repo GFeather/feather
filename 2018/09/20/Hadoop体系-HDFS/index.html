@@ -130,20 +130,22 @@
 
 
 
-<meta name="description" content="Data-driven production value HDFS版本：HDFS1.0 体系结构名称节点——数据节点名称节点：提供元数据服务HDFS与传统文件系统一样，只有一个命名空间，包含目录、文件、块客户端从名称节点获得元数据，再到数据节点读写数据通信协议：基于TCP/IP协议，客户端——名称节点：TCP/IP,名称节点——数据节点：特定的传输协议，数据节点——客户端：RPC（客户端就是Had">
+<meta name="description" content="Data-driven production value HDFS版本：HDFS1.0  需求 与单机FS相同或类似的用户(客户端)接口：能够通过shell、程序读写文件 多用户(客户端)读写：能够使处理多个读写请求 数据可靠性：能够处理数据出错、数据丢失等 集群可用性：能够在机器随时损坏的情况下，保证集群、数据可用 集群可伸缩性：能够随时增加、减少节点，同时数据相应伸缩  体系结构 从名称节点的">
 <meta name="keywords" content="Big Data,Hadoop,HDFS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hadoop体系-HDFS">
 <meta property="og:url" content="https://gfeather.github.io/feather/2018/09/20/Hadoop体系-HDFS/index.html">
 <meta property="og:site_name" content="feather">
-<meta property="og:description" content="Data-driven production value HDFS版本：HDFS1.0 体系结构名称节点——数据节点名称节点：提供元数据服务HDFS与传统文件系统一样，只有一个命名空间，包含目录、文件、块客户端从名称节点获得元数据，再到数据节点读写数据通信协议：基于TCP/IP协议，客户端——名称节点：TCP/IP,名称节点——数据节点：特定的传输协议，数据节点——客户端：RPC（客户端就是Had">
+<meta property="og:description" content="Data-driven production value HDFS版本：HDFS1.0  需求 与单机FS相同或类似的用户(客户端)接口：能够通过shell、程序读写文件 多用户(客户端)读写：能够使处理多个读写请求 数据可靠性：能够处理数据出错、数据丢失等 集群可用性：能够在机器随时损坏的情况下，保证集群、数据可用 集群可伸缩性：能够随时增加、减少节点，同时数据相应伸缩  体系结构 从名称节点的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://gfeather.github.io/feather/2018/09/20/Hadoop体系-HDFS/hdfs.png">
-<meta property="og:updated_time" content="2018-09-20T14:48:17.217Z">
+<meta property="og:image" content="https://gfeather.github.io/feather/2018/09/20/Hadoop体系-HDFS/artic.png">
+<meta property="og:image" content="https://gfeather.github.io/feather/2018/09/20/Hadoop体系-HDFS/hdfs_detail.png">
+<meta property="og:image" content="https://gfeather.github.io/feather/2018/09/20/Hadoop体系-HDFS/hdfs_r.png">
+<meta property="og:updated_time" content="2018-09-25T10:37:30.828Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop体系-HDFS">
-<meta name="twitter:description" content="Data-driven production value HDFS版本：HDFS1.0 体系结构名称节点——数据节点名称节点：提供元数据服务HDFS与传统文件系统一样，只有一个命名空间，包含目录、文件、块客户端从名称节点获得元数据，再到数据节点读写数据通信协议：基于TCP/IP协议，客户端——名称节点：TCP/IP,名称节点——数据节点：特定的传输协议，数据节点——客户端：RPC（客户端就是Had">
-<meta name="twitter:image" content="https://gfeather.github.io/feather/2018/09/20/Hadoop体系-HDFS/hdfs.png">
+<meta name="twitter:description" content="Data-driven production value HDFS版本：HDFS1.0  需求 与单机FS相同或类似的用户(客户端)接口：能够通过shell、程序读写文件 多用户(客户端)读写：能够使处理多个读写请求 数据可靠性：能够处理数据出错、数据丢失等 集群可用性：能够在机器随时损坏的情况下，保证集群、数据可用 集群可伸缩性：能够随时增加、减少节点，同时数据相应伸缩  体系结构 从名称节点的">
+<meta name="twitter:image" content="https://gfeather.github.io/feather/2018/09/20/Hadoop体系-HDFS/artic.png">
 
 
 
@@ -351,8 +353,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-20T22:48:17+08:00">
-                2018-09-20
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-25T18:37:30+08:00">
+                2018-09-25
               </time>
             
           </span>
@@ -436,9 +438,62 @@
       
         <p><em>Data-driven production value</em></p>
 <h2 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h2><p><em>版本：HDFS1.0</em></p>
-<h4 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h4><p>名称节点——数据节点<br>名称节点：提供元数据服务<br>HDFS与传统文件系统一样，只有一个命名空间，包含目录、文件、块<br>客户端从名称节点获得元数据，再到数据节点读写数据<br>通信协议：<br>基于TCP/IP协议，客户端——名称节点：TCP/IP,名称节点——数据节点：特定的传输协议，数据节点——客户端：RPC（客户端就是Hadoop库）<br>1.0局限：命名空间限制，名称节点能够存储的元数据有限，限制集群存储文件数量。<br>性能瓶颈，系统吞吐量被名称节点吞吐量限制。<br>隔离性，只有一个命名空间，所有应用都可以访问全部文件。<br>可用性，名称节点存在单点故障问题，secondarynode冷备无法热切换。</p>
-<h4 id="存储原理"><a href="#存储原理" class="headerlink" title="存储原理"></a>存储原理</h4><p>通过冗余来保证容错性，一般为三副本，系统会维持副本存活数量。<br>1，可以并行访问<br>2，多副本冗余检错<br>3，可靠性<br>存放策略，文件副本块分布，本机器一份，本机架其他机器一份，相邻机架一份，更多副本随机分配<br>读取策略，就近读取<br>错误与恢复：<br>名称节点出错，从secondarynode恢复<br>数据节点出错，从副本恢复，<br>数据出错，校验码检错，从副本恢复</p>
-<h4 id="数据读写"><a href="#数据读写" class="headerlink" title="数据读写"></a>数据读写</h4><img src="/feather/2018/09/20/Hadoop体系-HDFS/hdfs.png">
+<img src="/feather/2018/09/20/Hadoop体系-HDFS/artic.png" title="简单分布式文件系统架构">
+<h4 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h4><ul>
+<li>与单机FS相同或类似的用户(客户端)接口：能够通过shell、程序读写文件</li>
+<li>多用户(客户端)读写：能够使处理多个读写请求</li>
+<li>数据可靠性：能够处理数据出错、数据丢失等</li>
+<li>集群可用性：能够在机器随时损坏的情况下，保证集群、数据可用</li>
+<li>集群可伸缩性：能够随时增加、减少节点，同时数据相应伸缩</li>
+</ul>
+<h4 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h4><img src="/feather/2018/09/20/Hadoop体系-HDFS/hdfs_detail.png">
+<p>从名称节点的命名空间获得位置信息，从数据节点进行读写</p>
+<blockquote>
+<p>名称节点：存储元数据信息，核心<code>FsImage</code>、<code>EditLog</code>，<code>FsImage</code>用于维护文件树的所有元数据，<code>EditLog</code>记录了所有文件创建、删除、重命名等操作。名称节点会在启动时将<code>FsImage</code>载入内存，执行<code>EditLog</code>中的操作，期间处于安全模式：只允许读，不允许写。<br>第二名称节点：定时将名称节点的<code>FsImage</code>、<code>EditLog</code>拉入本地，进行初始化。在这个期间名称节点会将新的操作写入<code>EditLog.new</code>中，第二名称节点初始化完成的<code>FsImage</code>替代旧的<code>FsImage</code>，<code>EditLog.new</code>替代<code>EditLog</code>。</p>
+</blockquote>
+<ul>
+<li>命名空间管理：名称节点管理命名空间，包含目录、文件和块，负责它们的创建、复制和删除</li>
+<li>通信协议：所有的HDFS通信协议都基于TCP/IP协议<blockquote>
+<p>客户端——名称节点：通过TCP建立连接，使用客户端协议交互<br>名称节点——数据节点：使用数据节点协议交互<br>数据节点——客户端：通过RPC(Remote Procedure Call)实现交互</p>
+</blockquote>
+</li>
+</ul>
+<p><em>1.0局限</em>：</p>
+<ul>
+<li>命名空间限制，名称节点能够存储的元数据有限，限制集群存储文件数量。</li>
+<li>性能瓶颈，系统吞吐量被名称节点吞吐量限制。</li>
+<li>隔离性，只有一个命名空间，所有应用都可以访问全部文件。</li>
+<li>可用性，名称节点存在单点故障问题，secondarynode冷备无法热切换。</li>
+</ul>
+<h4 id="存储原理"><a href="#存储原理" class="headerlink" title="存储原理"></a>存储原理</h4><p>保证数据可靠性，使用多副本冗余、复制机制。副本数量一般为3(或指定更多)副本，系统会维持副本存活数量。</p>
+<p>实现：<br>1，并行访问<br>2，多副本冗余检错<br>3，可靠性</p>
+<ul>
+<li>存放策略：文件副本块分布，本机器一份，本机架其他机器一份，相邻机架一份，更多副本随机分配</li>
+<li>读取策略：就近读取</li>
+<li>复制策略：文件会在客户端切分成块，并逐块发送，数据节点根据节点列表进行流水复制，数据写入和复制实现并行。</li>
+<li>错误与恢复：<ul>
+<li>名称节点出错：核心数据结构FsImage和EditLog失效则集群失效，由第二名称节点接替，同时从副本恢复</li>
+<li>数据节点出错，从副本恢复</li>
+<li>数据出错，校验码检错，从副本恢复</li>
+</ul>
+</li>
+</ul>
+<h4 id="数据读写"><a href="#数据读写" class="headerlink" title="数据读写"></a>数据读写</h4><img src="/feather/2018/09/20/Hadoop体系-HDFS/hdfs_r.png">
+<p>读：</p>
+<ol>
+<li>客户端通过<code>FileSystem.open()</code>打开文件，获得输入流<code>FSDataInputStream</code>，而对HDFS来说具体的输入流是<code>DFSInputStream</code>。</li>
+<li><code>DFSInputStream</code>的相应的get方法会获得存储某数据块的距离客户端最近的数据节点地址，<code>FileSystem</code>会使用它初始化<code>FSDataInputStream</code>。</li>
+<li>客户端使用<code>FSDataInputStream.read()</code>读取文件，当数据块读完之后，<code>DFSInputStream</code>会断开与数据节点的连接，获取下一个块，读取结束调用<code>FSDataInputStream.close()</code>。</li>
+</ol>
+
+<p>写：</p>
+<ol>
+<li>客户端调用<code>FSDataOutputStream.write()</code>来向HDFS中的文件写入数据。</li>
+<li><code>FSDataOutputStream</code>中的数据会被分包存在<code>DFSOuputStream</code>的内部队列里，在发送时打成数据包发送，<code>FSDataOutputStream</code>向名称节点申请存放数据和副本的数据节点列表，然后这些节点进行流水复制。</li>
+<li>为了保证数据准确每个数据节点收到数据包后需要发送’确认包’(ACK),<code>ACK</code>会从数据节点管道往前发送直到客户端。</li>
+<li>客户端调用<code>close()</code>方法后客户端不会写入数据，<code>DFSOuputStream</code>会在收到所有分包的<code>ACK</code>后通知名称节点关闭文件</li>
+</ol>
+
       
     </div>
     
@@ -652,7 +707,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS"><span class="nav-number">1.</span> <span class="nav-text">HDFS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#体系结构"><span class="nav-number">1.0.1.</span> <span class="nav-text">体系结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储原理"><span class="nav-number">1.0.2.</span> <span class="nav-text">存储原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据读写"><span class="nav-number">1.0.3.</span> <span class="nav-text">数据读写</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS"><span class="nav-number">1.</span> <span class="nav-text">HDFS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需求"><span class="nav-number">1.0.1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#体系结构"><span class="nav-number">1.0.2.</span> <span class="nav-text">体系结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储原理"><span class="nav-number">1.0.3.</span> <span class="nav-text">存储原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据读写"><span class="nav-number">1.0.4.</span> <span class="nav-text">数据读写</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
