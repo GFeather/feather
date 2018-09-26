@@ -141,7 +141,8 @@
 <meta property="og:image" content="https://gfeather.github.io/feather/2018/09/20/Hadoop体系-HDFS/artic.png">
 <meta property="og:image" content="https://gfeather.github.io/feather/2018/09/20/Hadoop体系-HDFS/hdfs_detail.png">
 <meta property="og:image" content="https://gfeather.github.io/feather/2018/09/20/Hadoop体系-HDFS/hdfs_r.png">
-<meta property="og:updated_time" content="2018-09-25T10:37:30.828Z">
+<meta property="og:image" content="https://gfeather.github.io/feather/2018/09/20/Hadoop体系-HDFS/hdfs_w.png">
+<meta property="og:updated_time" content="2018-09-25T14:46:40.433Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop体系-HDFS">
 <meta name="twitter:description" content="Data-driven production value HDFS版本：HDFS1.0  需求 与单机FS相同或类似的用户(客户端)接口：能够通过shell、程序读写文件 多用户(客户端)读写：能够使处理多个读写请求 数据可靠性：能够处理数据出错、数据丢失等 集群可用性：能够在机器随时损坏的情况下，保证集群、数据可用 集群可伸缩性：能够随时增加、减少节点，同时数据相应伸缩  体系结构 从名称节点的">
@@ -353,7 +354,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-25T18:37:30+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-25T22:46:40+08:00">
                 2018-09-25
               </time>
             
@@ -485,7 +486,7 @@
 <li><code>DFSInputStream</code>的相应的get方法会获得存储某数据块的距离客户端最近的数据节点地址，<code>FileSystem</code>会使用它初始化<code>FSDataInputStream</code>。</li>
 <li>客户端使用<code>FSDataInputStream.read()</code>读取文件，当数据块读完之后，<code>DFSInputStream</code>会断开与数据节点的连接，获取下一个块，读取结束调用<code>FSDataInputStream.close()</code>。</li>
 </ol>
-
+<img src="/feather/2018/09/20/Hadoop体系-HDFS/hdfs_w.png">
 <p>写：</p>
 <ol>
 <li>客户端调用<code>FSDataOutputStream.write()</code>来向HDFS中的文件写入数据。</li>
@@ -493,6 +494,12 @@
 <li>为了保证数据准确每个数据节点收到数据包后需要发送’确认包’(ACK),<code>ACK</code>会从数据节点管道往前发送直到客户端。</li>
 <li>客户端调用<code>close()</code>方法后客户端不会写入数据，<code>DFSOuputStream</code>会在收到所有分包的<code>ACK</code>后通知名称节点关闭文件</li>
 </ol>
+<h4 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h4><p><em>版本2.0</em></p>
+<ul>
+<li>HDFS HA：解决名称节点单点问题，设置多个名称节点，其中一个处于’活跃’状态，其他处于’待命’状态，’活跃’状态的名称节点处理所有请求，名称节点出现故障则由’待命’状态的节点提供服务，即’热备份’。并实时同步元数据。</li>
+<li>HDFS 联邦：解决命名空间唯一、无法扩张。HDFS 联邦是多台独立的名称节点，具有不同命名空间。但是整体具有一个共享的全局挂载表，即将不同的部分分别挂载在不同的名称节点上。</li>
+<li>YARN：解决MapReduce资源调度JobTracker的单点问题、资源划分不灵活、资源消耗问题。YARN将任务调度、资源管理分开，<code>ResourceManager</code>负责全局资源管理，<code>ApplicationMaster</code>负责监控Slave的<code>NodeManager</code>进行任务调度。YARN工作在HDFS上不与上层框架绑定。</li>
+</ul>
 
       
     </div>
@@ -707,7 +714,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS"><span class="nav-number">1.</span> <span class="nav-text">HDFS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需求"><span class="nav-number">1.0.1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#体系结构"><span class="nav-number">1.0.2.</span> <span class="nav-text">体系结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储原理"><span class="nav-number">1.0.3.</span> <span class="nav-text">存储原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据读写"><span class="nav-number">1.0.4.</span> <span class="nav-text">数据读写</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS"><span class="nav-number">1.</span> <span class="nav-text">HDFS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需求"><span class="nav-number">1.0.1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#体系结构"><span class="nav-number">1.0.2.</span> <span class="nav-text">体系结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储原理"><span class="nav-number">1.0.3.</span> <span class="nav-text">存储原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据读写"><span class="nav-number">1.0.4.</span> <span class="nav-text">数据读写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新特性"><span class="nav-number">1.0.5.</span> <span class="nav-text">新特性</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
