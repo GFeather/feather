@@ -142,7 +142,7 @@
 <meta property="og:image" content="https://gfeather.github.io/feather/2018/09/20/Hadoop体系-HDFS/hdfs_detail.png">
 <meta property="og:image" content="https://gfeather.github.io/feather/2018/09/20/Hadoop体系-HDFS/hdfs_r.png">
 <meta property="og:image" content="https://gfeather.github.io/feather/2018/09/20/Hadoop体系-HDFS/hdfs_w.png">
-<meta property="og:updated_time" content="2018-09-25T14:46:40.433Z">
+<meta property="og:updated_time" content="2018-09-27T06:34:34.716Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop体系-HDFS">
 <meta name="twitter:description" content="Data-driven production value HDFS版本：HDFS1.0  需求 与单机FS相同或类似的用户(客户端)接口：能够通过shell、程序读写文件 多用户(客户端)读写：能够使处理多个读写请求 数据可靠性：能够处理数据出错、数据丢失等 集群可用性：能够在机器随时损坏的情况下，保证集群、数据可用 集群可伸缩性：能够随时增加、减少节点，同时数据相应伸缩  体系结构 从名称节点的">
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-25T22:46:40+08:00">
-                2018-09-25
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-27T14:34:34+08:00">
+                2018-09-27
               </time>
             
           </span>
@@ -450,7 +450,7 @@
 <h4 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h4><img src="/feather/2018/09/20/Hadoop体系-HDFS/hdfs_detail.png">
 <p>从名称节点的命名空间获得位置信息，从数据节点进行读写</p>
 <blockquote>
-<p>名称节点：存储元数据信息，核心<code>FsImage</code>、<code>EditLog</code>，<code>FsImage</code>用于维护文件树的所有元数据，<code>EditLog</code>记录了所有文件创建、删除、重命名等操作。名称节点会在启动时将<code>FsImage</code>载入内存，执行<code>EditLog</code>中的操作，期间处于安全模式：只允许读，不允许写。<br>第二名称节点：定时将名称节点的<code>FsImage</code>、<code>EditLog</code>拉入本地，进行初始化。在这个期间名称节点会将新的操作写入<code>EditLog.new</code>中，第二名称节点初始化完成的<code>FsImage</code>替代旧的<code>FsImage</code>，<code>EditLog.new</code>替代<code>EditLog</code>。</p>
+<p>名称节点：存储元数据信息，核心<code>FsImage</code>、<code>EditLog</code>，<code>FsImage</code>用于维护文件树的所有元数据，<code>EditLog</code>记录了所有文件创建、删除、重命名等操作。名称节点会在启动时将<code>FsImage</code>载入内存，执行<code>EditLog</code>中的操作，期间处于安全模式：只允许读，不允许写。<br>第二名称节点：作为名称节点的存档点提供元数据备份,定时将名称节点的<code>FsImage</code>、<code>EditLog</code>拉入本地，进行初始化。在这个期间名称节点会将新的操作写入<code>EditLog.new</code>中，第二名称节点初始化完成的<code>FsImage</code>替代旧的<code>FsImage</code>，<code>EditLog.new</code>替代<code>EditLog</code>。</p>
 </blockquote>
 <ul>
 <li>命名空间管理：名称节点管理命名空间，包含目录、文件和块，负责它们的创建、复制和删除</li>
@@ -471,7 +471,7 @@
 <ul>
 <li>存放策略：文件副本块分布，本机器一份，本机架其他机器一份，相邻机架一份，更多副本随机分配</li>
 <li>读取策略：就近读取</li>
-<li>复制策略：文件会在客户端切分成块，并逐块发送，数据节点根据节点列表进行流水复制，数据写入和复制实现并行。</li>
+<li>复制策略：文件会在客户端切分成块，并逐块发送，数据节点根据发送的节点列表进行流水复制，数据写入和复制实现并行。</li>
 <li>错误与恢复：<ul>
 <li>名称节点出错：核心数据结构FsImage和EditLog失效则集群失效，由第二名称节点接替，同时从副本恢复</li>
 <li>数据节点出错，从副本恢复</li>
