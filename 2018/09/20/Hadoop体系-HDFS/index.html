@@ -142,7 +142,7 @@
 <meta property="og:image" content="https://gfeather.github.io/feather/2018/09/20/Hadoop体系-HDFS/hdfs_detail.png">
 <meta property="og:image" content="https://gfeather.github.io/feather/2018/09/20/Hadoop体系-HDFS/hdfs_r.png">
 <meta property="og:image" content="https://gfeather.github.io/feather/2018/09/20/Hadoop体系-HDFS/hdfs_w.png">
-<meta property="og:updated_time" content="2018-09-29T03:31:19.814Z">
+<meta property="og:updated_time" content="2018-10-09T10:58:03.400Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop体系-HDFS">
 <meta name="twitter:description" content="Data-driven production value HDFS版本：HDFS1.0  需求 与单机FS相同或类似的用户(客户端)接口：能够通过shell、程序读写文件 多用户(客户端)读写：能够使处理多个读写请求 数据可靠性：能够处理数据出错、数据丢失等 集群可用性：能够在机器随时损坏的情况下，保证集群、数据可用 集群可伸缩性：能够随时增加、减少节点，同时数据相应伸缩  体系结构 从名称节点的">
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-29T11:31:19+08:00">
-                2018-09-29
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-09T18:58:03+08:00">
+                2018-10-09
               </time>
             
           </span>
@@ -450,7 +450,7 @@
 <h4 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h4><img src="/feather/2018/09/20/Hadoop体系-HDFS/hdfs_detail.png">
 <p>从名称节点的命名空间获得位置信息，从数据节点进行读写</p>
 <blockquote>
-<p>名称节点：存储元数据信息，核心<code>FsImage</code>、<code>EditLog</code>，<code>FsImage</code>用于维护文件树的所有元数据，<code>EditLog</code>记录了所有文件创建、删除、重命名等操作。名称节点会在启动时将<code>FsImage</code>载入内存，执行<code>EditLog</code>中的操作，期间处于安全模式：只允许读，不允许写。<br>第二名称节点：作为名称节点的存档点提供元数据备份，定时将名称节点的<code>FsImage</code>、<code>EditLog</code>拉入本地，进行初始化。在这个期间名称节点会将新的操作写入<code>EditLog.new</code>中，第二名称节点初始化完成的<code>FsImage</code>替代旧的<code>FsImage</code>，<code>EditLog.new</code>替代<code>EditLog</code>。</p>
+<p>名称节点：存储元数据信息，文件数、文件-数据块映射、数据块位置，核心<code>FsImage</code>、<code>EditLog</code>，<code>FsImage</code>用于维护文件树的所有元数据，<code>EditLog</code>记录了所有文件创建、删除、重命名等操作。名称节点会在启动时将<code>FsImage</code>载入内存，执行<code>EditLog</code>中的操作，期间处于<strong>安全模式</strong>：只允许对元数据的读操作，不允许写操作。<br>第二名称节点：作为名称节点的存档点提供元数据备份，定时将名称节点的<code>FsImage</code>、<code>EditLog</code>拉入本地，进行初始化。在这个期间名称节点会将新的操作写入<code>EditLog.new</code>中，第二名称节点初始化完成的<code>FsImage</code>替代旧的<code>FsImage</code>，<code>EditLog.new</code>替代<code>EditLog</code>。</p>
 </blockquote>
 <ul>
 <li>命名空间管理：名称节点管理命名空间，包含目录、文件和块，负责它们的创建、复制和删除</li>
@@ -469,7 +469,7 @@
 <h4 id="存储原理"><a href="#存储原理" class="headerlink" title="存储原理"></a>存储原理</h4><p>保证数据可靠性，使用多副本冗余、复制机制。副本数量一般为3(或指定更多)副本，系统会维持副本存活数量。</p>
 <p>实现：<br>1，并行访问<br>2，多副本冗余检错<br>3，可靠性</p>
 <ul>
-<li>存放策略：文件副本块分布，本机器一份，本机架其他机器一份，相邻机架一份，更多副本随机分配</li>
+<li>存放策略：文件副本块分布，本机器一份，本机架其他机器一份，相邻机架一份，更多副本随机分配。块大小1.0为64M，2.0为128M，块大小由网络带宽和寻址间的关系决定，为了提高读取块的效率减少寻址时间和传输时间的占比。</li>
 <li>读取策略：就近读取</li>
 <li>复制策略：文件会在客户端切分成块，并逐块发送，数据节点根据发送的节点列表进行流水复制，数据写入和复制实现并行。</li>
 <li>错误与恢复：<ul>
@@ -478,6 +478,8 @@
 <li>数据出错，校验码检错，从副本恢复</li>
 </ul>
 </li>
+<li>心跳机制：默认datanode每隔3s发送一次心跳机制，报告主机信息、块信息。当namenode连续10次没有收到心跳，隔300000ms(300s)后会发送确认信息，连续两次无回应则判断该节点宕机。</li>
+<li>负载均衡：集群有自动负载均衡，在有限的带宽下。在配置中可以修改带宽限制，通过<code>start-balance.sh -t n% //n为最大和最小节点存储百分比的差值</code>，当达到指定限制后集群会在空闲时进行负载均衡。 </li>
 </ul>
 <h4 id="数据读写"><a href="#数据读写" class="headerlink" title="数据读写"></a>数据读写</h4><img src="/feather/2018/09/20/Hadoop体系-HDFS/hdfs_r.png">
 <p>读：</p>
@@ -486,13 +488,30 @@
 <li><code>DFSInputStream</code>的相应的get方法会获得存储某数据块的距离客户端最近的数据节点地址，<code>FileSystem</code>会使用它初始化<code>FSDataInputStream</code>。</li>
 <li>客户端使用<code>FSDataInputStream.read()</code>读取文件，当数据块读完之后，<code>DFSInputStream</code>会断开与数据节点的连接，获取下一个块，读取结束调用<code>FSDataInputStream.close()</code>。</li>
 </ol>
+<p>综述：</p>
+<ol>
+<li>客户端通过RPC请求从namenode获取文件每一个块的节点列表</li>
+<li>客户端会就近读取数据块</li>
+<li>当前块读取完毕后关闭数据流，获取下一个块的节点列表，知道文件结束</li>
+<li>每次读取完毕都会进行checksum验证，如果出现错误，客户端会通知namenode，然后从下一个节点开始</li>
+</ol>
 <img src="/feather/2018/09/20/Hadoop体系-HDFS/hdfs_w.png">
 <p>写：</p>
 <ol>
 <li>客户端调用<code>FSDataOutputStream.write()</code>来向HDFS中的文件写入数据。</li>
 <li><code>FSDataOutputStream</code>中的数据会被分包存在<code>DFSOuputStream</code>的内部队列里，在发送时打成数据包发送，<code>FSDataOutputStream</code>向名称节点申请存放数据和副本的数据节点列表，然后这些节点进行流水复制。</li>
 <li>为了保证数据准确每个数据节点收到数据包后需要发送’确认包’(ACK),<code>ACK</code>会从数据节点管道往前发送直到客户端。</li>
+<li>如果写入期间发生故障，会关闭管线，把确认队列中所有的数据包都添加回数据队列最前端，保证不会漏掉任何一个数据包。为存储在正常datanode的当前数据块注册新的标识。从管线中删除故障datanode。构建新管线，余下的数据块写入正常datanode。namenode会维持副本数量到配置的副本数</li>
 <li>客户端调用<code>close()</code>方法后客户端不会写入数据，<code>DFSOuputStream</code>会在收到所有分包的<code>ACK</code>后通知名称节点关闭文件</li>
+</ol>
+<p>综述：</p>
+<ol>
+<li>客户端通过RPC请求发出文件写入请求，namenode检验文件是否合法、用户权限后，创建记录，否则让客户端抛出异常</li>
+<li>客户端写入时将文件切分为数据包，用一个‘数据队列’来维护数据包信息，向namenode注册blocks并获得datanode列表</li>
+<li>创建管线，将blocks写入，并将节点列表发送给datanode，datanode进行流水复制</li>
+<li>最后一个datanode写入成功会返回一个<code>ack</code>，并向前传递直到客户端。客户端维护一个确认队列来检测数据块是否写入完毕。</li>
+<li>传出过程中当某个节点出现故障，首先会关闭管线，将确认队列中的数据块重新添回数据队列，为当前数据块重新注册，删除故障datanode，重新创建管线继续写入</li>
+<li>写入完成关闭数据流</li>
 </ol>
 <h4 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h4><p><em>版本2.0</em></p>
 <ul>
