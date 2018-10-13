@@ -12,6 +12,7 @@ branch: master
 
 ## MR作业
 
+MapReduce执行过程以及任务执行过程
 
 ### 配置、提交任务
 ```
@@ -44,6 +45,7 @@ map: (k1, v1) -> list(k2, v2)
 combiner: (k2, list(v2)) -> list(k2, v2)
 reduce: (k2, list(v2)) -> list(k3, v3)
 ```
+
 ### MR的横向扩展
 
 ###### 数据流
