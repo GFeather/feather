@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Big Data,Hadoop,MapReduce," />
 
 
 
@@ -130,18 +130,19 @@
 
 
 
-<meta name="description" content="MR作业配置、提交任务12345678910111213141516171819202122public static void main(String[] args)&amp;#123;    Job job = new Job();    //Hadoop通过这个类查找包含它的JAR包    job.setJarByClass(Main.calss);    //配置作业名称    job.setJo">
+<meta name="description" content="Data-driven production value MR作业配置、提交任务12345678910111213141516171819202122public static void main(String[] args)&amp;#123;    Job job = new Job();    //Hadoop通过这个类查找包含它的JAR包    job.setJarByClass(Main.cal">
+<meta name="keywords" content="Big Data,Hadoop,MapReduce">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MR作业">
 <meta property="og:url" content="https://gfeather.github.io/feather/2018/10/13/MR作业/index.html">
 <meta property="og:site_name" content="feather">
-<meta property="og:description" content="MR作业配置、提交任务12345678910111213141516171819202122public static void main(String[] args)&amp;#123;    Job job = new Job();    //Hadoop通过这个类查找包含它的JAR包    job.setJarByClass(Main.calss);    //配置作业名称    job.setJo">
+<meta property="og:description" content="Data-driven production value MR作业配置、提交任务12345678910111213141516171819202122public static void main(String[] args)&amp;#123;    Job job = new Job();    //Hadoop通过这个类查找包含它的JAR包    job.setJarByClass(Main.cal">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://gfeather.github.io/feather/2018/10/13/MR作业/timg.jpg">
-<meta property="og:updated_time" content="2018-10-13T03:26:42.826Z">
+<meta property="og:updated_time" content="2018-10-13T03:28:41.982Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MR作业">
-<meta name="twitter:description" content="MR作业配置、提交任务12345678910111213141516171819202122public static void main(String[] args)&amp;#123;    Job job = new Job();    //Hadoop通过这个类查找包含它的JAR包    job.setJarByClass(Main.calss);    //配置作业名称    job.setJo">
+<meta name="twitter:description" content="Data-driven production value MR作业配置、提交任务12345678910111213141516171819202122public static void main(String[] args)&amp;#123;    Job job = new Job();    //Hadoop通过这个类查找包含它的JAR包    job.setJarByClass(Main.cal">
 <meta name="twitter:image" content="https://gfeather.github.io/feather/2018/10/13/MR作业/timg.jpg">
 
 
@@ -350,12 +351,34 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-13T11:26:42+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-13T11:28:41+08:00">
                 2018-10-13
               </time>
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/feather/categories/Hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">Hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -411,7 +434,8 @@
       
 
       
-        <h2 id="MR作业"><a href="#MR作业" class="headerlink" title="MR作业"></a>MR作业</h2><h3 id="配置、提交任务"><a href="#配置、提交任务" class="headerlink" title="配置、提交任务"></a>配置、提交任务</h3><figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">    <span class="keyword">Job</span> <span class="keyword">job</span> = <span class="keyword">new</span> <span class="keyword">Job</span>()<span class="comment">;</span></span><br><span class="line">    <span class="comment">//Hadoop通过这个类查找包含它的JAR包</span></span><br><span class="line">    <span class="keyword">job</span>.setJarByClass(Main.calss)<span class="comment">;</span></span><br><span class="line">    <span class="comment">//配置作业名称</span></span><br><span class="line">    <span class="keyword">job</span>.setJobName(<span class="string">"WordCount"</span>)<span class="comment">;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//配置输入、输出文件/目录，输出目录必须不存在以防覆盖其他计算结果</span></span><br><span class="line">    FileInputFormat.addInputPath(<span class="keyword">job</span>, <span class="keyword">new</span> Path(<span class="string">"in"</span>))<span class="comment">;</span></span><br><span class="line">    FileOutputFormat.setOutputPath(<span class="keyword">job</span>, <span class="keyword">new</span> Path(<span class="string">"out"</span>)<span class="comment">;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//配置Map、Reduce类</span></span><br><span class="line">    <span class="keyword">job</span>.setMapperClass(Mapper.<span class="keyword">class</span>)<span class="comment">;</span></span><br><span class="line">    <span class="keyword">job</span>.setReducerClass(Reducer.<span class="keyword">class</span>)<span class="comment">;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//配置Reduce任务输出类型，Reduce函数的输出要和这里一致</span></span><br><span class="line">    <span class="keyword">job</span>.setOutputKeyClass(Text.<span class="keyword">class</span>)<span class="comment">;</span></span><br><span class="line">    <span class="keyword">job</span>.setOutputValueClass(IntWritable.<span class="keyword">class</span>)<span class="comment">;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//waitForCompletion()方法提交作业，参数为true则把进度信息写到控制台，返回值为boolean</span></span><br><span class="line">    System.exit(<span class="keyword">job</span>.waitForCompletion(true) ? <span class="number">0</span> : <span class="number">1</span>)<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p><em>Data-driven production value</em></p>
+<h2 id="MR作业"><a href="#MR作业" class="headerlink" title="MR作业"></a>MR作业</h2><h3 id="配置、提交任务"><a href="#配置、提交任务" class="headerlink" title="配置、提交任务"></a>配置、提交任务</h3><figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">    <span class="keyword">Job</span> <span class="keyword">job</span> = <span class="keyword">new</span> <span class="keyword">Job</span>()<span class="comment">;</span></span><br><span class="line">    <span class="comment">//Hadoop通过这个类查找包含它的JAR包</span></span><br><span class="line">    <span class="keyword">job</span>.setJarByClass(Main.calss)<span class="comment">;</span></span><br><span class="line">    <span class="comment">//配置作业名称</span></span><br><span class="line">    <span class="keyword">job</span>.setJobName(<span class="string">"WordCount"</span>)<span class="comment">;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//配置输入、输出文件/目录，输出目录必须不存在以防覆盖其他计算结果</span></span><br><span class="line">    FileInputFormat.addInputPath(<span class="keyword">job</span>, <span class="keyword">new</span> Path(<span class="string">"in"</span>))<span class="comment">;</span></span><br><span class="line">    FileOutputFormat.setOutputPath(<span class="keyword">job</span>, <span class="keyword">new</span> Path(<span class="string">"out"</span>)<span class="comment">;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//配置Map、Reduce类</span></span><br><span class="line">    <span class="keyword">job</span>.setMapperClass(Mapper.<span class="keyword">class</span>)<span class="comment">;</span></span><br><span class="line">    <span class="keyword">job</span>.setReducerClass(Reducer.<span class="keyword">class</span>)<span class="comment">;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//配置Reduce任务输出类型，Reduce函数的输出要和这里一致</span></span><br><span class="line">    <span class="keyword">job</span>.setOutputKeyClass(Text.<span class="keyword">class</span>)<span class="comment">;</span></span><br><span class="line">    <span class="keyword">job</span>.setOutputValueClass(IntWritable.<span class="keyword">class</span>)<span class="comment">;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//waitForCompletion()方法提交作业，参数为true则把进度信息写到控制台，返回值为boolean</span></span><br><span class="line">    System.exit(<span class="keyword">job</span>.waitForCompletion(true) ? <span class="number">0</span> : <span class="number">1</span>)<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> mr过程</span><br><span class="line">map: <span class="function"><span class="params">(k1, v1)</span> -&gt;</span> list(k2, v2)</span><br><span class="line">combiner: <span class="function"><span class="params">(k2, list(v2))</span> -&gt;</span> list(k2, v2)</span><br><span class="line">reduce: <span class="function"><span class="params">(k2, list(v2))</span> -&gt;</span> list(k3, v3)</span><br></pre></td></tr></table></figure>
 <h3 id="MR的横向扩展"><a href="#MR的横向扩展" class="headerlink" title="MR的横向扩展"></a>MR的横向扩展</h3><h6 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h6><ul>
 <li>Hadoop将MR的输入划分为等长的数据块，成为“输入分片”。Hadoop为每个分片分配一个Map任务，实现并行运算。</li>
@@ -484,6 +508,16 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/feather/tags/Big-Data/" rel="tag"># Big Data</a>
+          
+            <a href="/feather/tags/Hadoop/" rel="tag"># Hadoop</a>
+          
+            <a href="/feather/tags/MapReduce/" rel="tag"># MapReduce</a>
+          
+        </div>
       
 
       
@@ -619,7 +653,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/feather/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
