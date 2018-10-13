@@ -14,7 +14,7 @@ branch: master
 
 MapReduce执行过程以及任务执行过程
 
-### 配置、提交任务
+#### 配置、提交任务
 ```
 public static void main(String[] args){
     Job job = new Job();
@@ -46,7 +46,7 @@ combiner: (k2, list(v2)) -> list(k2, v2)
 reduce: (k2, list(v2)) -> list(k3, v3)
 ```
 
-### MR的横向扩展
+#### MR的横向扩展
 
 ###### 数据流
 - Hadoop将MR的输入划分为等长的数据块，成为“输入分片”。Hadoop为每个分片分配一个Map任务，实现并行运算。
@@ -69,7 +69,7 @@ map任务把输入分片传给InputFormat的`createRecordReader()`方法来获�
 
 map之后会进行shuffle，期间进行分区，并按照分区将中间结果分发给reduce任务。分区默认算法按照序列化对象的`compareTo()`方法来分区，可以继承`Patitioner`来自定义分区函数。
 
-### shuffle和排序
+#### shuffle和排序
 
 {% asset_img timg.jpg %}
 
@@ -110,10 +110,10 @@ reduce端shuffle流程：
 3. 达到阈值合并溢出到磁盘，并执行combiner函数
 4. 分轮次合并map输出，直接将合并的map输出输入reduce函数
 
-### 配置调优
+#### 配置调优
 
 
-### 运行机制
+#### 运行机制
 
 ###### 作业提交
 
@@ -139,7 +139,7 @@ reduce端shuffle流程：
 
 appmaster收到最后一个任务完成的通知后，会将作业状态设置为成功。Job轮询到这个状态后，从`waitForCompletion()`方法返回。appmaster和容器会进行清理，作业信息会被存档。
 
-### 失败
+#### 失败
 
 ###### 任务运行失败
 
