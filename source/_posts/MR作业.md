@@ -1,7 +1,7 @@
 ---
 title: MR作业
 date: 2018-10-13 10:05:59
-tags: [Big Data, Hadoop, MapReduce]
+tags: [MapReduce]
 categories: Hadoop
 respository: git@github.com:Gfeather/feather.git
 branch: master

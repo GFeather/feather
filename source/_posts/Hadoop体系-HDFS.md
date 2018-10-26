@@ -1,7 +1,7 @@
 ---
 title: Hadoop体系-HDFS
 date: 2018-09-20 22:14:27
-tags: [Big Data, Hadoop, HDFS]
+tags: [HDFS]
 categories: Hadoop
 respository: git@github.com:Gfeather/feather.git
 branch: master

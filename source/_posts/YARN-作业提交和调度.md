@@ -1,7 +1,7 @@
 ---
 title: YARN-作业提交和调度
 date: 2018-10-17 17:22:25
-tags: [Big Data, Hadoop, YARN]
+tags: [YARN]
 categories: Hadoop
 respository: git@github.com:Gfeather/feather.git
 branch: master
