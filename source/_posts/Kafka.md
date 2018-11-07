@@ -25,6 +25,7 @@ Kafka的架构主要分为三部分
 
 ##### Kafka的存储
 
+Kafka的数据都存储在本地文件系统，通过多副本获得高可用
 Kafka在存储上分为三个层级Topic、Partition、Segment。
 Topic: Client角度存储数据的单位，一个Topic存储一类数据
 Partition: 一个Topic中数据分为多个分区，一个Partition为一个文件夹。
