@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/feather/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/feather/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/feather/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Josefin Sans:300,300italic,400,400italic,700,700italic|Comfortaa:300,300italic,400,400italic,700,700italic|Oxygen:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/feather/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/feather/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/feather/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/feather/images/feather.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/feather/images/feather.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/feather/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Jvm," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="learning ,  perception design  look Jvmjava体系结构java语言 java class 文件格式 java应用编程接口 java虚拟机 1.x1.3.1，java虚拟机体系结构主要包含类装载器和执行引擎类装载器来加载程序的class文件和java api class文件为字节码，由执行引擎运行，调用本地方法调用java程序通过java虚拟机调用本地方法来访">
+<meta name="keywords" content="Jvm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="look Jvm">
+<meta property="og:url" content="https://gfeather.github.io/feather/2018/11/24/look-Jvm/index.html">
+<meta property="og:site_name" content="feather">
+<meta property="og:description" content="learning ,  perception design  look Jvmjava体系结构java语言 java class 文件格式 java应用编程接口 java虚拟机 1.x1.3.1，java虚拟机体系结构主要包含类装载器和执行引擎类装载器来加载程序的class文件和java api class文件为字节码，由执行引擎运行，调用本地方法调用java程序通过java虚拟机调用本地方法来访">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/FWPfeoi.png">
+<meta property="og:image" content="https://i.imgur.com/IfnU2vd.png">
+<meta property="og:image" content="https://i.imgur.com/YiPXVZ2.png">
+<meta property="og:image" content="https://i.imgur.com/b4eH07I.png">
+<meta property="og:updated_time" content="2018-11-24T02:35:20.433Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="look Jvm">
+<meta name="twitter:description" content="learning ,  perception design  look Jvmjava体系结构java语言 java class 文件格式 java应用编程接口 java虚拟机 1.x1.3.1，java虚拟机体系结构主要包含类装载器和执行引擎类装载器来加载程序的class文件和java api class文件为字节码，由执行引擎运行，调用本地方法调用java程序通过java虚拟机调用本地方法来访">
+<meta name="twitter:image" content="https://i.imgur.com/FWPfeoi.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/feather/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gfeather.github.io/feather/2018/11/24/look-Jvm/"/>
+
+
+
+
+
+  <title>look Jvm | feather</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/feather/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">feather</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/feather/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/feather/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/feather/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/feather/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gfeather.github.io/feather/feather/2018/11/24/look-Jvm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="feather">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/feather/images/pk.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="feather">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">look Jvm</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-24T09:09:14+08:00">
+                2018-11-24
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-24T10:35:20+08:00">
+                2018-11-24
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/feather/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/feather/2018/11/24/look-Jvm/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/feather/2018/11/24/look-Jvm/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/feather/2018/11/24/look-Jvm/" class="leancloud_visitors" data-flag-title="look Jvm">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>Views
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><em>learning ,  perception design</em> </p>
+<h2 id="look-Jvm"><a href="#look-Jvm" class="headerlink" title="look Jvm"></a>look Jvm</h2><h5 id="java体系结构"><a href="#java体系结构" class="headerlink" title="java体系结构"></a>java体系结构</h5><pre><code>java语言
+java class 文件格式
+java应用编程接口
+java虚拟机
+</code></pre><h5 id="1-x"><a href="#1-x" class="headerlink" title="1.x"></a>1.x</h5><h6 id="1-3-1，java虚拟机体系结构"><a href="#1-3-1，java虚拟机体系结构" class="headerlink" title="1.3.1，java虚拟机体系结构"></a>1.3.1，java虚拟机体系结构</h6><p>主要包含类装载器和执行引擎<br>类装载器来加载程序的class文件和java api class文件为字节码，由执行引擎运行，调用本地方法调用<br>java程序通过java虚拟机调用本地方法来访问底层操作系统资源</p>
+<h6 id="1-3-2，类装载器的体系结构"><a href="#1-3-2，类装载器的体系结构" class="headerlink" title="1.3.2，类装载器的体系结构"></a>1.3.2，类装载器的体系结构</h6><p>启动类装载器，用户定义类装载器<br>启动类装载器是java虚拟机实现的一部分，用户定义类装载器可以在运行时扩展java应用程序<br>每个类装载器都有自己的命名空间，即java应用在不同源加载的程序分隔在不同的内存空间互相不能访问</p>
+<h6 id="1-3-3，java-class文件"><a href="#1-3-3，java-class文件" class="headerlink" title="1.3.3，java class文件"></a>1.3.3，java class文件</h6><p>可以运行在任何支持java虚拟机的硬件平台和操作系统上</p>
+<h6 id="1-3-4-java-api"><a href="#1-3-4-java-api" class="headerlink" title="1.3.4 java api"></a>1.3.4 java api</h6><p>java虚拟机在特定平台上实现java api，java api调用本地方法，java程序则实现无平台性</p>
+<h5 id="2-x-平台无关性"><a href="#2-x-平台无关性" class="headerlink" title="2.x 平台无关性"></a>2.x 平台无关性</h5><p>取决于是否调用平台相关的本地方法<br>实现平台无关步骤：</p>
+<ol>
+<li>选择程序要运行的主机和设备的集合（目标宿主机）</li>
+<li>在目标宿主机算则自认为足够好的java平台版本，在该版本平台上编写、运行程序</li>
+<li>对于每个目标宿主机，选择一些程序将要运行的java平台实现（目标运行时环境）</li>
+<li>编写程序，使它只通过java api的标准运行库来访问计算机（不要调用本地方法，或者开发商专有的那些调用本地方法的库</li>
+<li>编写程序，使它不依赖垃圾收集器及时中介的正确性，也不依赖线程的优先级</li>
+<li>努力设计一个用户界面，使它在你所有的目标宿主机上都能正常工作</li>
+<li>在所有目标运行时环境和所有的目标宿主机上都能工作</li>
+</ol>
+<h5 id="3-x-安全性"><a href="#3-x-安全性" class="headerlink" title="3.x 安全性"></a>3.x 安全性</h5><p>沙箱实现<br>类装载器结构，class文件检验器，内置于java虚拟机（及语言）的安全特性，安全管理器及java api</p>
+<p>类加载器：将代码限制在某类中，限制允许的操作</p>
+<p>类装载器的加载为链式双亲委派模式：除启动类装载器的每一个类装载器，都有一个“双亲“类装载器，默认将这个任务委派给他的双亲来装在这个类型，直到到达启动类装载器，如果双亲类装载器有能力装载则返回这个类型，否则，类装载器自身来装载</p>
+<p>类装载器会验证类型是否可以信任，这样实现了外来非法类无法被装载<br>因为外来类与核心被信任类不在同一个运行时包所以外来类无法对其他安全类造成危害</p>
+<p>运行时包：由同一个类加载器装载的、属于同一个包的、多个类型的集合。</p>
+<p>class文件检验器：四次扫描：</p>
+<ol>
+<li>第一次，类装载时，检查class文件的内部结构，以保证可以安全编译</li>
+<li>第二、三次，连接过程中，确认类型数据遵从java编程语言的语义，包括检验它所包含的的所有字节码的完整性</li>
+<li>第四次，在动态连接过程中解析符号引用时，确认被引用的类、字段及方法确实存在，大多数虚拟机有延迟加载策略，即便会预加载以加快装载速度，还是会表现为延迟加载，即如果没有找到被引用类则使用时才会抛出异常<br>动态连接：将一个符号引用解析为直接引用的过程，</li>
+</ol>
+<p>解析：<br>1）查找被引用的类（有必要则装载）<br>2）将符号引用替换为直接引用<br>符号引用是一个字符串，包含类名，方法（字段）名及方法（字段）描述符来唯一地识别一个类、字段或方法</p>
+<h6 id="栈："><a href="#栈：" class="headerlink" title="栈："></a>栈：</h6><p>每个线程都会被授予自己的java栈，每个方法调用有一个自己帧栈，java栈由不同帧栈组成</p>
+<p>帧栈是一个内存片段，存储着局部变量和计算的中间结果，其中，存储方法的中间结果的被称为该方法的操作数栈。操作码和它的操作数则可以为操作数栈中的数据或方法帧栈中的局部变量中的数据。</p>
+<p>jar文件会做签名来确保可信赖<br>jar是为了一次传输多个文件的java打包归档文件</p>
+<h5 id="4-x-网络移动性"><a href="#4-x-网络移动性" class="headerlink" title="4.x 网络移动性"></a>4.x 网络移动性</h5><p>java的class文件设计紧凑，他们的字节码的每条只能只占一个字节，操作码和操作数都是按照字节对齐的，有些特例会在操作码和操作数之间会填上一到三个字节，使操作数都按字边界对齐</p>
+<p>JINI技术：<br>JINI技术通过对象序列化和远程方法调用（RMI），java api能够将本地对象模型拓展为分布式对象模型，打破java虚拟机之间的界限</p>
+<p>JINI技术运行时基础架构为一种网络级协议——“探索“，以及对象级协议——”加入”和“查找”</p>
+<p>探索过程：当服务提供者插入，连上网络之后，会发送一个UDP网络组播包，包含IP和端口来让查找服务发现</p>
+<p>查找服务监听公共端口，接收到包之后判断是否连接，然后建立TCP连接，通过RMI发送一个服务注册器的对象，用于进行进一步操作比如join（加入）和lookup（查找）</p>
+<p>JOIN过程：服务注册器对象是探索的结果，服务提供者收到服务注册对象后，调用其中的register()来注册并传递一个服务条目，服务条目包含来描述这个服务的对象，register()把服务条目的拷贝返回给查找服务</p>
+<p>服务条目中包含一个服务对象，客户机可以通过它来和服务交互。比如查找对象就是一种JINI服务，他的服务对象就是服务注册对象</p>
+<p>随想：JINI服务的核心思想就是通过RMI给对方一个对象，对方通过这个对象来跟自己交互</p>
+<p>查找过程：当客户机插入之后，经历探索过程，调用服务注册对象的lookup()方法，传递一个服务模板的参数，这是一个表示搜索条件的对象。它可以包含一个指向class对象数组的引用，这些class对象表明客户机所需要的服务对象的java类型，也可以包含一个服务编号ID来唯一标识一个服务。服务模板的任何字段都可以包含通配符，lookup()方法把这个服务模板返回查找服务进行查询，返回满足条件的服务对象。</p>
+<h5 id="5-x-java虚拟机"><a href="#5-x-java虚拟机" class="headerlink" title="5.x    java虚拟机"></a>5.x    java虚拟机</h5><p><img src="https://i.imgur.com/FWPfeoi.png" alt=""><br><img src="https://i.imgur.com/IfnU2vd.png" alt=""><br>虚拟机负责运行一个java程序，运行一个java程序就得到一个java虚拟机实例</p>
+<h6 id="方法区："><a href="#方法区：" class="headerlink" title="方法区："></a>方法区：</h6><ul>
+<li>类型信息<ul>
+<li>类的全限定名</li>
+<li>直接超类的全限定名</li>
+<li>是类还是接口</li>
+<li>访问修饰符</li>
+<li>所有直接接口类的全限定名的有序列表</li>
+</ul>
+</li>
+<li>常量池（除类常量外）：各种直接常量（Ingeter，String，float point）以- 及其他类型，字段和方法的符号引用，池里的数据像数组一样通过索引访问</li>
+<li>字段信息<ul>
+<li>字段名</li>
+<li>类型</li>
+<li>修饰符</li>
+</ul>
+</li>
+<li>方法信息<ul>
+<li>方法名</li>
+<li>方法修饰符</li>
+<li>参数个数和类型</li>
+<li>返回值类型</li>
+</ul>
+</li>
+<li>类（静态）常量</li>
+<li>指向classloader的引用</li>
+<li>指向class的引用</li>
+</ul>
+<h6 id="方法表："><a href="#方法表：" class="headerlink" title="方法表："></a>方法表：</h6><p>为了加快访问速度，虚拟机会为加载的每一个非抽象类，生成一个方法表，其中的元素是他的实例中所有实例方法的直接引用，包括从超类继承的方法</p>
+<h6 id="堆："><a href="#堆：" class="headerlink" title="堆："></a>堆：</h6><p>java对象中包含的基本数据由它所属的类和超类中所有的实例变量组成。只要有一个对象引用，虚拟机就必须快速定位实例对象中的数据，并且能够通过对象访问相应的类数据（方法区中的类型信息），所以对象需要一个指向方法区的指针</p>
+<p>两种堆空间设计方式</p>
+<p><img src="https://i.imgur.com/YiPXVZ2.png" alt=""><br><img src="https://i.imgur.com/b4eH07I.png" alt=""></p>
+<ol>
+<li>堆内有句柄池和对象池，对象引用指向句柄，句柄池每个条目包含一个指向对象实例变量的指针和一个指向方法区类数据的指针<br>优点：移动对象的时候只需要改变句柄指针<br>缺点：每次访问对象的实例变量都需要传递两个指针</li>
+<li>对象引用指向一组数据，包含指向类数据的指针和对象实例数据<br>优点：访问只需要一个指针<br>缺点：移动对象的时候需要在整个运行时数据区更新指向被移动对象的引用，即所有对象引用</li>
+</ol>
+<p>必须通过对象访问类数据的理由：<br>转换对象类型时，将会检查被转换对象是否是被引用的对象或超类，执行instanceof时也会执行相同检查（猜想：多态的实现方式）</p>
+<p>虚拟机中的每个对象可以联系一个逻辑数据——对象锁，用于协调多个线程同时访问一个对象时的同步。在任何时刻只能有一个线程能拥有这个对象锁，有对象锁才能访问这个对象的数据，拥有之后这个线程可以多次加锁，加几次就要释放几次<br>每个对象还与等待集合相关联，使多个线程为了一个目标协调工作<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//等待方法</span></span><br><span class="line"><span class="function"><span class="title">wait</span><span class="params">()</span></span></span><br><span class="line"><span class="comment">//通知方法</span></span><br><span class="line"><span class="function"><span class="title">notify</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">notifyAll</span><span class="params">()</span></span></span><br><span class="line"><span class="comment">//每个类都会从Object继承这三个方法</span></span><br><span class="line"><span class="comment">//当调用这个wait()，虚拟机就将这个线程阻塞，放入等待集合中，当有线程调用通知方法时，虚拟机从等待集合唤醒一个或多个被阻塞线程</span></span><br></pre></td></tr></table></figure></p>
+<p>对象锁和等待集合一般只有在使用同步的时候才会产生</p>
+<h6 id="程序计数器："><a href="#程序计数器：" class="headerlink" title="程序计数器："></a>程序计数器：</h6><p>每个线程在启动的时候会创建一个pc寄存器，大小为一个字长，可以持有一个指针或者returnAddress。当线程执行一个方法时pc寄存器内容总是下一条指令的”地址“，这里的”地址“可以是一个本地指针、也可以是方法字节码中的偏移量。如果下一条为本地方法，pc寄存器为“undefined”</p>
+<h6 id="栈帧："><a href="#栈帧：" class="headerlink" title="栈帧："></a>栈帧：</h6><p>由局部变量区、操作数栈和帧数据区组成</p>
+<h6 id="局部变量区："><a href="#局部变量区：" class="headerlink" title="局部变量区："></a>局部变量区：</h6><p>存储局部变量和方法参数，组织为一个从0开始以字长为单位的数据，int，float，reference和returnAddress占一项，byte、short和char都会转换成int也占一项，long和double占两项，正常方法会自传一个this的reference做参数，类方法不会</p>
+<h6 id="操作数栈："><a href="#操作数栈：" class="headerlink" title="操作数栈："></a>操作数栈：</h6><p>提供虚拟机指令的操作数，组织方式与局部变量相同，但是只能压栈出栈，取数计算再将结果压栈</p>
+<h6 id="帧数据区："><a href="#帧数据区：" class="headerlink" title="帧数据区："></a>帧数据区：</h6><p>支持常量池解析、正常方法返回以及异常派发机制</p>
+<h6 id="本地方法栈："><a href="#本地方法栈：" class="headerlink" title="本地方法栈："></a>本地方法栈：</h6><p>的由java方法调用本地方法，内存不由虚拟机控制，参数会被压入本地方法的栈，即会压入当前帧的操作数栈。本地方法又会回调java语言来回到虚拟机。本地方法为java指令的扩展</p>
+<h6 id="执行引擎：java程序的每个线程都是一个独立执行引擎的实例"><a href="#执行引擎：java程序的每个线程都是一个独立执行引擎的实例" class="headerlink" title="执行引擎：java程序的每个线程都是一个独立执行引擎的实例"></a>执行引擎：java程序的每个线程都是一个独立执行引擎的实例</h6><p>指令集：方法的字节码流是由虚拟机指令序列构成<br>当执行引擎遇到一个本地方法的调用，由虚拟机试着发起这个调用，正常返回后，执行引擎继续执行字节码流的下一条指令</p>
+<p>执行技术：解释，即时编译，自适应优化，芯片级直接执行<br>自适应优化，虚拟机将执行时间最长的字节码文件优化为极端优化的静态连接的c++本地方法。但是对于设计良好的java程序，方法调用和动态派发的频度会很高，方法调用会使优化器低效，java无法通过方法内嵌（将调用的方法拷贝到本方法中），因为可能方法会很大，因为自适应编译是在运行时优化所以可以利用调用信息将调用的方法内嵌</p>
+<p>线程模型：java规范中，线程的行为通过变量，内存和工作内存来定义，每个java虚拟机实例都有一个主存，每个线程有一个工作内存</p>
+<p>管理底层线程行为的规则规定以下操作：</p>
+<ul>
+<li>将主存中的变量的值拷贝到工作内存</li>
+<li>将它的值写回到主存<br>则会进一步牵扯到：原子性，顺序性，可视性的线程相关问题</li>
+</ul>
+<h5 id="6-x-java-class文件"><a href="#6-x-java-class文件" class="headerlink" title="6.x java class文件"></a>6.x java class文件</h5><p>java class文件是八位字节的二进制流</p>
+<h5 id="7-x-类型的生命周期"><a href="#7-x-类型的生命周期" class="headerlink" title="7.x 类型的生命周期"></a>7.x 类型的生命周期</h5><p><strong>只有在第一次主动使用才会初始化</strong><br>所以外部类初始化时不会引起静态内部类的初始化</p>
+<p>主动使用的情况：</p>
+<ul>
+<li>创建某个类的新实例（new指令；不明确的创建、反射、克隆或者反序列化）</li>
+<li>当调用某个类型的静态方法时</li>
+<li>访问某个类或接口的静态字段，或对其赋值</li>
+<li>使用java API中的反射方法时</li>
+<li>初始化某个类的子类（初始化子类要求必须初始化超类）</li>
+<li>启动类（含有main()）</li>
+</ul>
+<h6 id="装载——连接——初始化"><a href="#装载——连接——初始化" class="headerlink" title="装载——连接——初始化"></a>装载——连接——初始化</h6><p>连接：验证——准备——解析（可选择）</p>
+<ul>
+<li>装载：</li>
+</ul>
+<ol>
+<li>通过该类型全限定名，产生一个二进制数据流</li>
+<li>将这个二进制数据流解释为方法区的内部数据结构</li>
+<li>生成一个该类型的class实例对象</li>
+</ol>
+<ul>
+<li>连接：<br>验证：确认类型符合java语言的语义<br>准备：确定要分配的内存大小，分配内存，将变量和引用设为默认值<br>解析：将常量池中的符号引用改为直接引用，也可以在使用时解析</li>
+</ul>
+<p>初始化：<br>1）如果这个类有一个超类，还没有初始化，则先初始化超类<br>2）如果类中有初始化方法，则执行这个方法<br>类会使用类初始化方法<clinit>为类变量和静态类变量初始化<br>final变量在编译时初始化，则类不会用<clinit>初始化它</clinit></clinit></p>
+<p><em>ps:Class类的对象由系统创建，且只有一个对象，其中有加载类、获取类的属性、方法、构造器等方法，与java.lang.reflect类库中的Field、Method、Constructor类配合使用，获取类型信息；即类加载器机制</em></p>
+<h6 id="对象的生命周期"><a href="#对象的生命周期" class="headerlink" title="对象的生命周期"></a>对象的生命周期</h6><p>对象的创建：</p>
+<ul>
+<li>直观地使用new时，调用Class或java.lang.reflect.Constructor中的Instance()方法</li>
+<li>使用类型的clone()方法,通过java.io.ObjectInputStream类的getObject()方法反序列化</li>
+</ul>
+<p>以及其他几种隐含创建情况：</p>
+<ul>
+<li>保存命令行参数的String对象</li>
+<li>装载时产生的Class对象</li>
+<li>当虚拟机装载了常量池中包含CONSTANT_String_Info入口的类会创建新的String对象来存放这些常量字符串</li>
+<li>执行字符串连接时会产生一个新的对象</li>
+</ul>
+<p>对象初始化的不同方式：</p>
+<ul>
+<li>clone()产生，从被克隆的实例中的值拷贝到新对象中</li>
+<li>序列化，从数据流中读取的值来初始化那些非暂时性的实例变量<br>否则，使用实例的初始化方法</li>
+<li>虚拟机会为编译的类生成至少一个实例初始化方法，即<init>方法，针对源码中Meizu一个构造方法，编译器都会生成一个对应的<init>方法，如果没有定义构造方法编译器会生成一个默认的无参构造方法调用超类的一个无参构造方法。</init></init></li>
+</ul>
+<p><init>方法中包含：</init></p>
+<ul>
+<li>如果显式调用类中另一个构造方法（this()）开始：<ul>
+<li>一个同类<init>()的调用</init></li>
+<li>实现对应构造方法的方法体的字节码</li>
+</ul>
+</li>
+<li>如果没有从this()开始：<ul>
+<li>一个超类的<init>()的调用</init></li>
+<li>任意实例变量的初始化的字节码</li>
+<li>实现对应构造方法的方法体的字节码</li>
+<li>如果显式调用super()，则会调用超类的对应的构造方法</li>
+<li>如果没有从this()、super()开始，则只会调用超类的无参构造方法</li>
+</ul>
+</li>
+</ul>
+<p><em>多态的虚拟机实现方法的理解：类型加载时使用多态的实例变量的符号引用应为其超类，所以解析后的直接引用为超类引用</em></p>
+<h5 id="9-x-垃圾回收"><a href="#9-x-垃圾回收" class="headerlink" title="9.x 垃圾回收"></a>9.x 垃圾回收</h5><p>根对象集：<br>局部变量的对象引用、方法栈中的操作数栈（以及类变量的对象应用）、加载的类的常量池中指向堆的对象引用、传递到本地方法中未释放的方法引用；</p>
+<ul>
+<li><p>计数收集器：当一个对象创建的时候分配一个计数器，被引用一次则加一，当引用超过生命周期或者改变为其他值时减一。问题：只适用于长时间不被打断的对象，无法解决父类子类互相循环调用的问题</p>
+</li>
+<li><p>跟踪收集器：从根对象集出发，对每个对象做标记，处理掉没有被标记的对象</p>
+</li>
+<li><p>压缩收集器：解决堆碎块问题，将所有对象拷贝到堆的一端，将其他地方视为空，其中对象引用方式为带句柄，引用改变效率高，但是每次对象访问都有性能损失</p>
+</li>
+<li><p>拷贝收集器：解决堆碎块问题，只使用堆的一半，达到一定限度，就将所有对象拷贝到另一半，</p>
+</li>
+<li><p>按代收集的收集器：将堆分为多个子堆，按照寿命将对象分为多个代，越年轻的代则收集越频繁</p>
+</li>
+</ul>
+<h6 id="火车算法："><a href="#火车算法：" class="headerlink" title="火车算法："></a>火车算法：</h6><p>火车算法把内存空间划分为固定大小的内存块，火车算法在这些块中执行，每个块属于一个集合，这个集合被称作火车，内存块被称作车厢；</p>
+<p>车厢收集：<br>-. 每次火车算法执行都从最小数字火车开始，要么收集最小数字块、要么收集最小数字火车，当没有外部引用指向最小数字火车中的对象时，整个火车都为垃圾，被释放。</p>
+<ol>
+<li>假设最小数字火车中被认为全是垃圾，则释放整个火车，返回</li>
+<li>如果不全是垃圾，就关注最小数字车厢<ol>
+<li>首先、把所有被其他车厢应用的对象移动到其他车厢去</li>
+<li>如果车厢内的对象都没有引用，则可以垃圾收集，释放整个车厢，返回；在这个过程中算法执行对象的移动或者释放</li>
+</ol>
+</li>
+</ol>
+<p><strong>-&gt;</strong> 其中具体的转移操作：</p>
+<ol>
+<li>如果对象存在成熟空间之外的引用则把他移动到其他火车，如果被成熟空间中的其他火车引用，则移动到那个火车中去</li>
+<li>对这个对象进行扫描，查找对原车厢的引用，将存在的被引用对象也转移到这列火车</li>
+<li>对转移过来的对象在进行扫描，循环，直到没有指向原车厢的引用。</li>
+<li>当没有来自成熟空间之外以及其他火车的引用，则这节车厢中的对象剩余的外部引用都来自这列火车的其他车厢，算法把这样的对象移动到最小数字火车最后一个车厢去。</li>
+<li>扫描这些对象，将发现的引用对象也移动到同一列火车的尾部，也扫描，不断循环</li>
+<li>直到没有任何形式的引用指向被收集车厢，则释放被收集车厢的空间，返回</li>
+</ol>
+<p>记忆集合：<br>记忆集合是包含一个车厢或者一列火车的引用集合，算法来为成熟对象空间的车厢和火车维护记忆集合，当记忆集合为空，则代表被遗忘可收集</p>
+<p>问题：因为需要移动大量对象，当移动一个被引用很多的流行对象时，需要做的工作就会爆炸<br>终结方法的存在使垃圾回收更复杂，因为可能复活某些对象</p>
+<p>19.x 方法调用<br>实例方法调用需要一个实例，类方法不需要<br>实例方法动态加载，类方法静态加载<br>调用类方法时，基于对象引用的类；<br>调用实例方法时，基于对象实际的类；<br>多态：。。。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/feather/tags/Jvm/" rel="tag"># Jvm</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/feather/2018/11/07/Kafka/" rel="next" title="Kafka">
+                <i class="fa fa-chevron-left"></i> Kafka
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b80189203ca72db" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div onclick="showGitment()" id="gitment-display-button">显示 Gitment 评论</div>
+        <div id="gitment-container" style="display:none"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/feather/images/pk.png"
+                alt="feather" />
+            
+              <p class="site-author-name" itemprop="name">feather</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/feather/archives/">
+              
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/feather/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/feather/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/GFeather" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:feather292@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/19719655a6c9" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#look-Jvm"><span class="nav-number">1.</span> <span class="nav-text">look Jvm</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#java体系结构"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">java体系结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-x"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">1.x</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-3-1，java虚拟机体系结构"><span class="nav-number">1.0.0.2.1.</span> <span class="nav-text">1.3.1，java虚拟机体系结构</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-3-2，类装载器的体系结构"><span class="nav-number">1.0.0.2.2.</span> <span class="nav-text">1.3.2，类装载器的体系结构</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-3-3，java-class文件"><span class="nav-number">1.0.0.2.3.</span> <span class="nav-text">1.3.3，java class文件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-3-4-java-api"><span class="nav-number">1.0.0.2.4.</span> <span class="nav-text">1.3.4 java api</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-x-平台无关性"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">2.x 平台无关性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-x-安全性"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">3.x 安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#栈："><span class="nav-number">1.0.0.4.1.</span> <span class="nav-text">栈：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-x-网络移动性"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">4.x 网络移动性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-x-java虚拟机"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">5.x    java虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#方法区："><span class="nav-number">1.0.0.6.1.</span> <span class="nav-text">方法区：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#方法表："><span class="nav-number">1.0.0.6.2.</span> <span class="nav-text">方法表：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#堆："><span class="nav-number">1.0.0.6.3.</span> <span class="nav-text">堆：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#程序计数器："><span class="nav-number">1.0.0.6.4.</span> <span class="nav-text">程序计数器：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#栈帧："><span class="nav-number">1.0.0.6.5.</span> <span class="nav-text">栈帧：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#局部变量区："><span class="nav-number">1.0.0.6.6.</span> <span class="nav-text">局部变量区：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#操作数栈："><span class="nav-number">1.0.0.6.7.</span> <span class="nav-text">操作数栈：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#帧数据区："><span class="nav-number">1.0.0.6.8.</span> <span class="nav-text">帧数据区：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#本地方法栈："><span class="nav-number">1.0.0.6.9.</span> <span class="nav-text">本地方法栈：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#执行引擎：java程序的每个线程都是一个独立执行引擎的实例"><span class="nav-number">1.0.0.6.10.</span> <span class="nav-text">执行引擎：java程序的每个线程都是一个独立执行引擎的实例</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-x-java-class文件"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">6.x java class文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-x-类型的生命周期"><span class="nav-number">1.0.0.8.</span> <span class="nav-text">7.x 类型的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#装载——连接——初始化"><span class="nav-number">1.0.0.8.1.</span> <span class="nav-text">装载——连接——初始化</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#对象的生命周期"><span class="nav-number">1.0.0.8.2.</span> <span class="nav-text">对象的生命周期</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-x-垃圾回收"><span class="nav-number">1.0.0.9.</span> <span class="nav-text">9.x 垃圾回收</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#火车算法："><span class="nav-number">1.0.0.9.1.</span> <span class="nav-text">火车算法：</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">feather</span>
+
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>Visitors
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>Views
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/feather/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/feather/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/feather/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/feather/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/feather/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/feather/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/feather/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/feather/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/feather/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/feather/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/feather/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+      <style>
+        a.gitment-editor-footer-tip { display: none; }
+        .gitment-container.gitment-footer-container { display: none; }
+      </style>
+    
+
+    
+      <script src="/js/src/md5.min.js"></script>
+      <script type="text/javascript">
+
+      function renderGitment(){
+        //创建正则，匹配出文章标题
+        var pat = new RegExp("/\\S+/");
+        var gitment = new Gitmint({
+            id: pat.exec(decodeURI(window.location.pathname))[0],
+            owner: 'GFeather',
+            repo: 'blog_comments',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'da96ba5ef297e18c67a1b1406b2b1db6fd9335c6',
+            
+                client_id: '606b4524ae7ce87100fe'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      function showGitment(){
+        document.getElementById("gitment-display-button").style.display = "none";
+        document.getElementById("gitment-container").style.display = "block";
+        renderGitment();
+      }
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("MyWiH96O1JFJEcLtPUr5FtJh-gzGzoHsz", "QLmb5OErD2AJQpENGU3zq63b");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
