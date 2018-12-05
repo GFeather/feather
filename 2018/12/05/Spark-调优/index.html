@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/feather/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/feather/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/feather/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Josefin Sans:300,300italic,400,400italic,700,700italic|Comfortaa:300,300italic,400,400italic,700,700italic|Oxygen:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/feather/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/feather/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/feather/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/feather/images/feather.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/feather/images/feather.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/feather/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="spark," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Data-driven production value Spark-调优开发调优 避免创建重复RDD 尽可能复用同一个RDD 对多次使用的RDD进行持久化 尽量避免使用shuffle类算子 使用map-side预聚合的shuffle操作 使用高性能的算子 使用reduceByKey/aggregateByKey替代groupByKey 使用mapPartitions/foreachPartiti">
+<meta name="keywords" content="spark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark 调优">
+<meta property="og:url" content="https://gfeather.github.io/feather/2018/12/05/Spark-调优/index.html">
+<meta property="og:site_name" content="feather">
+<meta property="og:description" content="Data-driven production value Spark-调优开发调优 避免创建重复RDD 尽可能复用同一个RDD 对多次使用的RDD进行持久化 尽量避免使用shuffle类算子 使用map-side预聚合的shuffle操作 使用高性能的算子 使用reduceByKey/aggregateByKey替代groupByKey 使用mapPartitions/foreachPartiti">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-05T10:14:39.394Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spark 调优">
+<meta name="twitter:description" content="Data-driven production value Spark-调优开发调优 避免创建重复RDD 尽可能复用同一个RDD 对多次使用的RDD进行持久化 尽量避免使用shuffle类算子 使用map-side预聚合的shuffle操作 使用高性能的算子 使用reduceByKey/aggregateByKey替代groupByKey 使用mapPartitions/foreachPartiti">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/feather/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gfeather.github.io/feather/2018/12/05/Spark-调优/"/>
+
+
+
+
+
+  <title>Spark 调优 | feather</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/feather/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">feather</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/feather/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/feather/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/feather/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/feather/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gfeather.github.io/feather/feather/2018/12/05/Spark-调优/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="feather">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/feather/images/pk.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="feather">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spark 调优</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-05T17:33:16+08:00">
+                2018-12-05
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-05T18:14:39+08:00">
+                2018-12-05
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/feather/categories/Spark/" itemprop="url" rel="index">
+                    <span itemprop="name">Spark</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/feather/2018/12/05/Spark-调优/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/feather/2018/12/05/Spark-调优/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/feather/2018/12/05/Spark-调优/" class="leancloud_visitors" data-flag-title="Spark 调优">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>Views
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><em>Data-driven production value</em></p>
+<h2 id="Spark-调优"><a href="#Spark-调优" class="headerlink" title="Spark-调优"></a>Spark-调优</h2><h5 id="开发调优"><a href="#开发调优" class="headerlink" title="开发调优"></a>开发调优</h5><ul>
+<li>避免创建重复RDD</li>
+<li>尽可能复用同一个RDD</li>
+<li>对多次使用的RDD进行持久化</li>
+<li>尽量避免使用shuffle类算子</li>
+<li>使用map-side预聚合的shuffle操作</li>
+<li>使用高性能的算子<ul>
+<li>使用reduceByKey/aggregateByKey替代groupByKey</li>
+<li>使用mapPartitions/foreachPartitions替代普通map/foreach  ，   能够提升效率，但是一个task处理整个分区可能会OOM</li>
+<li>使用filter之后进行coalesce操作</li>
+<li>使用repartitionAndSortWithinPartitions替代repartition与sort类操作 ，    如果重新分区后需要排序，可以在分区过程排序</li>
+</ul>
+</li>
+<li>广播大变量</li>
+<li>使用Kryo优化序列化性能</li>
+<li>优化数据结构</li>
+<li>提高并行度<ul>
+<li>使每个core处理2~3个任务，即task数为application申请core数量的2~3倍</li>
+<li>创建RDD时手动在参数中设置</li>
+<li>sparkConf或者Spark-submit中指定<code>spark.default.parallelism</code></li>
+</ul>
+</li>
+<li>数据本地化<ul>
+<li>对spark性能有巨大影响，尽量在数据所在节点的executor上执行task</li>
+<li>本地化级别<ul>
+<li>PROCESS_LOCAL：数据和计算它的代码在同一个JVM进程中。</li>
+<li>NODE_LOCAL：数据和计算它的代码在一个节点上，但是不在一个进程中，比如在不同的executor进程中，或者是数据在HDFS文件的block中。</li>
+<li>NO_PREF：数据从哪里过来，性能都是一样的。</li>
+<li>RACK_LOCAL：数据和计算它的代码在一个机架上。</li>
+<li>ANY：数据可能在任意地方，比如其他网络环境内，或者其他机架上。</li>
+</ul>
+</li>
+<li>spark优先在数据本地执行task，没有空闲executor的话spark会等待一段时间。可以通过<code>spark.locality.wait</code>等配置</li>
+</ul>
+</li>
+</ul>
+<h5 id="资源参数调优"><a href="#资源参数调优" class="headerlink" title="资源参数调优"></a>资源参数调优</h5><h6 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h6><ul>
+<li>设置合适的executor数量</li>
+<li>给executor分配合适的task数量、core数量、内存数量</li>
+<li>配置合适的spark存内存策略</li>
+</ul>
+<h6 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h6><ul>
+<li>num-executors<ul>
+<li>设置作业的executor数量，影响task执行并行度</li>
+<li>根据资源队列来确定，确定作业的并行度下限</li>
+</ul>
+</li>
+<li>executor-memory<ul>
+<li>每个executor的内存，决定task运行内存</li>
+<li>根据资源队列来确定，单个executor可以分配多少，以及考虑一个executor上同时执行的task需要多少</li>
+</ul>
+</li>
+<li>executor-cores<ul>
+<li>每个executor的core数，决定task执行并行度</li>
+<li>根据资源队列来确定，决定同时执行的task数量，考虑单个executor的内存和task需要内存的关系</li>
+</ul>
+</li>
+<li>driver-memory<ul>
+<li>决定driver进程内存</li>
+</ul>
+</li>
+<li>spark.default.parallelism<ul>
+<li>每个stage的task数量，决定并行度</li>
+<li>保证资源利用率，大概为cores的2~3倍</li>
+</ul>
+</li>
+<li>spark.storage.memoryFraction<ul>
+<li>RDD持久化数据在Executor内存中的占比，默认0.6</li>
+<li>作业中持久化使用较多则设置大一些，否则数据会写入磁盘</li>
+</ul>
+</li>
+<li>spark.shuffle.memoryFraction<ul>
+<li>shuffle过程中一个task拉取到上一个stage的task的输出后进行聚合时能够使用的Executor内存占比，默认0.2</li>
+<li>如果RDD持久化操作较少，shuffle操作较多，可以提高shuffle内存降低RDD持久化内存</li>
+</ul>
+</li>
+</ul>
+<h5 id="Shuffle调优"><a href="#Shuffle调优" class="headerlink" title="Shuffle调优"></a>Shuffle调优</h5><ul>
+<li>spark.shuffle.file.buffer<ul>
+<li>默认值 32k</li>
+<li>shuffle write task写入磁盘前的缓冲区大小，内存充足的条件下可以适当增加用以减少写入磁盘次数。合理调节可以获得1%~5%增益</li>
+</ul>
+</li>
+<li>spark.reducer.maxSizeInFlight<ul>
+<li>默认值 48M</li>
+<li>shuffle read task的缓冲区大小，决定每次能拉取多少数据，内存充足的条件下可以适当增加用于减少网络传输次数。合理调节可以获得1%~5%增益</li>
+</ul>
+</li>
+<li>spark.shuffle.io.maxRetries<ul>
+<li>默认值 3</li>
+<li>shuffle read task拉取失败重试次数，可以提高稳定性</li>
+</ul>
+</li>
+<li>spark.shuffle.io.retryWait<ul>
+<li>默认值 5s</li>
+<li>每次重试拉取的等待间隔，增大间隔可以提高稳定性</li>
+</ul>
+</li>
+<li>spark.shuffle.memoryFraction<ul>
+<li>默认值 0.2</li>
+<li>Executor中分配给shuffle read task进行聚合操作的内存，调高以避免shuffle read操作频繁读写磁盘。合理调节可以提高10%增益</li>
+</ul>
+</li>
+<li>spark.shuffle.manager<ul>
+<li>默认值 sort</li>
+<li>ShuffleManager的类型，三个可选项:hash、sort和tungsten-sort。SortShuffleManager会对结果排序，如果不需要则通过bypass机制或优化的HashShuffleManager</li>
+</ul>
+</li>
+<li>spark.shuffle.sort.bypassMergeThreshold<ul>
+<li>默认值 200 </li>
+<li>当ShuffleManager为SortShuffleManager时，如果shuffle read task的数量小于这个阈值（默认是200），则shuffle write过程中不会进行排序操作，而是直接按照未经优化的HashShuffleManager的方式去写数据，但是最后会将每个task产生的所有临时磁盘文件都合并成一个文件，并会创建单独的索引文件。</li>
+</ul>
+</li>
+<li>spark.shuffle.consolidateFiles<ul>
+<li>默认值 false</li>
+<li>设置为true会合并shuffle write的文件，如果不需要排序，可以使用HashShuffleManager开启合并。</li>
+</ul>
+</li>
+</ul>
+<h5 id="数据倾斜"><a href="#数据倾斜" class="headerlink" title="数据倾斜"></a>数据倾斜</h5><ul>
+<li><p>使用Hive ETL预处理数据</p>
+<ul>
+<li>场景: 数据在Hive表里，经常使用spark进行计算</li>
+<li>方案: 使用Hive预处理，使其变成不倾斜</li>
+</ul>
+</li>
+<li><p>过滤少数导致倾斜的key</p>
+<ul>
+<li>场景: 导致倾斜的Key只有少数几个</li>
+<li>方案: 将倾斜Key和正常数据分开处理，处理倾斜Key时增加并行度，最后将结果合并</li>
+</ul>
+</li>
+<li><p>提高shuffle操作的并行度</p>
+<ul>
+<li>场景: 面对必须处理的倾斜数据，最简单的方案</li>
+<li>方案: 设置spark.sql.shuffle.patitions提高map task并行度，增加分区数，来处理倾斜数据</li>
+</ul>
+</li>
+<li><p>两阶段聚合（局部聚合+全局聚合）</p>
+<ul>
+<li>场景: 使用聚合类算子时遇到数据倾斜</li>
+<li>方案: hash生成n种(想要分区数)字符串随机添加在可能数据倾斜的字段前，将数据分为均匀的几块进行聚合，再去掉前缀聚合。分两阶段聚合</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><em>Join</em></p>
+<ul>
+<li><p>将reduce join转为map join</p>
+<ul>
+<li>场景: 大表 * 小表</li>
+<li>方案: 将小表设置为共享变量</li>
+<li><p>如果: 大表 *  大表<br>  有两种方式：<br>  1、把其中一个较小的大表拆分成很多的小表，然后执行很多mapjoin<br>  2、先过滤，然后再做操作。一般来说， 原来不能使用mapjoin的操作， 很有可能在<br>  进行了过滤之后， 就能把不用参与join的数据给过滤掉</p>
+<p>  使用mapjoin解决数据倾斜的原理，就是直接把shuffle直接舍弃</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>采样倾斜key并分拆join操作</p>
+<ul>
+<li>场景: Join时有少数几个Key倾斜</li>
+<li>方案: 通过采样来确定倾斜key，然后将倾斜key提取出来，添加随机n种前缀，对要Join的RDD中相同的Key添加n种前缀扩容n倍，然后倾斜Key连接、正常Key连接, 最后将结果union</li>
+</ul>
+</li>
+<li><p>使用随机前缀和扩容RDD进行join</p>
+<ul>
+<li>场景: 大多数Key数据量都很大</li>
+<li>方案: 类似上一方案，将左右key都添加随机前缀，将要Join的RDD进行全量扩容</li>
+</ul>
+</li>
+<li><p>多种方案组合使用</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/feather/tags/spark/" rel="tag"># spark</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/feather/2018/11/24/look-Jvm/" rel="next" title="look Jvm">
+                <i class="fa fa-chevron-left"></i> look Jvm
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b80189203ca72db" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div onclick="showGitment()" id="gitment-display-button">显示 Gitment 评论</div>
+        <div id="gitment-container" style="display:none"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/feather/images/pk.png"
+                alt="feather" />
+            
+              <p class="site-author-name" itemprop="name">feather</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/feather/archives/">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/feather/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/feather/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/GFeather" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:feather292@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/19719655a6c9" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark-调优"><span class="nav-number">1.</span> <span class="nav-text">Spark-调优</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#开发调优"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">开发调优</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#资源参数调优"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">资源参数调优</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#目的"><span class="nav-number">1.0.0.2.1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#参数"><span class="nav-number">1.0.0.2.2.</span> <span class="nav-text">参数</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Shuffle调优"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">Shuffle调优</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据倾斜"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">数据倾斜</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">feather</span>
+
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>Visitors
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>Views
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/feather/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/feather/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/feather/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/feather/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/feather/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/feather/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/feather/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/feather/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/feather/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/feather/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/feather/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+      <style>
+        a.gitment-editor-footer-tip { display: none; }
+        .gitment-container.gitment-footer-container { display: none; }
+      </style>
+    
+
+    
+      <script src="/js/src/md5.min.js"></script>
+      <script type="text/javascript">
+
+      function renderGitment(){
+        //创建正则，匹配出文章标题
+        var pat = new RegExp("/\\S+/");
+        var gitment = new Gitmint({
+            id: pat.exec(decodeURI(window.location.pathname))[0],
+            owner: 'GFeather',
+            repo: 'blog_comments',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'da96ba5ef297e18c67a1b1406b2b1db6fd9335c6',
+            
+                client_id: '606b4524ae7ce87100fe'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      function showGitment(){
+        document.getElementById("gitment-display-button").style.display = "none";
+        document.getElementById("gitment-container").style.display = "block";
+        renderGitment();
+      }
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("MyWiH96O1JFJEcLtPUr5FtJh-gzGzoHsz", "QLmb5OErD2AJQpENGU3zq63b");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

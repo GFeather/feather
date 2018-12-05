@@ -142,7 +142,7 @@
 <meta property="og:image" content="https://i.imgur.com/IfnU2vd.png">
 <meta property="og:image" content="https://i.imgur.com/YiPXVZ2.png">
 <meta property="og:image" content="https://i.imgur.com/b4eH07I.png">
-<meta property="og:updated_time" content="2018-11-24T02:35:20.433Z">
+<meta property="og:updated_time" content="2018-11-28T12:20:37.638Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="look Jvm">
 <meta name="twitter:description" content="learning ,  perception design  look Jvmjava体系结构java语言 java class 文件格式 java应用编程接口 java虚拟机 1.x1.3.1，java虚拟机体系结构主要包含类装载器和执行引擎类装载器来加载程序的class文件和java api class文件为字节码，由执行引擎运行，调用本地方法调用java程序通过java虚拟机调用本地方法来访">
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-24T10:35:20+08:00">
-                2018-11-24
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-28T20:20:37+08:00">
+                2018-11-28
               </time>
             
           </span>
@@ -533,6 +533,18 @@ java虚拟机
 <li>将主存中的变量的值拷贝到工作内存</li>
 <li>将它的值写回到主存<br>则会进一步牵扯到：原子性，顺序性，可视性的线程相关问题</li>
 </ul>
+<h6 id="Jvm调优的相关参数"><a href="#Jvm调优的相关参数" class="headerlink" title="Jvm调优的相关参数"></a>Jvm调优的相关参数</h6><p>主要为堆的大小、栈的大小、新生代和老年代的比值、新生代中eden和s0、s1的比值。</p>
+<ul>
+<li>-Xms:初始堆大小，默认是物理内存的1/64。默认(MinHeapFreeRatio参数可以调整)空余堆内存小于40%时，JVM就会增大堆直到-Xmx的最大限制。例如：-Xms 20m。</li>
+<li>-Xmx:最大堆大小。默认是物理内存的1/4  默认(MaxHeapFreeRatio参数可以调整)空余堆内存大于70%时，JVM会减少堆直到 -Xms的最小限制。</li>
+<li>-XX:NewSize=xxx：设置年轻代大小（初始值）。 </li>
+<li>-XX:MaxNewSize：设置年轻代最大值。</li>
+<li>-XX:NewRatio=n:设置年轻代和年老代的比值。</li>
+<li>-XX:SurvivorRatio=n:年轻代中Eden区与两个Survivor区的比值。</li>
+<li>-XX:PermSize（1.8之后改为MetaspaceSize）  设置持久代(perm gen)初始值，默认是物理内存的1/64。</li>
+<li>-XX:MaxPermSize=n:（1.8之后改为MaxMetaspaceSize）设置最大持久代大小。</li>
+<li>-Xss：每个线程的堆栈大小。</li>
+</ul>
 <h5 id="6-x-java-class文件"><a href="#6-x-java-class文件" class="headerlink" title="6.x java class文件"></a>6.x java class文件</h5><p>java class文件是八位字节的二进制流</p>
 <h5 id="7-x-类型的生命周期"><a href="#7-x-类型的生命周期" class="headerlink" title="7.x 类型的生命周期"></a>7.x 类型的生命周期</h5><p><strong>只有在第一次主动使用才会初始化</strong><br>所以外部类初始化时不会引起静态内部类的初始化</p>
 <p>主动使用的情况：</p>
@@ -601,9 +613,20 @@ java虚拟机
 </li>
 <li><p>压缩收集器：解决堆碎块问题，将所有对象拷贝到堆的一端，将其他地方视为空，其中对象引用方式为带句柄，引用改变效率高，但是每次对象访问都有性能损失</p>
 </li>
-<li><p>拷贝收集器：解决堆碎块问题，只使用堆的一半，达到一定限度，就将所有对象拷贝到另一半，</p>
+<li><p>拷贝收集器：解决堆碎块问题，将内存分为一块较大的Eden空间和两块较小的Survivor空间；每次使用Eden和其中一块Survivor。回收时将Eden和Sur中的对象复制到另一块Survivor中</p>
 </li>
 <li><p>按代收集的收集器：将堆分为多个子堆，按照寿命将对象分为多个代，越年轻的代则收集越频繁</p>
+</li>
+</ul>
+<p>内存分配策略：</p>
+<ul>
+<li>大对象直接进入Old gen， -XX:PretenureSizeThreshold参数来控制这个大小，避免Eden以及Survivor区之间发生大量内存复制</li>
+<li>空间分配担保：<ul>
+<li>当Minor GC之前会检查新生代所有对象有没有大于Old gen空闲最大连续内存空间</li>
+<li>如果大于，则检查-XX:HandlePromotionFailure是否允许担保失败</li>
+<li>如果允许，将检查Old gen剩余最大连续内存空间是否大于历次GC晋升到Old gen的对象所占空间的平均值</li>
+<li>如果大于，则进行有风险的Minor GC，否则，进行Full GC</li>
+</ul>
 </li>
 </ul>
 <h6 id="火车算法："><a href="#火车算法：" class="headerlink" title="火车算法："></a>火车算法：</h6><p>火车算法把内存空间划分为固定大小的内存块，火车算法在这些块中执行，每个块属于一个集合，这个集合被称作火车，内存块被称作车厢；</p>
@@ -667,6 +690,10 @@ java虚拟机
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/feather/2018/12/05/Spark-调优/" rel="prev" title="Spark 调优">
+                Spark 调优 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -761,7 +788,7 @@ java虚拟机
               
                 <a href="/feather/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -772,7 +799,7 @@ java虚拟机
               
               <div class="site-state-item site-state-categories">
                 <a href="/feather/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -783,7 +810,7 @@ java虚拟机
               
               <div class="site-state-item site-state-tags">
                 <a href="/feather/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -838,7 +865,7 @@ java虚拟机
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#look-Jvm"><span class="nav-number">1.</span> <span class="nav-text">look Jvm</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#java体系结构"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">java体系结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-x"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">1.x</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-3-1，java虚拟机体系结构"><span class="nav-number">1.0.0.2.1.</span> <span class="nav-text">1.3.1，java虚拟机体系结构</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-3-2，类装载器的体系结构"><span class="nav-number">1.0.0.2.2.</span> <span class="nav-text">1.3.2，类装载器的体系结构</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-3-3，java-class文件"><span class="nav-number">1.0.0.2.3.</span> <span class="nav-text">1.3.3，java class文件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-3-4-java-api"><span class="nav-number">1.0.0.2.4.</span> <span class="nav-text">1.3.4 java api</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-x-平台无关性"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">2.x 平台无关性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-x-安全性"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">3.x 安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#栈："><span class="nav-number">1.0.0.4.1.</span> <span class="nav-text">栈：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-x-网络移动性"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">4.x 网络移动性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-x-java虚拟机"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">5.x    java虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#方法区："><span class="nav-number">1.0.0.6.1.</span> <span class="nav-text">方法区：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#方法表："><span class="nav-number">1.0.0.6.2.</span> <span class="nav-text">方法表：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#堆："><span class="nav-number">1.0.0.6.3.</span> <span class="nav-text">堆：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#程序计数器："><span class="nav-number">1.0.0.6.4.</span> <span class="nav-text">程序计数器：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#栈帧："><span class="nav-number">1.0.0.6.5.</span> <span class="nav-text">栈帧：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#局部变量区："><span class="nav-number">1.0.0.6.6.</span> <span class="nav-text">局部变量区：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#操作数栈："><span class="nav-number">1.0.0.6.7.</span> <span class="nav-text">操作数栈：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#帧数据区："><span class="nav-number">1.0.0.6.8.</span> <span class="nav-text">帧数据区：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#本地方法栈："><span class="nav-number">1.0.0.6.9.</span> <span class="nav-text">本地方法栈：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#执行引擎：java程序的每个线程都是一个独立执行引擎的实例"><span class="nav-number">1.0.0.6.10.</span> <span class="nav-text">执行引擎：java程序的每个线程都是一个独立执行引擎的实例</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-x-java-class文件"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">6.x java class文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-x-类型的生命周期"><span class="nav-number">1.0.0.8.</span> <span class="nav-text">7.x 类型的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#装载——连接——初始化"><span class="nav-number">1.0.0.8.1.</span> <span class="nav-text">装载——连接——初始化</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#对象的生命周期"><span class="nav-number">1.0.0.8.2.</span> <span class="nav-text">对象的生命周期</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-x-垃圾回收"><span class="nav-number">1.0.0.9.</span> <span class="nav-text">9.x 垃圾回收</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#火车算法："><span class="nav-number">1.0.0.9.1.</span> <span class="nav-text">火车算法：</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#look-Jvm"><span class="nav-number">1.</span> <span class="nav-text">look Jvm</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#java体系结构"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">java体系结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-x"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">1.x</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-3-1，java虚拟机体系结构"><span class="nav-number">1.0.0.2.1.</span> <span class="nav-text">1.3.1，java虚拟机体系结构</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-3-2，类装载器的体系结构"><span class="nav-number">1.0.0.2.2.</span> <span class="nav-text">1.3.2，类装载器的体系结构</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-3-3，java-class文件"><span class="nav-number">1.0.0.2.3.</span> <span class="nav-text">1.3.3，java class文件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-3-4-java-api"><span class="nav-number">1.0.0.2.4.</span> <span class="nav-text">1.3.4 java api</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-x-平台无关性"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">2.x 平台无关性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-x-安全性"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">3.x 安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#栈："><span class="nav-number">1.0.0.4.1.</span> <span class="nav-text">栈：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-x-网络移动性"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">4.x 网络移动性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-x-java虚拟机"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">5.x    java虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#方法区："><span class="nav-number">1.0.0.6.1.</span> <span class="nav-text">方法区：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#方法表："><span class="nav-number">1.0.0.6.2.</span> <span class="nav-text">方法表：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#堆："><span class="nav-number">1.0.0.6.3.</span> <span class="nav-text">堆：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#程序计数器："><span class="nav-number">1.0.0.6.4.</span> <span class="nav-text">程序计数器：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#栈帧："><span class="nav-number">1.0.0.6.5.</span> <span class="nav-text">栈帧：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#局部变量区："><span class="nav-number">1.0.0.6.6.</span> <span class="nav-text">局部变量区：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#操作数栈："><span class="nav-number">1.0.0.6.7.</span> <span class="nav-text">操作数栈：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#帧数据区："><span class="nav-number">1.0.0.6.8.</span> <span class="nav-text">帧数据区：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#本地方法栈："><span class="nav-number">1.0.0.6.9.</span> <span class="nav-text">本地方法栈：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#执行引擎：java程序的每个线程都是一个独立执行引擎的实例"><span class="nav-number">1.0.0.6.10.</span> <span class="nav-text">执行引擎：java程序的每个线程都是一个独立执行引擎的实例</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Jvm调优的相关参数"><span class="nav-number">1.0.0.6.11.</span> <span class="nav-text">Jvm调优的相关参数</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-x-java-class文件"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">6.x java class文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-x-类型的生命周期"><span class="nav-number">1.0.0.8.</span> <span class="nav-text">7.x 类型的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#装载——连接——初始化"><span class="nav-number">1.0.0.8.1.</span> <span class="nav-text">装载——连接——初始化</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#对象的生命周期"><span class="nav-number">1.0.0.8.2.</span> <span class="nav-text">对象的生命周期</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-x-垃圾回收"><span class="nav-number">1.0.0.9.</span> <span class="nav-text">9.x 垃圾回收</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#火车算法："><span class="nav-number">1.0.0.9.1.</span> <span class="nav-text">火车算法：</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
