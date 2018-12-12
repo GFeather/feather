@@ -1,3 +1,3 @@
-# feather
+## feather
 
-###### personal blog
+##### personal blog
